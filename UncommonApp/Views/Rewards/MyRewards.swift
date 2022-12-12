@@ -1,5 +1,5 @@
 //
-//  Rewards.swift
+//  MyRewards.swift
 //  UncommonApp
 //
 //  Created by Colin Power on 12/5/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Rewards: View {
+struct MyRewards: View {
     
     @Binding var sheetContext: [String]
     
@@ -78,8 +78,8 @@ struct Rewards: View {
     }
 }
 
-struct Rewards_Previews: PreviewProvider {
+struct MyRewards_Previews: PreviewProvider {
     static var previews: some View {
-        Rewards(sheetContext: .constant(["sdf", "sfas"]), presentedSheet: .constant(.rewards))
+        MyRewards(sheetContext: .constant(["sdf", "sfas"]), presentedSheet: .constant(.myrewards))
     }
 }
