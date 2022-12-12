@@ -21,6 +21,11 @@ struct Home: View {
     
     @ObservedObject var referralProgramVM = ReferralProgramVM()
     
+    @ObservedObject var campaignsVM = CampaignsVM()
+    @ObservedObject var codesVM = CodesVM()
+    @ObservedObject var companiesVM = CompaniesVM()
+    
+    
     var listItems = [1, 2, 3, 4]
     
     @State var bool123 = false
@@ -233,7 +238,9 @@ struct Home: View {
                 .onAppear {
                     
                     self.referralProgramVM.getReferralPrograms()
-                    
+                    self.campaignsVM.getOneCampaign()
+                    self.codesVM.getOneCode(codeId: "Fr2FcjT5gkCcq01fSGlc")
+                    self.companiesVM.getAllCompanies()
                 }
             }
         }

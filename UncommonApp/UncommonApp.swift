@@ -4,8 +4,13 @@
 //
 //  Created by Colin Power on 12/1/22.
 //
+
 import SwiftUI
+import Firebase
 import FirebaseCore
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseDynamicLinks
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -20,7 +25,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct UncommonApp: App {
-  // register app delegate for Firebase setup
+  
+    // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
 
@@ -28,6 +34,8 @@ struct UncommonApp: App {
     WindowGroup {
       NavigationView {
         ContentView()
+          //.environmentObject(viewModel)
+          .preferredColorScheme(.light)
       }
     }
   }

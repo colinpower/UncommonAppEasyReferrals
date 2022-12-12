@@ -10,6 +10,14 @@
 		30114A19294051B100F63BD1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A18294051B100F63BD1 /* Profile.swift */; };
 		30114A1E29407B8900F63BD1 /* ReferralProgramVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A1D29407B8900F63BD1 /* ReferralProgramVM.swift */; };
 		30114A2029407BA500F63BD1 /* ReferralProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A1F29407BA500F63BD1 /* ReferralProgram.swift */; };
+		30114A29294719A900F63BD1 /* Campaigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A28294719A900F63BD1 /* Campaigns.swift */; };
+		30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2A29471C3900F63BD1 /* CampaignsVM.swift */; };
+		30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2C29471CDC00F63BD1 /* DataManager.swift */; };
+		30114A2F29471F6600F63BD1 /* Codes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2E29471F6600F63BD1 /* Codes.swift */; };
+		30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3029471FFF00F63BD1 /* CodesVM.swift */; };
+		30114A332947232200F63BD1 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A322947232200F63BD1 /* Companies.swift */; };
+		30114A352947242C00F63BD1 /* CompaniesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A342947242C00F63BD1 /* CompaniesVM.swift */; };
+		30114A37294724CB00F63BD1 /* Memberships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A36294724CB00F63BD1 /* Memberships.swift */; };
 		3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEAE2939080A006C85F8 /* UncommonApp.swift */; };
 		3056BEB12939080A006C85F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEB02939080A006C85F8 /* ContentView.swift */; };
 		3056BEB32939080B006C85F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB22939080B006C85F8 /* Assets.xcassets */; };
@@ -69,6 +77,14 @@
 		30114A18294051B100F63BD1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		30114A1D29407B8900F63BD1 /* ReferralProgramVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralProgramVM.swift; sourceTree = "<group>"; };
 		30114A1F29407BA500F63BD1 /* ReferralProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralProgram.swift; sourceTree = "<group>"; };
+		30114A28294719A900F63BD1 /* Campaigns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaigns.swift; sourceTree = "<group>"; };
+		30114A2A29471C3900F63BD1 /* CampaignsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsVM.swift; sourceTree = "<group>"; };
+		30114A2C29471CDC00F63BD1 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		30114A2E29471F6600F63BD1 /* Codes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codes.swift; sourceTree = "<group>"; };
+		30114A3029471FFF00F63BD1 /* CodesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesVM.swift; sourceTree = "<group>"; };
+		30114A322947232200F63BD1 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
+		30114A342947242C00F63BD1 /* CompaniesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesVM.swift; sourceTree = "<group>"; };
+		30114A36294724CB00F63BD1 /* Memberships.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memberships.swift; sourceTree = "<group>"; };
 		3056BEAB2939080A006C85F8 /* UncommonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UncommonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056BEAE2939080A006C85F8 /* UncommonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonApp.swift; sourceTree = "<group>"; };
 		3056BEB02939080A006C85F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,6 +177,11 @@
 		30114A1A29407B3500F63BD1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30114A232947173F00F63BD1 /* Login */,
+				30114A242947174700F63BD1 /* Home */,
+				30114A262947176700F63BD1 /* Rewards */,
+				30114A252947175E00F63BD1 /* Add */,
+				30114A272947178700F63BD1 /* Profile */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				30114A1D29407B8900F63BD1 /* ReferralProgramVM.swift */,
+				30114A2C29471CDC00F63BD1 /* DataManager.swift */,
+				30114A2A29471C3900F63BD1 /* CampaignsVM.swift */,
+				30114A3029471FFF00F63BD1 /* CodesVM.swift */,
+				30114A342947242C00F63BD1 /* CompaniesVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -177,8 +202,52 @@
 			isa = PBXGroup;
 			children = (
 				30114A1F29407BA500F63BD1 /* ReferralProgram.swift */,
+				30114A28294719A900F63BD1 /* Campaigns.swift */,
+				30114A2E29471F6600F63BD1 /* Codes.swift */,
+				30114A322947232200F63BD1 /* Companies.swift */,
+				30114A36294724CB00F63BD1 /* Memberships.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		30114A232947173F00F63BD1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		30114A242947174700F63BD1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3056BED8293EAF85006C85F8 /* Home.swift */,
+				3056BEDE293ED713006C85F8 /* SharePersonalized.swift */,
+				3056BEDC293EC7DB006C85F8 /* Share.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		30114A252947175E00F63BD1 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		30114A262947176700F63BD1 /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				3056BEDA293EAFB5006C85F8 /* Rewards.swift */,
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		30114A272947178700F63BD1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				30114A18294051B100F63BD1 /* Profile.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		3056BEA22939080A006C85F8 = {
@@ -206,14 +275,9 @@
 			children = (
 				3056BEAE2939080A006C85F8 /* UncommonApp.swift */,
 				3056BEB02939080A006C85F8 /* ContentView.swift */,
-				30114A1C29407B4E00F63BD1 /* Models */,
-				30114A1B29407B3D00F63BD1 /* ViewModels */,
 				30114A1A29407B3500F63BD1 /* Views */,
-				3056BED8293EAF85006C85F8 /* Home.swift */,
-				3056BEDA293EAFB5006C85F8 /* Rewards.swift */,
-				3056BEDC293EC7DB006C85F8 /* Share.swift */,
-				3056BEDE293ED713006C85F8 /* SharePersonalized.swift */,
-				30114A18294051B100F63BD1 /* Profile.swift */,
+				30114A1B29407B3D00F63BD1 /* ViewModels */,
+				30114A1C29407B4E00F63BD1 /* Models */,
 				3056BEB22939080B006C85F8 /* Assets.xcassets */,
 				3056BEB42939080B006C85F8 /* Preview Content */,
 				30114A12293FE5C100F63BD1 /* Firebase */,
@@ -428,13 +492,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				30114A1E29407B8900F63BD1 /* ReferralProgramVM.swift in Sources */,
+				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
 				3056BEDD293EC7DB006C85F8 /* Share.swift in Sources */,
 				3056BEDB293EAFB5006C85F8 /* Rewards.swift in Sources */,
+				30114A2F29471F6600F63BD1 /* Codes.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */,
+				30114A29294719A900F63BD1 /* Campaigns.swift in Sources */,
 				30114A2029407BA500F63BD1 /* ReferralProgram.swift in Sources */,
+				30114A332947232200F63BD1 /* Companies.swift in Sources */,
+				30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */,
+				30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */,
+				30114A37294724CB00F63BD1 /* Memberships.swift in Sources */,
+				30114A352947242C00F63BD1 /* CompaniesVM.swift in Sources */,
 				3056BEDF293ED713006C85F8 /* SharePersonalized.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
