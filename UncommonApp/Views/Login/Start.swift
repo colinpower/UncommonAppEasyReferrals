@@ -7,19 +7,21 @@
 
 import SwiftUI
 
+
 struct Start: View {
     
-    //var loginScreens: [LoginScreens] = [.init(name: "EnterEmail", content: ""),
-//                                        .init(name: "CheckEmail", content: ""),
-//                                        .init(name: "EnterName", content: "")]
+    var enterEmailPages: [EnterEmailPage] = [.init(screen: "EnterEmail", content: "")]
     
-    //@State var path = NavigationPath()
+    @State var startpath = NavigationPath()
     
     var body: some View {
-        //NavigationStack(path: $path) {
-        NavigationStack {
+        
+        NavigationStack(path: $startpath) {
+            
             ZStack(alignment: .top) {
-                Color.red
+                
+                Color.red.ignoresSafeArea()
+                
                 TabView {
                     Text("First")
                     Text("Second")
@@ -31,52 +33,27 @@ struct Start: View {
                 
                 VStack(alignment: .center, spacing: 0) {
                     Spacer()
-//                    Button {
-//                        path.append(loginScreens[0])
-//                    } label: {
-//                        Text("Get started")
-//                    }
-                    Spacer()
-                    
-                    NavigationLink {
-                        EnterEmail()
-                    } label: {
-                        Text("Get Started")
-                    }
 
-                    
-//                    NavigationLink(value: loginScreens[1]) {
-//                        Text("asldkfjaklsdf")
-//                    }
-                    Spacer()
-                    
-                    
-//                    Button {
-//
-//                    } label: {
-//                        HStack(alignment: .center) {
-//                            Spacer()
-//                            Text("Get Started")
-//                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-//                                .foregroundColor(Color("text.black"))
-//                                .padding(.vertical)
-//                            Spacer()
-//                        }
-//                        .background(Capsule().foregroundColor(Color("ShareGray")))
-//                        .padding(.horizontal).padding(.horizontal)
-//                        .padding(.bottom, UIScreen.main.bounds.height * 0.15)
-//                    }
-                    
-                    
+                    NavigationLink(value: enterEmailPages[0]) {
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Text("Get Started")
+                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color("text.black"))
+                                .padding(.vertical)
+                            Spacer()
+                        }
+                        .background(Capsule().foregroundColor(Color("ShareGray")))
+                        .padding(.horizontal).padding(.horizontal)
+                        .padding(.bottom, UIScreen.main.bounds.height * 0.1)
+                    }
                 }
-            }.ignoresSafeArea()
-//                .navigationDestination(for: LoginScreens.self) { loginScreen in
-//                    EnterEmail(loginPath: $path)
-////                    VStack {
-////                        Text("loginScreen value")
-////                        Text(loginScreen.name)
-////                    }
-//                }
+            }
+            .navigationTitle("")
+            .navigationDestination(for: EnterEmailPage.self) { page in
+                EnterEmail(startpath: $startpath)
+            }
+                
         }
     }
 }
@@ -89,8 +66,9 @@ struct Start_Previews: PreviewProvider {
 
 
 
-struct LoginScreens: Hashable {
+struct EnterEmailPage: Hashable {
     
-    let name: String
+    let screen: String
     let content: String
+    
 }

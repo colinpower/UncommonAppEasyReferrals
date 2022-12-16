@@ -19,6 +19,10 @@ enum PresentedSheet: String, Identifiable {
 }
 
 
+//how to do NavigationPath
+//https://www.youtube.com/watch?v=oxp8Qqwr4AY
+
+
 struct Home: View {
         
     @ObservedObject var campaignsVM = CampaignsVM()

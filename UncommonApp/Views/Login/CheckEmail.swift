@@ -10,14 +10,39 @@ import SwiftUI
 
 struct CheckEmail: View {
     
-    var loginScreens1: [LoginScreens] = [.init(name: "EnterEmail", content: ""),
-                                        .init(name: "CheckEmail", content: ""),
-                                        .init(name: "EnterName", content: "")]
+    @Binding var startpath: NavigationPath
     
-    @Binding var loginPath: NavigationPath
+    @Binding var email: String
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .top) {
+            
+            Color("Background").ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing: 0) {
+                //Title
+                Text("Confirm your email")
+                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                    .foregroundColor(Color("text.black"))
+                    .padding(.top)
+                
+                //Subtitle
+                Text("We sent you a sign-in link. Tap it to enter Uncommon App.")
+                    .font(.system(size: 18, weight: .regular))
+                    .foregroundColor(Color("text.gray"))
+                    .padding(.vertical)
+                    .padding(.bottom)
+                
+                
+                Spacer()
+                
+            }
+            .padding(.horizontal)
+        }
+        .navigationTitle("")
+        .navigationDestination(for: CheckEmailPage.self) { page in
+            CheckEmail(startpath: $startpath, email: $email)
+        }
     }
 }
 

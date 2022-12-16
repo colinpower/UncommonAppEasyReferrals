@@ -10,7 +10,14 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
+
+
+
+
 class EmailAuthVM: ObservableObject, Identifiable {
+    
+    @Published var var_getReferrals = [Referrals]()
+    
     
     private var db = Firestore.firestore()
     
@@ -25,13 +32,7 @@ class EmailAuthVM: ObservableObject, Identifiable {
         
         db.collection("auth").document(emailAuthUUID)
             .setData([
-                
-                "sender": [
-                    //"firstName": firstName,
-                    //"lastName": lastName,
-                    //"phone": "",
-                    "email": email
-                ]
+                "email": email
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")
