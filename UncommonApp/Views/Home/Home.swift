@@ -167,8 +167,9 @@ struct Home: View {
                 }
                 .navigationTitle("")
                 .navigationDestination(for: Memberships.self) { membership in
-                    Label(membership.company_name, systemImage: "circle.fill")
-                        .font(.headline)
+                    Detail(membership: membership)
+//                    Label(membership.company_name, systemImage: "circle.fill")
+//                        .font(.headline)
                 }
                 
                 .toolbar {

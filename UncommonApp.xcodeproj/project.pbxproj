@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300B38E0294C2C73000B288D /* Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38DF294C2C73000B288D /* Start.swift */; };
+		300B38E2294C2D0F000B288D /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E1294C2D0F000B288D /* Auth.swift */; };
+		300B38E4294C2D57000B288D /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E3294C2D57000B288D /* AuthVM.swift */; };
 		30114A19294051B100F63BD1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A18294051B100F63BD1 /* Profile.swift */; };
 		30114A29294719A900F63BD1 /* Campaigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A28294719A900F63BD1 /* Campaigns.swift */; };
 		30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2A29471C3900F63BD1 /* CampaignsVM.swift */; };
@@ -25,6 +28,7 @@
 		30114A452947330300F63BD1 /* RewardsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A442947330300F63BD1 /* RewardsVM.swift */; };
 		30114A472947353E00F63BD1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A462947353E00F63BD1 /* Users.swift */; };
 		30114A492947363A00F63BD1 /* UsersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A482947363A00F63BD1 /* UsersVM.swift */; };
+		30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A4A29473E0C00F63BD1 /* Detail.swift */; };
 		3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEAE2939080A006C85F8 /* UncommonApp.swift */; };
 		3056BEB12939080A006C85F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEB02939080A006C85F8 /* ContentView.swift */; };
 		3056BEB32939080B006C85F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB22939080B006C85F8 /* Assets.xcassets */; };
@@ -79,8 +83,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		300B38D82949CED3000B288D /* UncommonApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UncommonApp.entitlements; sourceTree = "<group>"; };
+		300B38DA2949CF2D000B288D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		300B38DB2949D168000B288D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		300B38DF294C2C73000B288D /* Start.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Start.swift; sourceTree = "<group>"; };
+		300B38E1294C2D0F000B288D /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		300B38E3294C2D57000B288D /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		30114A14293FE5C100F63BD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30114A16293FE5C100F63BD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30114A18294051B100F63BD1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		30114A28294719A900F63BD1 /* Campaigns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaigns.swift; sourceTree = "<group>"; };
 		30114A2A29471C3900F63BD1 /* CampaignsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsVM.swift; sourceTree = "<group>"; };
@@ -99,6 +108,7 @@
 		30114A442947330300F63BD1 /* RewardsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsVM.swift; sourceTree = "<group>"; };
 		30114A462947353E00F63BD1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		30114A482947363A00F63BD1 /* UsersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVM.swift; sourceTree = "<group>"; };
+		30114A4A29473E0C00F63BD1 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		3056BEAB2939080A006C85F8 /* UncommonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UncommonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056BEAE2939080A006C85F8 /* UncommonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonApp.swift; sourceTree = "<group>"; };
 		3056BEB02939080A006C85F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -183,7 +193,7 @@
 		30114A15293FE5C100F63BD1 /* Dev */ = {
 			isa = PBXGroup;
 			children = (
-				30114A16293FE5C100F63BD1 /* GoogleService-Info.plist */,
+				300B38DB2949D168000B288D /* GoogleService-Info.plist */,
 			);
 			path = Dev;
 			sourceTree = "<group>";
@@ -203,7 +213,7 @@
 		30114A1B29407B3D00F63BD1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				30114A2C29471CDC00F63BD1 /* DataManager.swift */,
+				300B38E3294C2D57000B288D /* AuthVM.swift */,
 				30114A2A29471C3900F63BD1 /* CampaignsVM.swift */,
 				30114A3029471FFF00F63BD1 /* CodesVM.swift */,
 				30114A342947242C00F63BD1 /* CompaniesVM.swift */,
@@ -212,6 +222,7 @@
 				30114A402947323500F63BD1 /* ReferralsVM.swift */,
 				30114A442947330300F63BD1 /* RewardsVM.swift */,
 				30114A482947363A00F63BD1 /* UsersVM.swift */,
+				30114A2C29471CDC00F63BD1 /* DataManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -219,6 +230,7 @@
 		30114A1C29407B4E00F63BD1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				300B38E1294C2D0F000B288D /* Auth.swift */,
 				30114A28294719A900F63BD1 /* Campaigns.swift */,
 				30114A2E29471F6600F63BD1 /* Codes.swift */,
 				30114A322947232200F63BD1 /* Companies.swift */,
@@ -234,6 +246,7 @@
 		30114A232947173F00F63BD1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				300B38DF294C2C73000B288D /* Start.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -242,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				3056BED8293EAF85006C85F8 /* Home.swift */,
+				30114A4A29473E0C00F63BD1 /* Detail.swift */,
 				3056BEDE293ED713006C85F8 /* SharePersonalized.swift */,
 				3056BEDC293EC7DB006C85F8 /* Share.swift */,
 			);
@@ -294,6 +308,8 @@
 		3056BEAD2939080A006C85F8 /* UncommonApp */ = {
 			isa = PBXGroup;
 			children = (
+				300B38DA2949CF2D000B288D /* Info.plist */,
+				300B38D82949CED3000B288D /* UncommonApp.entitlements */,
 				3056BEAE2939080A006C85F8 /* UncommonApp.swift */,
 				3056BEB02939080A006C85F8 /* ContentView.swift */,
 				30114A1A29407B3500F63BD1 /* Views */,
@@ -513,8 +529,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				30114A492947363A00F63BD1 /* UsersVM.swift in Sources */,
+				30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */,
 				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
 				3056BEDD293EC7DB006C85F8 /* Share.swift in Sources */,
+				300B38E0294C2C73000B288D /* Start.swift in Sources */,
 				3056BEDB293EAFB5006C85F8 /* MyRewards.swift in Sources */,
 				30114A2F29471F6600F63BD1 /* Codes.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
@@ -522,11 +540,13 @@
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,
 				30114A432947329900F63BD1 /* Rewards.swift in Sources */,
 				30114A3929472B3D00F63BD1 /* MembershipsVM.swift in Sources */,
+				300B38E4294C2D57000B288D /* AuthVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
+				300B38E2294C2D0F000B288D /* Auth.swift in Sources */,
 				30114A29294719A900F63BD1 /* Campaigns.swift in Sources */,
 				30114A332947232200F63BD1 /* Companies.swift in Sources */,
 				30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */,
@@ -605,7 +625,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -622,7 +642,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -676,7 +696,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -691,12 +711,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UncommonApp/UncommonApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UncommonApp/Preview Content\"";
 				DEVELOPMENT_TEAM = F6HF4R7G4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UncommonApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -723,12 +745,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UncommonApp/UncommonApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UncommonApp/Preview Content\"";
 				DEVELOPMENT_TEAM = F6HF4R7G4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UncommonApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
