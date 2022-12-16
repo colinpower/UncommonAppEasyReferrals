@@ -10,20 +10,20 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-class AuthVM: ObservableObject, Identifiable {
+class EmailAuthVM: ObservableObject, Identifiable {
     
     private var db = Firestore.firestore()
     
-    func addAuthRequest(
+    func addEmailAuthRequest(
         //firstName: String,
         //lastName: String,
         email: String
     ) {
         
-        let authTimestamp = Int(round(Date().timeIntervalSince1970))
-        let authUUID = UUID().uuidString
+        let emailAuthTimestamp = Int(round(Date().timeIntervalSince1970))
+        let emailAuthUUID = UUID().uuidString
         
-        db.collection("auth").document(authUUID)
+        db.collection("auth").document(emailAuthUUID)
             .setData([
                 
                 "sender": [

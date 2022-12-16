@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         
-        Home()
+        Start()
+        //Home()
         
         //how to set a background color correctly for a textfield
         //https://www.devtechie.com/swiftui-textfield-background-color

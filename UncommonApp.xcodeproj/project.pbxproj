@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		300B38E0294C2C73000B288D /* Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38DF294C2C73000B288D /* Start.swift */; };
-		300B38E2294C2D0F000B288D /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E1294C2D0F000B288D /* Auth.swift */; };
-		300B38E4294C2D57000B288D /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E3294C2D57000B288D /* AuthVM.swift */; };
+		300B38E2294C2D0F000B288D /* EmailAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E1294C2D0F000B288D /* EmailAuth.swift */; };
+		300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E3294C2D57000B288D /* EmailAuthVM.swift */; };
+		300B38E6294C333E000B288D /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E5294C333E000B288D /* AppViewModel.swift */; };
+		300B38E8294C3685000B288D /* EnterEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E7294C3685000B288D /* EnterEmail.swift */; };
+		300B38EA294C3D53000B288D /* CheckEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E9294C3D53000B288D /* CheckEmail.swift */; };
+		300B38EC294C3D5E000B288D /* EnterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38EB294C3D5E000B288D /* EnterName.swift */; };
+		300B38EE294C3D64000B288D /* EnterPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38ED294C3D64000B288D /* EnterPhone.swift */; };
+		300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38EF294C3D6D000B288D /* CheckPhone.swift */; };
 		30114A19294051B100F63BD1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A18294051B100F63BD1 /* Profile.swift */; };
 		30114A29294719A900F63BD1 /* Campaigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A28294719A900F63BD1 /* Campaigns.swift */; };
 		30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2A29471C3900F63BD1 /* CampaignsVM.swift */; };
@@ -87,8 +93,14 @@
 		300B38DA2949CF2D000B288D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		300B38DB2949D168000B288D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		300B38DF294C2C73000B288D /* Start.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Start.swift; sourceTree = "<group>"; };
-		300B38E1294C2D0F000B288D /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		300B38E3294C2D57000B288D /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		300B38E1294C2D0F000B288D /* EmailAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuth.swift; sourceTree = "<group>"; };
+		300B38E3294C2D57000B288D /* EmailAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthVM.swift; sourceTree = "<group>"; };
+		300B38E5294C333E000B288D /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		300B38E7294C3685000B288D /* EnterEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmail.swift; sourceTree = "<group>"; };
+		300B38E9294C3D53000B288D /* CheckEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmail.swift; sourceTree = "<group>"; };
+		300B38EB294C3D5E000B288D /* EnterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterName.swift; sourceTree = "<group>"; };
+		300B38ED294C3D64000B288D /* EnterPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhone.swift; sourceTree = "<group>"; };
+		300B38EF294C3D6D000B288D /* CheckPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPhone.swift; sourceTree = "<group>"; };
 		30114A14293FE5C100F63BD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30114A18294051B100F63BD1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		30114A28294719A900F63BD1 /* Campaigns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaigns.swift; sourceTree = "<group>"; };
@@ -213,7 +225,7 @@
 		30114A1B29407B3D00F63BD1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				300B38E3294C2D57000B288D /* AuthVM.swift */,
+				300B38E3294C2D57000B288D /* EmailAuthVM.swift */,
 				30114A2A29471C3900F63BD1 /* CampaignsVM.swift */,
 				30114A3029471FFF00F63BD1 /* CodesVM.swift */,
 				30114A342947242C00F63BD1 /* CompaniesVM.swift */,
@@ -222,6 +234,7 @@
 				30114A402947323500F63BD1 /* ReferralsVM.swift */,
 				30114A442947330300F63BD1 /* RewardsVM.swift */,
 				30114A482947363A00F63BD1 /* UsersVM.swift */,
+				300B38E5294C333E000B288D /* AppViewModel.swift */,
 				30114A2C29471CDC00F63BD1 /* DataManager.swift */,
 			);
 			path = ViewModels;
@@ -230,7 +243,7 @@
 		30114A1C29407B4E00F63BD1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				300B38E1294C2D0F000B288D /* Auth.swift */,
+				300B38E1294C2D0F000B288D /* EmailAuth.swift */,
 				30114A28294719A900F63BD1 /* Campaigns.swift */,
 				30114A2E29471F6600F63BD1 /* Codes.swift */,
 				30114A322947232200F63BD1 /* Companies.swift */,
@@ -247,6 +260,11 @@
 			isa = PBXGroup;
 			children = (
 				300B38DF294C2C73000B288D /* Start.swift */,
+				300B38E7294C3685000B288D /* EnterEmail.swift */,
+				300B38E9294C3D53000B288D /* CheckEmail.swift */,
+				300B38EB294C3D5E000B288D /* EnterName.swift */,
+				300B38ED294C3D64000B288D /* EnterPhone.swift */,
+				300B38EF294C3D6D000B288D /* CheckPhone.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -530,28 +548,34 @@
 			files = (
 				30114A492947363A00F63BD1 /* UsersVM.swift in Sources */,
 				30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */,
+				300B38E6294C333E000B288D /* AppViewModel.swift in Sources */,
+				300B38EE294C3D64000B288D /* EnterPhone.swift in Sources */,
 				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
 				3056BEDD293EC7DB006C85F8 /* Share.swift in Sources */,
 				300B38E0294C2C73000B288D /* Start.swift in Sources */,
 				3056BEDB293EAFB5006C85F8 /* MyRewards.swift in Sources */,
 				30114A2F29471F6600F63BD1 /* Codes.swift in Sources */,
+				300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
+				300B38EC294C3D5E000B288D /* EnterName.swift in Sources */,
 				30114A3B29472FED00F63BD1 /* Orders.swift in Sources */,
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,
 				30114A432947329900F63BD1 /* Rewards.swift in Sources */,
 				30114A3929472B3D00F63BD1 /* MembershipsVM.swift in Sources */,
-				300B38E4294C2D57000B288D /* AuthVM.swift in Sources */,
+				300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
-				300B38E2294C2D0F000B288D /* Auth.swift in Sources */,
+				300B38E2294C2D0F000B288D /* EmailAuth.swift in Sources */,
 				30114A29294719A900F63BD1 /* Campaigns.swift in Sources */,
 				30114A332947232200F63BD1 /* Companies.swift in Sources */,
+				300B38EA294C3D53000B288D /* CheckEmail.swift in Sources */,
 				30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */,
 				30114A3F2947312B00F63BD1 /* Referrals.swift in Sources */,
 				30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */,
+				300B38E8294C3685000B288D /* EnterEmail.swift in Sources */,
 				30114A37294724CB00F63BD1 /* Memberships.swift in Sources */,
 				30114A452947330300F63BD1 /* RewardsVM.swift in Sources */,
 				30114A352947242C00F63BD1 /* CompaniesVM.swift in Sources */,
