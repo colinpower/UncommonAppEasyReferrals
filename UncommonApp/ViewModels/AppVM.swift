@@ -26,11 +26,14 @@ class UserObject {
 class AppViewModel: ObservableObject {
     
     @Published var signedIn = false
-    @Published var currentUser: Users?
+    @Published var currentUser1: Users?
+    
+    @Published var isNewUserAuth = false
     
     let auth = Auth.auth()
     let email = Auth.auth().currentUser?.email
     let userID = Auth.auth().currentUser?.uid
+    //let test = Auth.auth().currentUser?.displayName
     
     var isSignedIn: Bool {
         return auth.currentUser != nil
@@ -48,6 +51,7 @@ class AppViewModel: ObservableObject {
     }
     
     func listen () {
+        
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth1, user1) in
             if let user1 = user1 {
@@ -55,6 +59,10 @@ class AppViewModel: ObservableObject {
                 
                 print("we have a session.. setting it to UserObject of the current user")
                 print("Got user: \(user1)")
+                
+                //UsersVM().listenForOneUser(userID: user1.uid)
+                
+                UsersVM().checkForUser(email: user1.email ?? "")
                 
                 print(String(user1.uid))
                 print(user1.email ?? "")
@@ -64,6 +72,8 @@ class AppViewModel: ObservableObject {
                     email: user1.email
                 )
                 
+                
+
                 print("printing the UserObject which is self.session")
                 print(self.session)
                 
@@ -72,20 +82,38 @@ class AppViewModel: ObservableObject {
                 print("we don't have a session.. setting it to nil")
                 // if we don't have a user, set our session to nil
                 self.session = nil
+                
+                
             }
         }
+        
     }
     
     func passwordlessSignIn(email1: String, link1: String,
                                       completion: @escaping (Result<User?, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email1, link: link1) { result1, error1 in
+            
           if let error1 = error1 {
             print("Authentication error: \(error1.localizedDescription).")
             completion(.failure(error1))
           } else {
+              
+              //let isNew123 = result1?.additionalUserInfo?.isNewUser
+              //result1?
+              
+//              if (isNew123 != nil) {
+//                  print("is this a new user? \(isNew123)")
+//                  self.isNewUserAuth = (isNew123 ?? false)
+//              }
+//              if let result1 = result1 {
+//                  isNewUser2 = result1?.user.additional
+//              }
+//              if let isNewUser1 = result1?.user.additionalUserInfo.isNewUser {
+//                  isNewUser = isNewUser1
+//              }
             print(result1?.user.uid)
             print("Authentication was successful.")
-            completion(.success(result1?.user))
+              completion(.success(result1?.user))
           }
         }
       }
@@ -103,9 +131,5 @@ class AppViewModel: ObservableObject {
             return false
             
         }
-        
     }
-    
-    
-    
 }

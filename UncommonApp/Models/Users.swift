@@ -74,3 +74,22 @@ struct Users_Timestamps: Codable, Hashable {
         case joined
     }
 }
+
+
+
+struct AuthResult: Identifiable, Codable {
+    //means that whenever we map from a doc into a User struct, it'll read the document and map it into this thing
+    @DocumentID var id: String? = UUID().uuidString
+    var phone_verified: Bool
+    var phone: String
+    var timestamp: Int
+    var doc_id: String
+
+    //use CodingKeys to convert from names in Firebase to SwiftUI names
+    enum CodingKeys: String, CodingKey {
+        case phone_verified
+        case phone
+        case timestamp
+        case doc_id
+    }
+}

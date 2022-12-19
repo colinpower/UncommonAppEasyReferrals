@@ -14,8 +14,7 @@ struct EnterEmail: View {
     
     @Binding var startpath: NavigationPath
     
-    @State var email: String = ""
-    
+    @Binding var email: String
     
     @FocusState private var keyboardFocused: Bool
 
@@ -33,7 +32,7 @@ struct EnterEmail: View {
                     .padding(.top)
                 
                 //Subtitle
-                Text("We'll send you a link to sign in.")
+                Text("We'll send you a sign-in link. No passwords needed!")
                     .font(.system(size: 18, weight: .regular))
                     .foregroundColor(Color("text.gray"))
                     .padding(.vertical)

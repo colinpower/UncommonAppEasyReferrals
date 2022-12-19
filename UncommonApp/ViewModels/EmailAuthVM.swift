@@ -32,12 +32,13 @@ class EmailAuthVM: ObservableObject, Identifiable {
         
         db.collection("auth").document(emailAuthUUID)
             .setData([
-                "email": email
+                "email": email,
+                "timestamp": emailAuthTimestamp
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")
                 } else {
-                    print("IDK WHAT THE ERROR IS??")
+                    print("IDK WHAT THE ERROR IS?? \(err)")
                 }
             }
     }

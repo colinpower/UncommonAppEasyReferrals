@@ -25,6 +25,8 @@ enum PresentedSheet: String, Identifiable {
 
 struct Home: View {
         
+    @EnvironmentObject var viewModel: AppViewModel
+    
     @ObservedObject var campaignsVM = CampaignsVM()
     @ObservedObject var codesVM = CodesVM()
     @ObservedObject var companiesVM = CompaniesVM()
@@ -44,216 +46,237 @@ struct Home: View {
     
     @State private var presentedSheet: PresentedSheet? = nil
     
+    var uid: String
+    
+    @ViewBuilder
     var body: some View {
         
-        NavigationStack {
+        VStack {
             
-            ZStack(alignment: .top) {
-                    
-                Color("Background").ignoresSafeArea()
+            //let currentUserPhoneVerified = usersVM.oneUser.first?.profile.phone_verified ?? false
+            //if true {
+            
+            let userPhone = usersVM.oneUser.first?.profile.phone ?? "NONE"
+            
+            if (userPhone == "") {
+                EnterName()
+                //                if (usersVM.oneUser.first?.profile.phone_verified == false) {
+                //                    EnterName()
+                //                }
+            } else {
                 
-                ScrollView {
-                //VStack(alignment: .leading, spacing: 0) {
+                NavigationStack {
                     
-                    VStack(alignment: .leading, spacing: 0) {
+                    ZStack(alignment: .top) {
                         
-                        HStack(alignment: .bottom, spacing: 0) {
-                         
-                            Text("My Rewards")
-                                .font(.system(size: 22, weight: .bold, design: .rounded))
-                                .foregroundColor(Color("text.black"))
-                                .padding(.bottom, 2)
-                                
-                            Spacer()
-                            
-                            Button {
-                                presentedSheet = .myrewards
-                            } label: {
-                                Text("Use")
-                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal)
-                                    .background(Capsule().foregroundColor(Color("ShareGray")))
-                            }
-                            
-                            
-                        }.padding(.vertical, 10)
-                            .padding(.bottom)
+                        Color("Background").ignoresSafeArea()
                         
-                        HStack(alignment: .top, spacing: 20) {
+                        ScrollView {
+                            //VStack(alignment: .leading, spacing: 0) {
                             
                             VStack(alignment: .leading, spacing: 0) {
                                 
-                                Text("$19.00")
-                                    .font(.system(size: 34, weight: .bold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.bottom, 4)
+                                HStack(alignment: .bottom, spacing: 0) {
+                                    
+                                    Text("My Rewards")
+                                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                                        .foregroundColor(Color("text.black"))
+                                        .padding(.bottom, 2)
+                                    
+                                    Spacer()
+                                    
+                                    Button {
+                                        presentedSheet = .myrewards
+                                    } label: {
+                                        Text("Use")
+                                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                            .foregroundColor(Color("text.black"))
+                                            .padding(.vertical, 4)
+                                            .padding(.horizontal)
+                                            .background(Capsule().foregroundColor(Color("ShareGray")))
+                                    }
+                                    
+                                    
+                                }.padding(.vertical, 10)
+                                    .padding(.bottom)
                                 
-                                Text("Cash Balance")
-                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                                    .foregroundColor(Color("text.gray"))
+                                HStack(alignment: .top, spacing: 20) {
+                                    
+                                    VStack(alignment: .leading, spacing: 0) {
+                                        
+                                        Text("$19.00")
+                                            .font(.system(size: 34, weight: .bold, design: .rounded))
+                                            .foregroundColor(Color("text.black"))
+                                            .padding(.bottom, 4)
+                                        
+                                        Text("Cash Balance")
+                                            .font(.system(size: 15, weight: .regular, design: .rounded))
+                                            .foregroundColor(Color("text.gray"))
+                                        
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    VStack(alignment: .leading, spacing: 0) {
+                                        
+                                        Text("3")
+                                            .font(.system(size: 34, weight: .bold, design: .rounded))
+                                            .foregroundColor(Color("text.black"))
+                                            .padding(.bottom, 4)
+                                        
+                                        Text("Discounts")
+                                            .font(.system(size: 15, weight: .regular, design: .rounded))
+                                            .foregroundColor(Color("text.gray"))
+                                        
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                }
                                 
-                            }
-                            
-                            Spacer()
+                            }.padding()
+                                .padding(.bottom, 10)
+                                .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+                                .padding(.all)
+                                .padding(.top)
                             
                             VStack(alignment: .leading, spacing: 0) {
                                 
-                                Text("3")
-                                    .font(.system(size: 34, weight: .bold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.bottom, 4)
+                                HStack(alignment: .bottom, spacing: 0) {
+                                    
+                                    Text("My Brands")
+                                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                                        .foregroundColor(Color("text.black"))
+                                        .padding(.bottom, 2)
+                                    
+                                    Spacer()
+                                    
+                                    Button {
+                                        
+                                        presentedSheet = .add
+                                        
+                                    } label: {
+                                        
+                                        Text("Add")
+                                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                            .foregroundColor(Color("text.black"))
+                                            .padding(.vertical, 4)
+                                            .padding(.horizontal)
+                                            .background(Capsule().foregroundColor(Color("ShareGray")))
+                                        
+                                    }
+                                    
+                                    
+                                }.padding(.vertical, 10)
+                                    .padding(.bottom)
                                 
-                                Text("Discounts")
-                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                                    .foregroundColor(Color("text.gray"))
+                                ForEach(membershipsVM.var_getMyMemberships) { membership in
+                                    
+                                    NavigationLink(value: membership) {
+                                        programRow(membership: membership, title: membership.company_name, isLast: membership == membershipsVM.var_getMyMemberships.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                                        //programRow(title: membership.company_name, isLast: referralprogram == referralProgramVM.referralPrograms.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                                    }
+                                }
                                 
-                            }
+                                
+                            }.padding()
+                                .padding(.bottom, 10)
+                                .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+                                .padding(.horizontal)
+                            
                             
                             Spacer()
-                                
+                            
+                        }
+                        .navigationTitle("")
+                        .navigationDestination(for: Memberships.self) { membership in
+                            Detail(membership: membership)
+                            //                    Label(membership.company_name, systemImage: "circle.fill")
+                            //                        .font(.headline)
                         }
                         
-                    }.padding()
-                        .padding(.bottom, 10)
-                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-                        .padding(.all)
-                        .padding(.top)
-                    
-                    VStack(alignment: .leading, spacing: 0) {
-                        
-                        HStack(alignment: .bottom, spacing: 0) {
-                         
-                            Text("My Brands")
-                                .font(.system(size: 22, weight: .bold, design: .rounded))
-                                .foregroundColor(Color("text.black"))
-                                .padding(.bottom, 2)
-                                
-                            Spacer()
+                        .toolbar {
                             
-                            Button {
-        
-                                presentedSheet = .add
-        
-                            } label: {
-        
-                                Text("Add")
-                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal)
-                                    .background(Capsule().foregroundColor(Color("ShareGray")))
+                            ToolbarItem(placement: .navigationBarLeading) {
                                 
+                                HStack(alignment: .center, spacing: 0) {
+                                    
+                                    Image("icon.black")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 25, height: 25, alignment: .leading)
+                                        .padding(.trailing, 8)
+                                        .padding(.top, 5)
+                                    
+                                    Text("Uncommon")
+                                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                                        .foregroundColor(Color("text.black"))
+                                        .padding(.top, 5)
+                                    
+                                }
                             }
                             
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button {
+                                    presentedSheet = .profile
+                                } label: {
+                                    Image(systemName: "person.circle")
+                                        .font(.system(size: 22, weight: .semibold, design: .rounded))
+                                        .foregroundColor(Color("text.black"))
+                                        .padding(.top, 5)
+                                }
+                            }
                             
-                        }.padding(.vertical, 10)
-                            .padding(.bottom)
+                        }
                         
-                        ForEach(membershipsVM.var_getMyMemberships) { membership in
+                        
+                        .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [sheetContext] sheet in
                             
-                            NavigationLink(value: membership) {
-                                programRow(membership: membership, title: membership.company_name, isLast: membership == membershipsVM.var_getMyMemberships.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
-                                //programRow(title: membership.company_name, isLast: referralprogram == referralProgramVM.referralPrograms.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                            switch sheet {
+                            case .share:
+                                Share(sheetContext: $sheetContext)
+                                    .presentationDetents([.medium])
+                                    .presentationDragIndicator(.visible)
+                            case .sharepersonalized:
+                                SharePersonalized(sheetContext: $sheetContext)
+                                    .presentationDetents([.medium])
+                                    .presentationDragIndicator(.visible)
+                            case .myrewards:
+                                MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                                    .presentationDetents([.large])
+                                    .presentationDragIndicator(.visible)
+                            case .profile:
+                                Profile()
+                                    .presentationDetents([.large])
+                                    .presentationDragIndicator(.visible)
+                            default:
+                                MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                                    .presentationDetents([.large])
+                                //ReviewProductCarousel1(activeReviewOrReferSheet: $activeReviewOrReferSheet, item: item)
                             }
                         }
                         
-                        
-                    }.padding()
-                        .padding(.bottom, 10)
-                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-                        .padding(.horizontal)
-                        
-                    
-                    Spacer()
-                    
-                }
-                .navigationTitle("")
-                .navigationDestination(for: Memberships.self) { membership in
-                    Detail(membership: membership)
-//                    Label(membership.company_name, systemImage: "circle.fill")
-//                        .font(.headline)
-                }
-                
-                .toolbar {
-                    
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        
-                        HStack(alignment: .center, spacing: 0) {
-                            
-                            Image("icon.black")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25, height: 25, alignment: .leading)
-                                .padding(.trailing, 8)
-                                .padding(.top, 5)
-                            
-                            Text("Uncommon")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(Color("text.black"))
-                                .padding(.top, 5)
-                            
-                        }
                     }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            presentedSheet = .profile
-                        } label: {
-                            Image(systemName: "person.circle")
-                                .font(.system(size: 22, weight: .semibold, design: .rounded))
-                                .foregroundColor(Color("text.black"))
-                                .padding(.top, 5)
-                        }
-                    }
-                    
-                }
-                
-                
-                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [sheetContext] sheet in
-            
-                    switch sheet {
-                    case .share:
-                        Share(sheetContext: $sheetContext)
-                            .presentationDetents([.medium])
-                            .presentationDragIndicator(.visible)
-                    case .sharepersonalized:
-                        SharePersonalized(sheetContext: $sheetContext)
-                            .presentationDetents([.medium])
-                            .presentationDragIndicator(.visible)
-                    case .myrewards:
-                        MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
-                            .presentationDetents([.large])
-                            .presentationDragIndicator(.visible)
-                    case .profile:
-                        Profile()
-                            .presentationDetents([.large])
-                            .presentationDragIndicator(.visible)
-                    default:
-                        MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
-                            .presentationDetents([.large])
-                        //ReviewProductCarousel1(activeReviewOrReferSheet: $activeReviewOrReferSheet, item: item)
-                    }
-                }
-                .onAppear {
-                    
-//                    self.referralProgramVM.getReferralPrograms()
-//                    self.campaignsVM.getOneCampaign()
-//                    self.codesVM.getOneCode(codeId: "Fr2FcjT5gkCcq01fSGlc")
-//                    self.companiesVM.getAllCompanies()
-                    self.membershipsVM.getMyMemberships(userId: "2qLkpCLAOpAKZauBkney")
-//                    self.ordersVM.getAllOrders()
-//                    self.referralsVM.getReferrals()
-//                    self.rewardsVM.getRewards()
-//                    self.usersVM.getAllUsers()
                 }
             }
         }
+        //}
+        .onAppear {
+            
+            //                    self.referralProgramVM.getReferralPrograms()
+            //                    self.campaignsVM.getOneCampaign()
+            //                    self.codesVM.getOneCode(codeId: "Fr2FcjT5gkCcq01fSGlc")
+            //                    self.companiesVM.getAllCompanies()
+            self.membershipsVM.getMyMemberships(userId: "2qLkpCLAOpAKZauBkney")
+            //                    self.ordersVM.getAllOrders()
+            //                    self.referralsVM.getReferrals()
+            //                    self.rewardsVM.getRewards()
+            //                    self.usersVM.getAllUsers()
+            self.usersVM.listenForOneUser(userID: uid)
+            //self.usersVM.listenForOneUser(userID: viewModel.session?.uid?)
+        }
         
     }
-    
-    
 }
 
 struct programRow: View {
@@ -373,6 +396,6 @@ struct programRow: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(uid: "alsdkfjlskf")
     }
 }

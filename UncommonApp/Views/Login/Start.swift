@@ -14,6 +14,8 @@ struct Start: View {
     
     @State var startpath = NavigationPath()
     
+    @Binding var email: String
+    
     var body: some View {
         
         NavigationStack(path: $startpath) {
@@ -51,7 +53,7 @@ struct Start: View {
             }
             .navigationTitle("")
             .navigationDestination(for: EnterEmailPage.self) { page in
-                EnterEmail(startpath: $startpath)
+                EnterEmail(startpath: $startpath, email: $email)
             }
                 
         }
@@ -60,7 +62,7 @@ struct Start: View {
 
 struct Start_Previews: PreviewProvider {
     static var previews: some View {
-        Start()
+        Start(email: .constant("colinjpower1@gmail.com"))
     }
 }
 

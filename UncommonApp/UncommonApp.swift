@@ -31,10 +31,13 @@ struct UncommonApp: App {
 
 
   var body: some Scene {
+      
+      let viewModel = AppViewModel()
+      
     WindowGroup {
       NavigationView {
         ContentView()
-          //.environmentObject(viewModel)
+          .environmentObject(viewModel)
           .preferredColorScheme(.light)
       }
     }
