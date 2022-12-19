@@ -28,12 +28,14 @@ class MembershipsVM: ObservableObject, Identifiable {
         //var ordersSnapshot = [Orders]()
         
         db.collection("memberships")
+//            .whereField("status", isEqualTo: "ACTIVE")
             .whereField("ids.user", isEqualTo: userId)
             .getDocuments { (snapshot, error) in
     
+                print("trying to get memberships for \(userId)")
                 guard let snapshot = snapshot, error == nil else {
                     //handle error
-                    print("found error")
+                    print("!!!!!!! found error")
                     return
                 }
                 print("Number of documents: \(snapshot.documents.count)")
