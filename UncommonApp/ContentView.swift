@@ -26,26 +26,14 @@ struct ContentView: View {
         
         Group {
             
-            Home(uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
+            Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
             
 //            let currentSessionUID = viewModel.session?.uid ?? ""
 //            let currentSessionEmail = viewModel.session?.email ?? ""
 //
 //            if (currentSessionUID != "" && currentSessionEmail != "") {
 //
-//                //if (!viewModel.isNewUserAuth) {
-//                if (usersViewModel.oneUser.isEmpty) {
-//
-//                    Home(uid: currentSessionUID)
-//
-//                } else if (usersViewModel.oneUser.first?.profile.phone == "NOTSET") {
-//
-//                    //FRESwitcher(uid: currentSessionUID)
-//                    //Home(uid: currentSessionUID)
-//                    EnterName()
-//                } else {
-//                    Home(uid: currentSessionUID)
-//                }
+//                Home(email: $email, uid: currentSessionUID)
 //
 //            } else {
 //
@@ -57,13 +45,7 @@ struct ContentView: View {
         .onAppear {
             
             viewModel.listen()
-            
-            usersViewModel.listenForOneUser(userID: viewModel.session?.uid ?? "")
-            
-//            print("VIEW MODEL RESULTS!!")
-//            print(viewModel.session?.uid)
-//            print(viewModel.session?.email)
-            
+                        
         }
         .onOpenURL { url in
             let link = url.absoluteString

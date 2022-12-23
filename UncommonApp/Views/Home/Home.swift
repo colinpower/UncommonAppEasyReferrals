@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 
 //MARK: Decide which sheet to present
 enum PresentedSheet: String, Identifiable {
-    case profile, myrewards, add, share, sharepersonalized
+    case profile, cash_out, setup_bank, myrewards, add, send
     var id: String {
         return self.rawValue
     }
@@ -40,16 +40,14 @@ struct Home: View {
     @ObservedObject var usersVM = UsersVM()
     
     
-    
-    var listItems = [1, 2, 3, 4]
-    
-    @State var bool123 = false
-    
     @State var sheetContext = ["NONE", "fdasdf"]
     
     @State private var presentedSheet: PresentedSheet? = nil
     
+    //Variables received from ContentView
+    @Binding var email: String
     var uid: String
+    
     
     @ViewBuilder
     var body: some View {
@@ -63,83 +61,93 @@ struct Home: View {
                 ScrollView {
                     //VStack(alignment: .leading, spacing: 0) {
                     
-                    VStack(alignment: .leading, spacing: 0) {
-                        
-                        HStack(alignment: .bottom, spacing: 0) {
-                            
-                            Text("My Rewards")
-                                .font(.system(size: 22, weight: .bold, design: .rounded))
-                                .foregroundColor(Color("text.black"))
-                                .padding(.bottom, 2)
-                            
-                            Spacer()
-                            
-                            Button {
-                                presentedSheet = .myrewards
-                            } label: {
-                                Text("Use")
-                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal)
-                                    .background(Capsule().foregroundColor(Color("ShareGray")))
-                            }
-                            
-                            
-                        }.padding(.vertical, 10)
-                            .padding(.bottom)
-                        
-                        if (membershipsVM.var_getMyMemberships.isEmpty) {
-                            Text("IS EMPTY")
+//                    VStack(alignment: .leading, spacing: 0) {
+//
+//                        HStack(alignment: .bottom, spacing: 0) {
+//
+//                            Text("My Rewards")
+//                                .font(.system(size: 22, weight: .bold, design: .rounded))
+//                                .foregroundColor(Color("text.black"))
+//                                .padding(.bottom, 2)
+//
+//                            Spacer()
+//
+//                            Button {
+//                                presentedSheet = .myrewards
+//                            } label: {
+//                                Text("Use")
+//                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+//                                    .foregroundColor(Color("text.black"))
+//                                    .padding(.vertical, 4)
+//                                    .padding(.horizontal)
+//                                    .background(Capsule().foregroundColor(Color("ShareGray")))
+//                            }
+//
+//
+//                        }.padding(.vertical, 10)
+//                            .padding(.bottom)
+//
+//                        if (membershipsVM.var_getMyMemberships.isEmpty) {
+//                            Text("IS EMPTY")
+//                        }
+//
+//                        HStack {
+//                            ForEach(membershipsVM.var_getMyMemberships) { membership in
+//
+//                                Text(membership.company_name)
+//
+//                            }
+//                        }
+//
+//                        HStack(alignment: .top, spacing: 20) {
+//
+//                            VStack(alignment: .leading, spacing: 0) {
+//
+//                                Text("$19.00")
+//                                    .font(.system(size: 34, weight: .bold, design: .rounded))
+//                                    .foregroundColor(Color("text.black"))
+//                                    .padding(.bottom, 4)
+//
+//                                Text("Cash Balance")
+//                                    .font(.system(size: 15, weight: .regular, design: .rounded))
+//                                    .foregroundColor(Color("text.gray"))
+//
+//                            }
+//
+//                            Spacer()
+//
+//                            VStack(alignment: .leading, spacing: 0) {
+//
+//                                Text("3")
+//                                    .font(.system(size: 34, weight: .bold, design: .rounded))
+//                                    .foregroundColor(Color("text.black"))
+//                                    .padding(.bottom, 4)
+//
+//                                Text("Discounts")
+//                                    .font(.system(size: 15, weight: .regular, design: .rounded))
+//                                    .foregroundColor(Color("text.gray"))
+//
+//                            }
+//
+//                            Spacer()
+//
+//                        }
+//
+//                    }.padding()
+//                        .padding(.bottom, 10)
+//                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+//                        .padding(.all)
+//                        .padding(.top)
+                    
+                    HStack(alignment: .center, spacing: 16) {
+                        Button {
+                            presentedSheet = .cash_out
+                        } label: {
+                            cashBalanceWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                         }
-                        
-                        HStack {
-                            ForEach(membershipsVM.var_getMyMemberships) { membership in
-     
-                                Text(membership.company_name)
-  
-                            }
-                        }
-                        
-                        HStack(alignment: .top, spacing: 20) {
-                            
-                            VStack(alignment: .leading, spacing: 0) {
-                                
-                                Text("$19.00")
-                                    .font(.system(size: 34, weight: .bold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.bottom, 4)
-                                
-                                Text("Cash Balance")
-                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                                    .foregroundColor(Color("text.gray"))
-                                
-                            }
-                            
-                            Spacer()
-                            
-                            VStack(alignment: .leading, spacing: 0) {
-                                
-                                Text("3")
-                                    .font(.system(size: 34, weight: .bold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.bottom, 4)
-                                
-                                Text("Discounts")
-                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-                                    .foregroundColor(Color("text.gray"))
-                                
-                            }
-                            
-                            Spacer()
-                            
-                        }
-                        
-                    }.padding()
-                        .padding(.bottom, 10)
-                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-                        .padding(.all)
-                        .padding(.top)
+                        discountsAvailableWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                    }.padding(.all)
+                    
                     
                     VStack(alignment: .leading, spacing: 0) {
                         
@@ -163,7 +171,7 @@ struct Home: View {
                                     .foregroundColor(Color("text.black"))
                                     .padding(.vertical, 4)
                                     .padding(.horizontal)
-                                    .background(Capsule().foregroundColor(Color("ShareGray")))
+                                    .background(Capsule().foregroundColor(Color("ShareGray").opacity(0.3)))
                                 
                             }
                             
@@ -236,20 +244,32 @@ struct Home: View {
                 .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [sheetContext] sheet in
                     
                     switch sheet {
-                    case .share:
-                        Share(sheetContext: $sheetContext)
-                            .presentationDetents([.medium])
+                    //profile, cash_out, setup_bank, myrewards, add, send
+                    case .profile:
+                        Profile()
+                            .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    case .sharepersonalized:
-                        SharePersonalized(sheetContext: $sheetContext)
-                            .presentationDetents([.medium])
+                    
+                        
+                    case .cash_out:
+                        CashOut(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                            .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
+//                    case .share:
+//                        Share(sheetContext: $sheetContext)
+//                            .presentationDetents([.medium])
+//                            .presentationDragIndicator(.visible)
+//                    case .sharepersonalized:
+//                        SharePersonalized(sheetContext: $sheetContext)
+//                            .presentationDetents([.medium])
+//                            .presentationDragIndicator(.visible)
                     case .myrewards:
                         MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    case .profile:
-                        Profile()
+                    
+                    case .add:
+                        AddMembership(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     default:
@@ -263,21 +283,106 @@ struct Home: View {
         }
         .onAppear {
             
-            //                    self.referralProgramVM.getReferralPrograms()
-            //                    self.campaignsVM.getOneCampaign()
-            //                    self.codesVM.getOneCode(codeId: "Fr2FcjT5gkCcq01fSGlc")
-            //                    self.companiesVM.getAllCompanies()
             self.membershipsVM.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
-            //                    self.ordersVM.getAllOrders()
-            //                    self.referralsVM.getReferrals()
-            //                    self.rewardsVM.getRewards()
-            //                    self.usersVM.getAllUsers()
+
             self.usersVM.listenForOneUser(userID: uid)
-            //self.usersVM.listenForOneUser(userID: viewModel.session?.uid?)
+            
+            self.email = ""
         }
         
     }
 }
+
+
+struct cashBalanceWidget: View {
+    
+    @Binding var sheetContext: [String]
+    @Binding var presentedSheet: PresentedSheet?
+
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 0) {
+            
+            //Header
+            HStack(alignment: .center, spacing: 0) {
+                Text("Cash Balance")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(Color("text.black"))
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 11))
+                    .foregroundColor(Color("text.gray"))
+            }.padding(.bottom)
+            
+            //Content
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                VStack(alignment: .center, spacing: 0) {
+                    Text("$19.00")
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .foregroundColor(Color("text.black"))
+                        .padding(.bottom)
+                    Text("$15.00 Pending")
+                        .font(.system(size: 15, weight: .regular, design: .rounded))
+                        .foregroundColor(Color("text.gray"))
+                }
+                Spacer()
+            }
+        }.padding()
+            .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+//        .onAppear {
+//
+//
+//        }
+    }
+}
+
+struct discountsAvailableWidget: View {
+    
+    @Binding var sheetContext: [String]
+    @Binding var presentedSheet: PresentedSheet?
+
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 0) {
+            
+            //Header
+            HStack(alignment: .center, spacing: 0) {
+                Text("Discounts")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(Color("text.black"))
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 11))
+                    .foregroundColor(Color("text.gray"))
+            }.padding(.bottom)
+            
+            //Content
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                VStack(alignment: .center, spacing: 0) {
+                    Text("4")
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .foregroundColor(Color("text.black"))
+                        .padding(.bottom)
+                    Text("0 Pending")
+                        .font(.system(size: 15, weight: .regular, design: .rounded))
+                        .foregroundColor(Color("text.gray"))
+                }
+                Spacer()
+            }
+        }.padding()
+            .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+//        .onAppear {
+//
+//
+//        }
+    }
+}
+
+
+
+
 
 struct programRow: View {
     
@@ -335,7 +440,7 @@ struct programRow: View {
                 
                 Button {
                     sheetContext[0] = "YES TAPPED BUTTON"
-                    presentedSheet = .sharepersonalized
+                    presentedSheet = .send
                     print("tapped")
                 } label: {
                     
@@ -344,19 +449,7 @@ struct programRow: View {
                         .foregroundColor(Color("text.black"))
                         .padding(.vertical, 6)
                         .padding(.horizontal)
-                        .background(Capsule().foregroundColor(Color("text.gray").opacity(0.3)))
-                    
-                    //                    .foregroundColor(Color("text.gray"))
-                    //                ZStack(alignment: .center) {
-                    //
-                    //                    Circle()
-                    //                        .frame(width: 32, height: 32)
-                    //                        .foregroundColor(Color("ShareGray"))
-                    //                    Image(systemName: "paperplane.fill")
-                    //                        .font(.system(size: 16))
-                    //                        .foregroundColor(Color.blue)
-                    //                }
-                    
+                        .background(Capsule().foregroundColor(Color("ShareGray")))
                 }
                 
                 //            Image(systemName: "chevron.right")
@@ -392,8 +485,12 @@ struct programRow: View {
     }
 }
 
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        Home(uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
-    }
-}
+
+
+
+
+//struct Home_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Home(uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
+//    }
+//}

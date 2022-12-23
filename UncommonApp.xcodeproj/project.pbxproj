@@ -70,6 +70,8 @@
 		3056BF37293FE01F006C85F8 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF36293FE01F006C85F8 /* FirebaseRemoteConfigSwift */; };
 		3056BF39293FE01F006C85F8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF38293FE01F006C85F8 /* FirebaseStorage */; };
 		3056BF3B293FE01F006C85F8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF3A293FE01F006C85F8 /* FirebaseStorageCombine-Community */; };
+		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
+		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,8 @@
 		3056BEDA293EAFB5006C85F8 /* MyRewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewards.swift; sourceTree = "<group>"; };
 		3056BEDC293EC7DB006C85F8 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		3056BEDE293ED713006C85F8 /* SharePersonalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePersonalized.swift; sourceTree = "<group>"; };
+		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
+		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +289,7 @@
 		30114A252947175E00F63BD1 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				30A9A6AD295280790079F47B /* AddMembership.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				3056BEDA293EAFB5006C85F8 /* MyRewards.swift */,
+				306461152955AB1000E28C7D /* CashOut.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 			files = (
 				30114A492947363A00F63BD1 /* UsersVM.swift in Sources */,
 				30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */,
+				306461162955AB1000E28C7D /* CashOut.swift in Sources */,
 				300B38E6294C333E000B288D /* AppVM.swift in Sources */,
 				300B38EE294C3D64000B288D /* EnterPhone.swift in Sources */,
 				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
@@ -584,6 +591,7 @@
 				30114A452947330300F63BD1 /* RewardsVM.swift in Sources */,
 				30114A352947242C00F63BD1 /* CompaniesVM.swift in Sources */,
 				3056BEDF293ED713006C85F8 /* SharePersonalized.swift in Sources */,
+				30A9A6AE295280790079F47B /* AddMembership.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
