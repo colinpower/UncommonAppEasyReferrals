@@ -13,73 +13,118 @@ struct MyRewards: View {
     
     @Binding var presentedSheet: PresentedSheet?
     
+    @StateObject var membershipsVM = MembershipsVM()
+    
+    let columns: [GridItem] = [
+        GridItem(.fixed(UIScreen.main.bounds.width / 2 - 32), spacing: 16, alignment: nil),
+            GridItem(.fixed(UIScreen.main.bounds.width / 2 - 32), spacing: 16, alignment: nil)
+        ]
+    
+    
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Text("Done")
-                    .font(.system(size: 18, weight: .medium, design: .rounded))
-                    .padding(.bottom)
-//                ZStack(alignment: .center) {
-//                    Circle().frame(width: 28, height: 28)
-//                        .foregroundColor(.gray.opacity(0.3))
-//                    Image(systemName: "xmark")
-//                        .font(.headline)
-//                        .foregroundColor(.gray)
-//                        //.foregroundColor(.gray.opacity(0.3))
-////                    Image(systemName: "plus.circle.fill")
-////                        .foregroundColor(.blue)
-////                        .font(.title2)
-//                }
-            }.padding(.bottom)
-            Text("Add to Wallet")
-                .font(.system(size: 34, weight: .bold, design: .rounded))
-//                .font(.largeTitle)
-//                .fontWeight(.bold)
-//                .fontDesign(.rounded)
-            Text("Keep all the cards, keys, and passes you use every day all in one place")
-                .font(.system(size: 18, weight: .regular))
-                .padding(.vertical)
+        
+        ZStack {
+            Color("Background").ignoresSafeArea()
             
-            HStack {
-                Text("Influence")
-                    .font(.title3)
-//                    .fontWeight(.bold)
-//                    .fontDesign(.rounded)
-                    .frame(alignment: .leading)
-                    .padding(.leading, 16)
-                Spacer()
+            ScrollView {
+                VStack {
+                    
+                    //MARK: Top Bar
+                    HStack {
+                        Spacer()
+                        Text("Done")
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .padding(.bottom)
+                    }.padding(.bottom)
+                    
+                    //MARK: Title + Subtitle
+                    Text("My Discounts")
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .padding(.bottom)
+                    Text("These are the discounts you've earned. Tap on a discount to use it")
+                        .font(.system(size: 18, weight: .regular))
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                        .padding(.bottom)
+                    
+                    //MARK: Boxes: LazyVGrid for Discounts
+                    LazyVGrid(columns: columns, spacing: 16) {
+                                                    
+                        ForEach(membershipsVM.var_getMyMemberships) { membership in
+                            
+                            LazyVGridWidget()
+                            LazyVGridWidget()
+                            LazyVGridWidget()
+                            LazyVGridWidget()
+//                                .frame(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 2 + 32)
+//                                .background(.white)
+//                                .clipShape(Rectangle())
+                            
+                        }
+                        
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
             }
-            
-            Text("Available Cards")
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.bottom, 8)
-
-            HStack {
-                Text("Size 24 semibold")
-                    .font(.system(size: 24, weight: .semibold))
-                    .frame(alignment: .leading)
-                    .padding(.leading, 16)
-                Spacer()
-            }
-            Text("Size 24 reg Tap to switch to Profile")
-                .font(.system(size: 24, weight: .regular))
-                .padding(.bottom, 8)
-            Text("Size 16 semibold")
-                .font(.system(size: 16, weight: .semibold))
-                .padding(.bottom, 8)
-            Text("Size 16 reg")
-                .font(.system(size: 16, weight: .regular))
-                .padding(.bottom, 8)
-            Spacer()
         }
-        .padding()
+        .onAppear {
+            
+            self.membershipsVM.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
+        }
+        
+        
+        
     }
 }
 
-struct MyRewards_Previews: PreviewProvider {
-    static var previews: some View {
-        MyRewards(sheetContext: .constant(["sdf", "sfas"]), presentedSheet: .constant(.myrewards))
+
+
+struct LazyVGridWidget: View {
+
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 0) {
+            
+            //Icon
+            HStack(alignment: .center, spacing: 0) {
+                Circle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.red)
+                Spacer()
+            }.padding(.bottom, 8)
+            
+            //Company
+            Text("Bonobos")
+                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                .foregroundColor(Color("text.black"))
+                .padding(.bottom)
+            
+            //Discount
+            Text("Get $15 off any order")
+                .font(.system(size: 16, weight: .regular, design: .rounded))
+                .foregroundColor(Color("text.black"))
+                .frame(height: 50, alignment: .bottom)
+                .multilineTextAlignment(.leading)
+                .padding(.bottom)
+            
+            //Button
+            HStack(alignment: .center) {
+                Spacer()
+                Text("Use")
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .foregroundColor(Color("text.black"))
+                Spacer()
+            }
+            .frame(height: 34)
+            .background(Capsule().foregroundColor(Color("Background")))
+            
+        }.padding()
+            .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+//        .onAppear {
+//
+//
+//        }
     }
 }

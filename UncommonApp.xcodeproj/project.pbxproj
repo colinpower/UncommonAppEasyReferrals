@@ -72,6 +72,7 @@
 		3056BF3B293FE01F006C85F8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF3A293FE01F006C85F8 /* FirebaseStorageCombine-Community */; };
 		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
 		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
+		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 		3056BEDE293ED713006C85F8 /* SharePersonalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePersonalized.swift; sourceTree = "<group>"; };
 		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
 		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
+		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 			children = (
 				30114A232947173F00F63BD1 /* Login */,
 				30114A242947174700F63BD1 /* Home */,
+				30EF894F295629EB00C4A709 /* SendReferral */,
 				30114A262947176700F63BD1 /* Rewards */,
 				30114A252947175E00F63BD1 /* Add */,
 				30114A272947178700F63BD1 /* Profile */,
@@ -372,6 +375,14 @@
 				3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */,
 			);
 			path = UncommonAppUITests;
+			sourceTree = "<group>";
+		};
+		30EF894F295629EB00C4A709 /* SendReferral */ = {
+			isa = PBXGroup;
+			children = (
+				30EF8950295629FC00C4A709 /* SendReferral.swift */,
+			);
+			path = SendReferral;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,6 +590,7 @@
 				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
 				300B38E2294C2D0F000B288D /* EmailAuth.swift in Sources */,
+				30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */,
 				30114A29294719A900F63BD1 /* Campaigns.swift in Sources */,
 				30114A332947232200F63BD1 /* Companies.swift in Sources */,
 				300B38EA294C3D53000B288D /* CheckEmail.swift in Sources */,

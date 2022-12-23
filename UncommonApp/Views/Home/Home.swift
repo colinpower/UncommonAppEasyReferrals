@@ -139,18 +139,29 @@ struct Home: View {
 //                        .padding(.all)
 //                        .padding(.top)
                     
+                    //MARK: Cash and Discounts Widgets
                     HStack(alignment: .center, spacing: 16) {
+                        
+                        //Cash Widget
                         Button {
                             presentedSheet = .cash_out
                         } label: {
                             cashBalanceWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                         }
-                        discountsAvailableWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
-                    }.padding(.all)
+                        
+                        //Discounts Widget
+                        Button {
+                            presentedSheet = .myrewards
+                        } label: {
+                            discountsAvailableWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        }
+                        
+                    }.padding(.vertical)
                     
-                    
+                    //MARK: My Brands Box
                     VStack(alignment: .leading, spacing: 0) {
                         
+                        //Header
                         HStack(alignment: .bottom, spacing: 0) {
                             
                             Text("My Brands")
@@ -161,9 +172,7 @@ struct Home: View {
                             Spacer()
                             
                             Button {
-                                
                                 presentedSheet = .add
-                                
                             } label: {
                                 
                                 Text("Add")
@@ -172,40 +181,32 @@ struct Home: View {
                                     .padding(.vertical, 4)
                                     .padding(.horizontal)
                                     .background(Capsule().foregroundColor(Color("ShareGray").opacity(0.3)))
-                                
                             }
-                            
-                            
                         }.padding(.vertical, 10)
                             .padding(.bottom)
                         
+                        //Rows of Current Memberships
                         ForEach(membershipsVM.var_getMyMemberships) { membership in
  
-                            //Text("alsdkfjalskdjfl")
                             NavigationLink(value: membership) {
-                                //Text(membership.company_name)
+                                
                                 programRow(membership: membership, title: membership.company_name, isLast: membership == membershipsVM.var_getMyMemberships.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
-                                //programRow(title: membership.company_name, isLast: referralprogram == referralProgramVM.referralPrograms.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             }
                         }
-                        
                         
                     }.padding()
                         .padding(.bottom, 10)
                         .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-                        .padding(.horizontal)
                     
+                    //MARK: NEED TO ADD A "ADD MEMBERSHIPS BUTTON"
                     
                     Spacer()
                     
-                }
+                }.padding(.horizontal)
                 .navigationTitle("")
                 .navigationDestination(for: Memberships.self) { membership in
                     Detail(membership: membership)
-                    //                    Label(membership.company_name, systemImage: "circle.fill")
-                    //                        .font(.headline)
                 }
-                
                 .toolbar {
                     
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -215,14 +216,14 @@ struct Home: View {
                             Image("icon.black")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 25, height: 25, alignment: .leading)
+                                .frame(width: 22, height: 22, alignment: .leading)
                                 .padding(.trailing, 8)
-                                .padding(.top, 5)
+                                .padding(.top, 2)
                             
                             Text("Uncommon")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .font(.system(size: 21, weight: .bold, design: .rounded))
                                 .foregroundColor(Color("text.black"))
-                                .padding(.top, 5)
+                                .padding(.top, 2)
                             
                         }
                     }
@@ -239,36 +240,31 @@ struct Home: View {
                     }
                     
                 }
-                
-                
                 .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [sheetContext] sheet in
                     
-                    switch sheet {
-                    //profile, cash_out, setup_bank, myrewards, add, send
+                    switch sheet {        //profile, cash_out, setup_bank, myrewards, add, send
+                    
                     case .profile:
                         Profile()
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    
-                        
                     case .cash_out:
                         CashOut(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-//                    case .share:
-//                        Share(sheetContext: $sheetContext)
-//                            .presentationDetents([.medium])
-//                            .presentationDragIndicator(.visible)
-//                    case .sharepersonalized:
-//                        SharePersonalized(sheetContext: $sheetContext)
-//                            .presentationDetents([.medium])
-//                            .presentationDragIndicator(.visible)
+                    case .setup_bank:
+                        CashOut(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                            .presentationDetents([.large])
+                            .presentationDragIndicator(.visible)
                     case .myrewards:
                         MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    
                     case .add:
+                        AddMembership(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                            .presentationDetents([.large])
+                            .presentationDragIndicator(.visible)
+                    case .send:
                         AddMembership(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
