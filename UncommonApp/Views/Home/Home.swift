@@ -265,7 +265,7 @@ struct Home: View {
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .send:
-                        AddMembership(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        SendReferral(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     default:
@@ -481,12 +481,3 @@ struct programRow: View {
     }
 }
 
-
-
-
-
-//struct Home_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Home(uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
-//    }
-//}

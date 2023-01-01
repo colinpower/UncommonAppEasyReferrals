@@ -112,10 +112,3 @@ struct CashOut: View {
         
     }
 }
-
-//struct AddMembership_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddMembership(sheetContext: <#Binding<[String]>#>, presentedSheet: <#Binding<PresentedSheet?>#>)
-//    }
-//}
-

@@ -70,6 +70,7 @@
 		3056BF37293FE01F006C85F8 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF36293FE01F006C85F8 /* FirebaseRemoteConfigSwift */; };
 		3056BF39293FE01F006C85F8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF38293FE01F006C85F8 /* FirebaseStorage */; };
 		3056BF3B293FE01F006C85F8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF3A293FE01F006C85F8 /* FirebaseStorageCombine-Community */; };
+		305E676629607F740003D341 /* CardForShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305E676529607F740003D341 /* CardForShareSheet.swift */; };
 		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
 		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
 		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
@@ -140,6 +141,7 @@
 		3056BEDA293EAFB5006C85F8 /* MyRewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewards.swift; sourceTree = "<group>"; };
 		3056BEDC293EC7DB006C85F8 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		3056BEDE293ED713006C85F8 /* SharePersonalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePersonalized.swift; sourceTree = "<group>"; };
+		305E676529607F740003D341 /* CardForShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForShareSheet.swift; sourceTree = "<group>"; };
 		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
 		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
 		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		30114A1A29407B3500F63BD1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				305E676429607F550003D341 /* Cards */,
 				30114A232947173F00F63BD1 /* Login */,
 				30114A242947174700F63BD1 /* Home */,
 				30EF894F295629EB00C4A709 /* SendReferral */,
@@ -375,6 +378,14 @@
 				3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */,
 			);
 			path = UncommonAppUITests;
+			sourceTree = "<group>";
+		};
+		305E676429607F550003D341 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				305E676529607F740003D341 /* CardForShareSheet.swift */,
+			);
+			path = Cards;
 			sourceTree = "<group>";
 		};
 		30EF894F295629EB00C4A709 /* SendReferral */ = {
@@ -586,6 +597,7 @@
 				300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */,
+				305E676629607F740003D341 /* CardForShareSheet.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
