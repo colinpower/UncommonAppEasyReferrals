@@ -42,6 +42,8 @@ struct Detail: View {
                     
                 }.padding().padding(.vertical)
                 
+                
+                
                 //MARK: My Discount Code Box
                 VStack(alignment: .leading, spacing: 0) {
                     
