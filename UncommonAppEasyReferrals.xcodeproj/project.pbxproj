@@ -39,7 +39,6 @@
 		3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */; };
 		3056BEB12939080A006C85F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEB02939080A006C85F8 /* ContentView.swift */; };
 		3056BEB32939080B006C85F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB22939080B006C85F8 /* Assets.xcassets */; };
-		3056BEB62939080B006C85F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB52939080B006C85F8 /* Preview Assets.xcassets */; };
 		3056BEC02939080B006C85F8 /* UncommonAppEasyReferralsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEBF2939080B006C85F8 /* UncommonAppEasyReferralsTests.swift */; };
 		3056BECA2939080B006C85F8 /* UncommonAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEC92939080B006C85F8 /* UncommonAppUITests.swift */; };
 		3056BECC2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */; };
@@ -131,7 +130,6 @@
 		3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppEasyReferrals.swift; sourceTree = "<group>"; };
 		3056BEB02939080A006C85F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3056BEB22939080B006C85F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3056BEB52939080B006C85F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3056BEBB2939080B006C85F8 /* UncommonAppEasyReferralsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncommonAppEasyReferralsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056BEBF2939080B006C85F8 /* UncommonAppEasyReferralsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppEasyReferralsTests.swift; sourceTree = "<group>"; };
 		3056BEC52939080B006C85F8 /* UncommonAppEasyReferralsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncommonAppEasyReferralsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,18 +347,9 @@
 				30114A1B29407B3D00F63BD1 /* ViewModels */,
 				30114A1C29407B4E00F63BD1 /* Models */,
 				3056BEB22939080B006C85F8 /* Assets.xcassets */,
-				3056BEB42939080B006C85F8 /* Preview Content */,
 				30114A12293FE5C100F63BD1 /* Firebase */,
 			);
 			path = UncommonAppEasyReferrals;
-			sourceTree = "<group>";
-		};
-		3056BEB42939080B006C85F8 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				3056BEB52939080B006C85F8 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		3056BEBE2939080B006C85F8 /* UncommonAppEasyReferralsTests */ = {
@@ -530,7 +519,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3056BEB62939080B006C85F8 /* Preview Assets.xcassets in Resources */,
 				3056BEB32939080B006C85F8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,7 +767,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UncommonAppEasyReferrals/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = UncommonAppEasyReferrals;
+				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -813,7 +801,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UncommonAppEasyReferrals/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = UncommonAppEasyReferrals;
+				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

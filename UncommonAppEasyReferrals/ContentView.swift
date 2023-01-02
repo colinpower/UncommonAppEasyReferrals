@@ -11,6 +11,7 @@ import FirebaseAuth
 
 struct ContentView: View {
     
+    //Testing whether this will trigger a rebuild
     @EnvironmentObject var viewModel: AppViewModel
     
     @ObservedObject var usersViewModel = UsersVM()
