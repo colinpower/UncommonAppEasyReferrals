@@ -245,7 +245,7 @@ struct Home: View {
                     switch sheet {        //profile, cash_out, setup_bank, myrewards, add, send
                     
                     case .profile:
-                        Profile()
+                        Profile(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .cash_out:

@@ -20,6 +20,7 @@ struct MyRewards: View {
             GridItem(.fixed(UIScreen.main.bounds.width / 2 - 32), spacing: 16, alignment: nil)
         ]
     
+    @State var isMyDiscountDetailPresented:Bool = false
     
     var body: some View {
         
@@ -28,19 +29,12 @@ struct MyRewards: View {
             
             ScrollView {
                 VStack {
-                    
-                    //MARK: Top Bar
-                    HStack {
-                        Spacer()
-                        Text("Done")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .padding(.bottom)
-                    }.padding(.bottom)
+
                     
                     //MARK: Title + Subtitle
                     Text("My Discounts")
                         .font(.system(size: 34, weight: .bold, design: .rounded))
-                        .padding(.bottom)
+                        .padding(.vertical).padding(.top).padding(.top)
                     Text("These are the discounts you've earned. Tap on a discount to use it")
                         .font(.system(size: 18, weight: .regular))
                         .multilineTextAlignment(.center)
@@ -52,7 +46,11 @@ struct MyRewards: View {
                                                     
                         ForEach(membershipsVM.var_getMyMemberships) { membership in
                             
-                            LazyVGridWidget()
+                            Button {
+                                isMyDiscountDetailPresented = true
+                            } label: {
+                                LazyVGridWidget()
+                            }
                             LazyVGridWidget()
                             LazyVGridWidget()
                             LazyVGridWidget()
@@ -72,6 +70,9 @@ struct MyRewards: View {
         .onAppear {
             
             self.membershipsVM.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
+        }
+        .sheet(isPresented: $isMyDiscountDetailPresented) {
+            MyDiscountDetail(isMyDiscountDetailPresented: $isMyDiscountDetailPresented)
         }
         
         

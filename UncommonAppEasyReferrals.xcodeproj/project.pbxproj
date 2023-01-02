@@ -35,11 +35,12 @@
 		30114A472947353E00F63BD1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A462947353E00F63BD1 /* Users.swift */; };
 		30114A492947363A00F63BD1 /* UsersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A482947363A00F63BD1 /* UsersVM.swift */; };
 		30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A4A29473E0C00F63BD1 /* Detail.swift */; };
-		3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEAE2939080A006C85F8 /* UncommonApp.swift */; };
+		302E0A732962F9B0002962BB /* MyDiscountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E0A722962F9B0002962BB /* MyDiscountDetail.swift */; };
+		3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */; };
 		3056BEB12939080A006C85F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEB02939080A006C85F8 /* ContentView.swift */; };
 		3056BEB32939080B006C85F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB22939080B006C85F8 /* Assets.xcassets */; };
 		3056BEB62939080B006C85F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB52939080B006C85F8 /* Preview Assets.xcassets */; };
-		3056BEC02939080B006C85F8 /* UncommonAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEBF2939080B006C85F8 /* UncommonAppTests.swift */; };
+		3056BEC02939080B006C85F8 /* UncommonAppEasyReferralsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEBF2939080B006C85F8 /* UncommonAppEasyReferralsTests.swift */; };
 		3056BECA2939080B006C85F8 /* UncommonAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEC92939080B006C85F8 /* UncommonAppUITests.swift */; };
 		3056BECC2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */; };
 		3056BED9293EAF85006C85F8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BED8293EAF85006C85F8 /* Home.swift */; };
@@ -93,7 +94,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		300B38D82949CED3000B288D /* UncommonApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UncommonApp.entitlements; sourceTree = "<group>"; };
+		300B38D82949CED3000B288D /* UncommonAppEasyReferrals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UncommonAppEasyReferrals.entitlements; sourceTree = "<group>"; };
 		300B38DA2949CF2D000B288D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		300B38DB2949D168000B288D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		300B38DF294C2C73000B288D /* Start.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Start.swift; sourceTree = "<group>"; };
@@ -125,14 +126,15 @@
 		30114A462947353E00F63BD1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		30114A482947363A00F63BD1 /* UsersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVM.swift; sourceTree = "<group>"; };
 		30114A4A29473E0C00F63BD1 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
-		3056BEAB2939080A006C85F8 /* UncommonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UncommonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3056BEAE2939080A006C85F8 /* UncommonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonApp.swift; sourceTree = "<group>"; };
+		302E0A722962F9B0002962BB /* MyDiscountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscountDetail.swift; sourceTree = "<group>"; };
+		3056BEAB2939080A006C85F8 /* UncommonAppEasyReferrals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UncommonAppEasyReferrals.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppEasyReferrals.swift; sourceTree = "<group>"; };
 		3056BEB02939080A006C85F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3056BEB22939080B006C85F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3056BEB52939080B006C85F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3056BEBB2939080B006C85F8 /* UncommonAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncommonAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3056BEBF2939080B006C85F8 /* UncommonAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppTests.swift; sourceTree = "<group>"; };
-		3056BEC52939080B006C85F8 /* UncommonAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncommonAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3056BEBB2939080B006C85F8 /* UncommonAppEasyReferralsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncommonAppEasyReferralsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3056BEBF2939080B006C85F8 /* UncommonAppEasyReferralsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppEasyReferralsTests.swift; sourceTree = "<group>"; };
+		3056BEC52939080B006C85F8 /* UncommonAppEasyReferralsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UncommonAppEasyReferralsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056BEC92939080B006C85F8 /* UncommonAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppUITests.swift; sourceTree = "<group>"; };
 		3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3056BED8293EAF85006C85F8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				3056BEDA293EAFB5006C85F8 /* MyRewards.swift */,
+				302E0A722962F9B0002962BB /* MyDiscountDetail.swift */,
 				306461152955AB1000E28C7D /* CashOut.swift */,
 			);
 			path = Rewards;
@@ -318,9 +321,9 @@
 		3056BEA22939080A006C85F8 = {
 			isa = PBXGroup;
 			children = (
-				3056BEAD2939080A006C85F8 /* UncommonApp */,
-				3056BEBE2939080B006C85F8 /* UncommonAppTests */,
-				3056BEC82939080B006C85F8 /* UncommonAppUITests */,
+				3056BEAD2939080A006C85F8 /* UncommonAppEasyReferrals */,
+				3056BEBE2939080B006C85F8 /* UncommonAppEasyReferralsTests */,
+				3056BEC82939080B006C85F8 /* UncommonAppEasyReferralsUITests */,
 				3056BEAC2939080A006C85F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -328,19 +331,19 @@
 		3056BEAC2939080A006C85F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3056BEAB2939080A006C85F8 /* UncommonApp.app */,
-				3056BEBB2939080B006C85F8 /* UncommonAppTests.xctest */,
-				3056BEC52939080B006C85F8 /* UncommonAppUITests.xctest */,
+				3056BEAB2939080A006C85F8 /* UncommonAppEasyReferrals.app */,
+				3056BEBB2939080B006C85F8 /* UncommonAppEasyReferralsTests.xctest */,
+				3056BEC52939080B006C85F8 /* UncommonAppEasyReferralsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3056BEAD2939080A006C85F8 /* UncommonApp */ = {
+		3056BEAD2939080A006C85F8 /* UncommonAppEasyReferrals */ = {
 			isa = PBXGroup;
 			children = (
 				300B38DA2949CF2D000B288D /* Info.plist */,
-				300B38D82949CED3000B288D /* UncommonApp.entitlements */,
-				3056BEAE2939080A006C85F8 /* UncommonApp.swift */,
+				300B38D82949CED3000B288D /* UncommonAppEasyReferrals.entitlements */,
+				3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */,
 				3056BEB02939080A006C85F8 /* ContentView.swift */,
 				30114A1A29407B3500F63BD1 /* Views */,
 				30114A1B29407B3D00F63BD1 /* ViewModels */,
@@ -349,7 +352,7 @@
 				3056BEB42939080B006C85F8 /* Preview Content */,
 				30114A12293FE5C100F63BD1 /* Firebase */,
 			);
-			path = UncommonApp;
+			path = UncommonAppEasyReferrals;
 			sourceTree = "<group>";
 		};
 		3056BEB42939080B006C85F8 /* Preview Content */ = {
@@ -360,21 +363,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		3056BEBE2939080B006C85F8 /* UncommonAppTests */ = {
+		3056BEBE2939080B006C85F8 /* UncommonAppEasyReferralsTests */ = {
 			isa = PBXGroup;
 			children = (
-				3056BEBF2939080B006C85F8 /* UncommonAppTests.swift */,
+				3056BEBF2939080B006C85F8 /* UncommonAppEasyReferralsTests.swift */,
 			);
-			path = UncommonAppTests;
+			path = UncommonAppEasyReferralsTests;
 			sourceTree = "<group>";
 		};
-		3056BEC82939080B006C85F8 /* UncommonAppUITests */ = {
+		3056BEC82939080B006C85F8 /* UncommonAppEasyReferralsUITests */ = {
 			isa = PBXGroup;
 			children = (
 				3056BEC92939080B006C85F8 /* UncommonAppUITests.swift */,
 				3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */,
 			);
-			path = UncommonAppUITests;
+			path = UncommonAppEasyReferralsUITests;
 			sourceTree = "<group>";
 		};
 		305E676429607F550003D341 /* Cards */ = {
@@ -396,9 +399,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3056BEAA2939080A006C85F8 /* UncommonApp */ = {
+		3056BEAA2939080A006C85F8 /* UncommonAppEasyReferrals */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3056BECF2939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonApp" */;
+			buildConfigurationList = 3056BECF2939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppEasyReferrals" */;
 			buildPhases = (
 				3056BEA72939080A006C85F8 /* Sources */,
 				3056BEA82939080A006C85F8 /* Frameworks */,
@@ -409,7 +412,7 @@
 			);
 			dependencies = (
 			);
-			name = UncommonApp;
+			name = UncommonAppEasyReferrals;
 			packageProductDependencies = (
 				3056BF06293FD798006C85F8 /* SDWebImageSwiftUI */,
 				3056BF10293FE01C006C85F8 /* FirebaseAnalyticsSwift */,
@@ -436,12 +439,12 @@
 				3056BF3A293FE01F006C85F8 /* FirebaseStorageCombine-Community */,
 			);
 			productName = UncommonApp;
-			productReference = 3056BEAB2939080A006C85F8 /* UncommonApp.app */;
+			productReference = 3056BEAB2939080A006C85F8 /* UncommonAppEasyReferrals.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3056BEBA2939080B006C85F8 /* UncommonAppTests */ = {
+		3056BEBA2939080B006C85F8 /* UncommonAppEasyReferralsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3056BED22939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppTests" */;
+			buildConfigurationList = 3056BED22939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppEasyReferralsTests" */;
 			buildPhases = (
 				3056BEB72939080B006C85F8 /* Sources */,
 				3056BEB82939080B006C85F8 /* Frameworks */,
@@ -452,14 +455,14 @@
 			dependencies = (
 				3056BEBD2939080B006C85F8 /* PBXTargetDependency */,
 			);
-			name = UncommonAppTests;
+			name = UncommonAppEasyReferralsTests;
 			productName = UncommonAppTests;
-			productReference = 3056BEBB2939080B006C85F8 /* UncommonAppTests.xctest */;
+			productReference = 3056BEBB2939080B006C85F8 /* UncommonAppEasyReferralsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3056BEC42939080B006C85F8 /* UncommonAppUITests */ = {
+		3056BEC42939080B006C85F8 /* UncommonAppEasyReferralsUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3056BED52939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppUITests" */;
+			buildConfigurationList = 3056BED52939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppEasyReferralsUITests" */;
 			buildPhases = (
 				3056BEC12939080B006C85F8 /* Sources */,
 				3056BEC22939080B006C85F8 /* Frameworks */,
@@ -470,9 +473,9 @@
 			dependencies = (
 				3056BEC72939080B006C85F8 /* PBXTargetDependency */,
 			);
-			name = UncommonAppUITests;
+			name = UncommonAppEasyReferralsUITests;
 			productName = UncommonAppUITests;
-			productReference = 3056BEC52939080B006C85F8 /* UncommonAppUITests.xctest */;
+			productReference = 3056BEC52939080B006C85F8 /* UncommonAppEasyReferralsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -498,7 +501,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3056BEA62939080A006C85F8 /* Build configuration list for PBXProject "UncommonApp" */;
+			buildConfigurationList = 3056BEA62939080A006C85F8 /* Build configuration list for PBXProject "UncommonAppEasyReferrals" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -515,9 +518,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3056BEAA2939080A006C85F8 /* UncommonApp */,
-				3056BEBA2939080B006C85F8 /* UncommonAppTests */,
-				3056BEC42939080B006C85F8 /* UncommonAppUITests */,
+				3056BEAA2939080A006C85F8 /* UncommonAppEasyReferrals */,
+				3056BEBA2939080B006C85F8 /* UncommonAppEasyReferralsTests */,
+				3056BEC42939080B006C85F8 /* UncommonAppEasyReferralsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -593,8 +596,9 @@
 				30114A3929472B3D00F63BD1 /* MembershipsVM.swift in Sources */,
 				300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
-				3056BEAF2939080A006C85F8 /* UncommonApp.swift in Sources */,
+				3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */,
 				305E676629607F740003D341 /* CardForShareSheet.swift in Sources */,
+				302E0A732962F9B0002962BB /* MyDiscountDetail.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
@@ -619,7 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3056BEC02939080B006C85F8 /* UncommonAppTests.swift in Sources */,
+				3056BEC02939080B006C85F8 /* UncommonAppEasyReferralsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,12 +641,12 @@
 /* Begin PBXTargetDependency section */
 		3056BEBD2939080B006C85F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3056BEAA2939080A006C85F8 /* UncommonApp */;
+			target = 3056BEAA2939080A006C85F8 /* UncommonAppEasyReferrals */;
 			targetProxy = 3056BEBC2939080B006C85F8 /* PBXContainerItemProxy */;
 		};
 		3056BEC72939080B006C85F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3056BEAA2939080A006C85F8 /* UncommonApp */;
+			target = 3056BEAA2939080A006C85F8 /* UncommonAppEasyReferrals */;
 			targetProxy = 3056BEC62939080B006C85F8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -767,21 +771,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = UncommonApp/UncommonApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UncommonAppEasyReferrals/UncommonAppEasyReferrals.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UncommonApp/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F6HF4R7G4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UncommonApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
+				INFOPLIST_FILE = UncommonAppEasyReferrals/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = UncommonAppEasyReferrals;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -801,21 +805,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = UncommonApp/UncommonApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = UncommonAppEasyReferrals/UncommonAppEasyReferrals.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UncommonApp/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F6HF4R7G4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UncommonApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
+				INFOPLIST_FILE = UncommonAppEasyReferrals/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = UncommonAppEasyReferrals;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -846,7 +850,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UncommonApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UncommonApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UncommonAppEasyReferrals.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UncommonAppEasyReferrals";
 			};
 			name = Debug;
 		};
@@ -866,7 +870,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UncommonApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UncommonApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UncommonAppEasyReferrals.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UncommonAppEasyReferrals";
 			};
 			name = Release;
 		};
@@ -909,7 +913,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3056BEA62939080A006C85F8 /* Build configuration list for PBXProject "UncommonApp" */ = {
+		3056BEA62939080A006C85F8 /* Build configuration list for PBXProject "UncommonAppEasyReferrals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3056BECD2939080B006C85F8 /* Debug */,
@@ -918,7 +922,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3056BECF2939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonApp" */ = {
+		3056BECF2939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppEasyReferrals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3056BED02939080B006C85F8 /* Debug */,
@@ -927,7 +931,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3056BED22939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppTests" */ = {
+		3056BED22939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppEasyReferralsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3056BED32939080B006C85F8 /* Debug */,
@@ -936,7 +940,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3056BED52939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppUITests" */ = {
+		3056BED52939080B006C85F8 /* Build configuration list for PBXNativeTarget "UncommonAppEasyReferralsUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3056BED62939080B006C85F8 /* Debug */,
