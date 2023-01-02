@@ -15,5 +15,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Uncommon App</string>
 </dict>
 </plist>
