@@ -41,7 +41,6 @@ struct ContentView: View {
                 Start(email: $email)
 
             }
-      
         }
         .onAppear {
             

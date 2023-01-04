@@ -115,7 +115,7 @@ struct Home: View {
  
                             NavigationLink(value: membership) {
                                 
-                                programRow(membership: membership, title: membership.shop.name, isLast: membership == membership_vm.my_memberships.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                                programRow(membership: membership, isLast: membership == membership_vm.my_memberships.last, presentedSheet: $presentedSheet)
                             }
                         }
                         
@@ -319,15 +319,11 @@ struct discountsAvailableWidget: View {
 
 struct programRow: View {
     
-    var membership: Membership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
-    var imageSource: String = "NONE"
-    var title: String
-    var subtitle: String = "Give 15%, get $10"
-    var referralObject: String = "Need to add an object later to pass to the popup screen"
+    var membership: Membership
+    //var membership: Membership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
     var isLast: Bool
     
-    @Binding var sheetContext: [String]
-    @Binding var presentedSheet: PresentedSheet?
+    @Binding var presentedSheet:PresentedSheet?
     
     @State var backgroundURL:String = ""
 
@@ -348,23 +344,14 @@ struct programRow: View {
                         .frame(width: 60, height: 60)
                         .foregroundColor(.gray)
                         .padding(.trailing)
-//                    Image(systemName: "bag.fill")
-//                        .font(.system(size: 48, weight: .regular))
-//                        .foregroundColor(Color(.lightGray))
-//                        .frame(width: UIScreen.main.bounds.width / 6, height: UIScreen.main.bounds.width / 6)
-//                        .padding(.vertical, 20)
                 }
-//                RoundedRectangle(cornerRadius: 6)
-//                    .frame(width: 60, height: 60)
-//                    .foregroundColor(.gray)
-//                    .padding(.trailing)
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(title)
+                    Text(membership.shop.name)
                         .font(.system(size: 18, weight: .regular, design: .rounded))
                         .foregroundColor(.black)
                         .padding(.bottom, 4)
-                    Text(subtitle)
+                    Text("Share a " + membership.default_campaign.offer + " discount")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
                         .foregroundColor(Color("text.gray"))
                 }
@@ -372,24 +359,16 @@ struct programRow: View {
                 Spacer()
                 
                 Button {
-                    sheetContext[0] = "YES TAPPED BUTTON"
                     presentedSheet = .send
-                    print("tapped")
                 } label: {
                     
-                    Text("Send")
+                    Text("Get " + membership.default_campaign.commission)
                         .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        .foregroundColor(Color("text.black"))
+                        .foregroundColor(Color.white)
                         .padding(.vertical, 6)
                         .padding(.horizontal)
-                        .background(Capsule().foregroundColor(Color("ShareGray")))
+                        .background(Capsule().foregroundColor(Color.cyan))
                 }
-                
-                //            Image(systemName: "chevron.right")
-                //                .font(.system(size: 15))
-                //                .foregroundColor(Color("text.gray"))
-                //                .padding(.leading)
-                
             }
             .padding(.vertical, 10)
                 
