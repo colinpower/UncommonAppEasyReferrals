@@ -316,7 +316,8 @@ struct cashBalanceWidget: View {
                 VStack(alignment: .center, spacing: 0) {
                     Text("$19.00")
                         .font(.system(size: 34, weight: .bold, design: .rounded))
-                        .foregroundColor(Color("text.black"))
+                        //.foregroundColor(Color("text.black"))
+                        .foregroundColor(Color.green)
                         .padding(.bottom)
                     Text("$15.00 Pending")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
@@ -359,7 +360,8 @@ struct discountsAvailableWidget: View {
                 VStack(alignment: .center, spacing: 0) {
                     Text("4")
                         .font(.system(size: 34, weight: .bold, design: .rounded))
-                        .foregroundColor(Color("text.black"))
+                        //.foregroundColor(Color("text.black"))
+                        .foregroundColor(Color.cyan)
                         .padding(.bottom)
                     Text("0 Pending")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
@@ -369,10 +371,10 @@ struct discountsAvailableWidget: View {
             }
         }.padding()
             .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-//        .onAppear {
-//
-//
-//        }
+        .onAppear {
+
+            print("appeared HOME")
+        }
     }
 }
 

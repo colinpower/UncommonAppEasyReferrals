@@ -72,6 +72,7 @@
 		305E676629607F740003D341 /* CardForShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305E676529607F740003D341 /* CardForShareSheet.swift */; };
 		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
 		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
+		30E302472963B08E00C5D7B3 /* CardForSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */; };
 		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		305E676529607F740003D341 /* CardForShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForShareSheet.swift; sourceTree = "<group>"; };
 		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
 		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
+		30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForSnapshot.swift; sourceTree = "<group>"; };
 		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				305E676529607F740003D341 /* CardForShareSheet.swift */,
+				30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30114A492947363A00F63BD1 /* UsersVM.swift in Sources */,
+				30E302472963B08E00C5D7B3 /* CardForSnapshot.swift in Sources */,
 				30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */,
 				306461162955AB1000E28C7D /* CashOut.swift in Sources */,
 				300B38E6294C333E000B288D /* AppVM.swift in Sources */,
