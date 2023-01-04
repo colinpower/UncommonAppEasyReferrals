@@ -16,6 +16,7 @@ struct Referral: Identifiable, Codable, Hashable {
     var commission: Referral_Commission
     var offer: String
     var revenue: String
+    var shop: Referral_Shop
     var status: String
     var timestamp: Referral_Timestamp
     var uuid: Referral_UUID
@@ -24,6 +25,7 @@ struct Referral: Identifiable, Codable, Hashable {
         case commission
         case offer
         case revenue
+        case shop
         case status
         case timestamp
         case uuid
@@ -44,6 +46,21 @@ struct Referral_Commission: Codable, Hashable {
         case offer
         case type
         case value
+    }
+}
+
+struct Referral_Shop: Codable, Hashable {
+
+    var domain: String
+    var icon: String
+    var name: String
+    var website: String
+
+    enum CodingKeys: String, CodingKey {
+        case domain
+        case icon
+        case name
+        case website
     }
 }
 

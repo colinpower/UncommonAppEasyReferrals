@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 
 //MARK: Decide which sheet to present
 enum PresentedSheet: String, Identifiable {
-    case profile, cash_out, setup_bank, myrewards, add, send
+    case profile, cash_out, setup_bank, mydiscounts, add, send
     var id: String {
         return self.rawValue
     }
@@ -75,9 +75,9 @@ struct Home: View {
 
                         //Discounts Widget
                         Button {
-                            presentedSheet = .myrewards
+                            presentedSheet = .mydiscounts
                         } label: {
-                            discountsAvailableWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                            discountsAvailableWidget(myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
                         }
 
                     }.padding(.vertical)
@@ -167,8 +167,9 @@ struct Home: View {
                 }
                 .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [sheetContext] sheet in
                     
-                    switch sheet {        //profile, cash_out, setup_bank, myrewards, add, send
+                    switch sheet {        //profile, cash_out, setup_bank, mydiscounts, add, send
                     
+                        //only need to pass in $presentedSheet if you're going to be using a nav stack inside the sheet, and you want to dismiss from deep inside the nav stack
                     case .profile:
                         Profile(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
@@ -181,8 +182,9 @@ struct Home: View {
                         CashOut(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    case .myrewards:
-                        MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                    
+                    case .mydiscounts:    //update this to MyDiscounts
+                        MyDiscounts(myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .add:
@@ -194,9 +196,9 @@ struct Home: View {
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     default:
-                        MyRewards(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        SendReferral(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             .presentationDetents([.large])
-                        //ReviewProductCarousel1(activeReviewOrReferSheet: $activeReviewOrReferSheet, item: item)
+                            .presentationDragIndicator(.visible)
                     }
                 }
                 
@@ -273,8 +275,8 @@ struct cashBalanceWidget: View {
 
 struct discountsAvailableWidget: View {
     
-    @Binding var sheetContext: [String]
-    @Binding var presentedSheet: PresentedSheet?
+    var myActiveDiscounts: [DiscountReward]
+    var myPendingDiscounts: [Referral]
 
     var body: some View {
         
@@ -295,12 +297,12 @@ struct discountsAvailableWidget: View {
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 0) {
-                    Text("4")
+                    Text(String(myActiveDiscounts.count))
                         .font(.system(size: 34, weight: .bold, design: .rounded))
                         //.foregroundColor(Color("text.black"))
                         .foregroundColor(Color.cyan)
                         .padding(.bottom)
-                    Text("0 Pending")
+                    Text(String(myPendingDiscounts.count) + " Pending")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
                         .foregroundColor(Color("text.gray"))
                 }
@@ -308,10 +310,6 @@ struct discountsAvailableWidget: View {
             }
         }.padding()
             .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-        .onAppear {
-
-            print("appeared HOME")
-        }
     }
 }
 

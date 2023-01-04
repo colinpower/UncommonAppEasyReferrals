@@ -20,7 +20,6 @@ struct CashOut: View {
             
             VStack {
 
-                
                 //MARK: Title + Subtitle
                 Text("Transfer to Bank")
                     .font(.system(size: 34, weight: .bold, design: .rounded))
@@ -34,7 +33,6 @@ struct CashOut: View {
                     .padding(.bottom)
                     .padding(.bottom)
                     .padding(.bottom)
-                
                 
                 HStack {
                     Spacer()

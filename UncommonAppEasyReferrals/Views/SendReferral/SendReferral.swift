@@ -12,6 +12,9 @@ struct SendReferral: View {
     //Environment
     @Environment(\.displayScale) var displayScale
     
+    @Environment(\.dismiss) var dismiss
+
+    
     //State and Observed Objects
     @StateObject var membership_vm = MembershipVM()
     
@@ -41,9 +44,13 @@ struct SendReferral: View {
                 //MARK: Top Bar
                 HStack {
                     Spacer()
-                    Text("Done")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .padding(.bottom)
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .padding(.bottom)
+                    }
                 }.padding(.bottom)
 
                 //MARK: Title + Subtitle

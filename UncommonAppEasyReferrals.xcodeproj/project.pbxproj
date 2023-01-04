@@ -32,7 +32,7 @@
 		30114A472947353E00F63BD1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A462947353E00F63BD1 /* Users.swift */; };
 		30114A492947363A00F63BD1 /* UsersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A482947363A00F63BD1 /* UsersVM.swift */; };
 		30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A4A29473E0C00F63BD1 /* Detail.swift */; };
-		302E0A732962F9B0002962BB /* MyDiscountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E0A722962F9B0002962BB /* MyDiscountDetail.swift */; };
+		302E0A732962F9B0002962BB /* AvailableDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E0A722962F9B0002962BB /* AvailableDiscount.swift */; };
 		3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */; };
 		3056BEB12939080A006C85F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEB02939080A006C85F8 /* ContentView.swift */; };
 		3056BEB32939080B006C85F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3056BEB22939080B006C85F8 /* Assets.xcassets */; };
@@ -40,7 +40,7 @@
 		3056BECA2939080B006C85F8 /* UncommonAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEC92939080B006C85F8 /* UncommonAppUITests.swift */; };
 		3056BECC2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */; };
 		3056BED9293EAF85006C85F8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BED8293EAF85006C85F8 /* Home.swift */; };
-		3056BEDB293EAFB5006C85F8 /* MyRewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEDA293EAFB5006C85F8 /* MyRewards.swift */; };
+		3056BEDB293EAFB5006C85F8 /* MyDiscounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEDA293EAFB5006C85F8 /* MyDiscounts.swift */; };
 		3056BEDD293EC7DB006C85F8 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEDC293EC7DB006C85F8 /* Share.swift */; };
 		3056BEDF293ED713006C85F8 /* SharePersonalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3056BEDE293ED713006C85F8 /* SharePersonalized.swift */; };
 		3056BF07293FD798006C85F8 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF06293FD798006C85F8 /* SDWebImageSwiftUI */; };
@@ -74,6 +74,7 @@
 		30D0891629659281007D5A1E /* CampaignVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891529659281007D5A1E /* CampaignVM.swift */; };
 		30D089182965A8C5007D5A1E /* CashReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D089172965A8C5007D5A1E /* CashReward.swift */; };
 		30D0891A2965AA56007D5A1E /* CashRewardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D089192965AA56007D5A1E /* CashRewardVM.swift */; };
+		30D0891C2965D25B007D5A1E /* PendingDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891B2965D25B007D5A1E /* PendingDiscount.swift */; };
 		30E302472963B08E00C5D7B3 /* CardForSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */; };
 		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
 /* End PBXBuildFile section */
@@ -125,7 +126,7 @@
 		30114A462947353E00F63BD1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		30114A482947363A00F63BD1 /* UsersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVM.swift; sourceTree = "<group>"; };
 		30114A4A29473E0C00F63BD1 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
-		302E0A722962F9B0002962BB /* MyDiscountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscountDetail.swift; sourceTree = "<group>"; };
+		302E0A722962F9B0002962BB /* AvailableDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableDiscount.swift; sourceTree = "<group>"; };
 		3056BEAB2939080A006C85F8 /* UncommonAppEasyReferrals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UncommonAppEasyReferrals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppEasyReferrals.swift; sourceTree = "<group>"; };
 		3056BEB02939080A006C85F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,7 +137,7 @@
 		3056BEC92939080B006C85F8 /* UncommonAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppUITests.swift; sourceTree = "<group>"; };
 		3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3056BED8293EAF85006C85F8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		3056BEDA293EAFB5006C85F8 /* MyRewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewards.swift; sourceTree = "<group>"; };
+		3056BEDA293EAFB5006C85F8 /* MyDiscounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscounts.swift; sourceTree = "<group>"; };
 		3056BEDC293EC7DB006C85F8 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		3056BEDE293ED713006C85F8 /* SharePersonalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePersonalized.swift; sourceTree = "<group>"; };
 		305E676529607F740003D341 /* CardForShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForShareSheet.swift; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 		30D0891529659281007D5A1E /* CampaignVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignVM.swift; sourceTree = "<group>"; };
 		30D089172965A8C5007D5A1E /* CashReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashReward.swift; sourceTree = "<group>"; };
 		30D089192965AA56007D5A1E /* CashRewardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashRewardVM.swift; sourceTree = "<group>"; };
+		30D0891B2965D25B007D5A1E /* PendingDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDiscount.swift; sourceTree = "<group>"; };
 		30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForSnapshot.swift; sourceTree = "<group>"; };
 		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -309,8 +311,9 @@
 		30114A262947176700F63BD1 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
-				3056BEDA293EAFB5006C85F8 /* MyRewards.swift */,
-				302E0A722962F9B0002962BB /* MyDiscountDetail.swift */,
+				3056BEDA293EAFB5006C85F8 /* MyDiscounts.swift */,
+				302E0A722962F9B0002962BB /* AvailableDiscount.swift */,
+				30D0891B2965D25B007D5A1E /* PendingDiscount.swift */,
 				306461152955AB1000E28C7D /* CashOut.swift */,
 			);
 			path = Rewards;
@@ -583,7 +586,7 @@
 				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
 				3056BEDD293EC7DB006C85F8 /* Share.swift in Sources */,
 				300B38E0294C2C73000B288D /* Start.swift in Sources */,
-				3056BEDB293EAFB5006C85F8 /* MyRewards.swift in Sources */,
+				3056BEDB293EAFB5006C85F8 /* MyDiscounts.swift in Sources */,
 				30114A2F29471F6600F63BD1 /* Code.swift in Sources */,
 				300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
@@ -597,7 +600,7 @@
 				3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */,
 				30D0891629659281007D5A1E /* CampaignVM.swift in Sources */,
 				305E676629607F740003D341 /* CardForShareSheet.swift in Sources */,
-				302E0A732962F9B0002962BB /* MyDiscountDetail.swift in Sources */,
+				302E0A732962F9B0002962BB /* AvailableDiscount.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
@@ -616,6 +619,7 @@
 				30114A352947242C00F63BD1 /* ShopVM.swift in Sources */,
 				3056BEDF293ED713006C85F8 /* SharePersonalized.swift in Sources */,
 				30A9A6AE295280790079F47B /* AddMembership.swift in Sources */,
+				30D0891C2965D25B007D5A1E /* PendingDiscount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
