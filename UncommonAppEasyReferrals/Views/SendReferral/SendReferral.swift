@@ -15,12 +15,14 @@ struct SendReferral: View {
     @Environment(\.dismiss) var dismiss
 
     
+    var membership: Membership
+    
     //State and Observed Objects
     @StateObject var membership_vm = MembershipVM()
     
     //Variables passed in
-    @Binding var sheetContext: [String]
-    @Binding var presentedSheet: PresentedSheet?
+//    @Binding var sheetContext: [String]
+//    @Binding var presentedSheet: PresentedSheet?
     @State private var text123 = "Your text here"
                 //need to pass in the details of this specific card / program
     
@@ -54,7 +56,7 @@ struct SendReferral: View {
                 }.padding(.bottom)
 
                 //MARK: Title + Subtitle
-                Text("Share $10")
+                Text(membership.shop.domain)
                     .font(.system(size: 34, weight: .bold, design: .rounded))
                     .padding(.bottom)
                 Text("Send a $10 discount to your friend, and receive $20 in cash if they make a purchase with your discount code.")

@@ -26,20 +26,22 @@ struct ContentView: View {
         
         Group {
             
-//            Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
-            
-            let currentSessionUID = viewModel.session?.uid ?? ""
-            let currentSessionEmail = viewModel.session?.email ?? ""
-
-            if (currentSessionUID != "" && currentSessionEmail != "") {
-
-                //we don't necessarily need to pass the email or UID.. the appVM.session will have the correct values
-                Home(email: $email, uid: currentSessionUID)
-
+            if true {
+                Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
             } else {
-
-                Start(email: $email)
-
+                let currentSessionUID = viewModel.session?.uid ?? ""
+                let currentSessionEmail = viewModel.session?.email ?? ""
+                
+                if (currentSessionUID != "" && currentSessionEmail != "") {
+                    
+                    //we don't necessarily need to pass the email or UID.. the appVM.session will have the correct values
+                    Home(email: $email, uid: currentSessionUID)
+                    
+                } else {
+                    
+                    Start(email: $email)
+                    
+                }
             }
         }
         .onAppear {

@@ -9,9 +9,8 @@ import SwiftUI
 
 struct CashOut: View {
         
-    @Binding var sheetContext: [String]
-    
-    @Binding var presentedSheet: PresentedSheet?
+//    @Binding var sheetContext: [String]
+//    @Binding var presentedSheet: PresentedSheet?
     
     var body: some View {
         ZStack {

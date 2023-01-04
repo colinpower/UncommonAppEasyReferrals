@@ -18,6 +18,11 @@ enum PresentedSheet: String, Identifiable {
     }
 }
 
+struct MembershipObject: Identifiable {
+    
+    var id = UUID().uuidString
+    var membershipObject: Membership
+}
 
 //how to do NavigationPath
 //https://www.youtube.com/watch?v=oxp8Qqwr4AY
@@ -39,11 +44,12 @@ struct Home: View {
     
     @ObservedObject var ordersVM = OrdersVM()
     
-    //@ObservedObject var rewardsVM = RewardsVM()
     @ObservedObject var usersVM = UsersVM()
     
+    @State var selectedMembershipObject:MembershipObject = MembershipObject(membershipObject: Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "EMPTY", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
+    )
     
-    @State var sheetContext = ["NONE", "fdasdf"]
+    var emptyMembership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "EMPTY", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
     
     @State private var presentedSheet: PresentedSheet? = nil
     
@@ -70,7 +76,7 @@ struct Home: View {
                         Button {
                             presentedSheet = .cash_out
                         } label: {
-                            cashBalanceWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                            cashBalanceWidget()
                         }
 
                         //Discounts Widget
@@ -115,7 +121,7 @@ struct Home: View {
  
                             NavigationLink(value: membership) {
                                 
-                                programRow(membership: membership, isLast: membership == membership_vm.my_memberships.last, presentedSheet: $presentedSheet)
+                                programRow(selectedMembershipObject: $selectedMembershipObject, membership: membership, isLast: membership == membership_vm.my_memberships.last, presentedSheet: $presentedSheet)
                             }
                         }
                         
@@ -165,38 +171,37 @@ struct Home: View {
                     }
                     
                 }
-                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [sheetContext] sheet in
+                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [selectedMembershipObject] sheet in
                     
                     switch sheet {        //profile, cash_out, setup_bank, mydiscounts, add, send
                     
                         //only need to pass in $presentedSheet if you're going to be using a nav stack inside the sheet, and you want to dismiss from deep inside the nav stack
                     case .profile:
-                        Profile(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        Profile()
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .cash_out:
-                        CashOut(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        CashOut()
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .setup_bank:
-                        CashOut(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        CashOut()
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    
                     case .mydiscounts:    //update this to MyDiscounts
                         MyDiscounts(myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .add:
-                        AddMembership(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        AddMembership()
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .send:
-                        SendReferral(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        SendReferral(membership: selectedMembershipObject.membershipObject)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     default:
-                        SendReferral(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                        SendReferral(membership: selectedMembershipObject.membershipObject)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     }
@@ -231,8 +236,8 @@ struct Home: View {
 
 struct cashBalanceWidget: View {
     
-    @Binding var sheetContext: [String]
-    @Binding var presentedSheet: PresentedSheet?
+//    @Binding var sheetContext: [String]
+//    @Binding var presentedSheet: PresentedSheet?
 
     var body: some View {
         
@@ -313,11 +318,9 @@ struct discountsAvailableWidget: View {
     }
 }
 
-
-
-
-
 struct programRow: View {
+    
+    @Binding var selectedMembershipObject: MembershipObject
     
     var membership: Membership
     //var membership: Membership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
@@ -359,6 +362,8 @@ struct programRow: View {
                 Spacer()
                 
                 Button {
+                    selectedMembershipObject.membershipObject = membership
+                    
                     presentedSheet = .send
                 } label: {
                     

@@ -14,7 +14,6 @@ struct Detail: View {
     @ObservedObject var ordersVM = OrdersVM()
     
     
-    
     var body: some View {
         ZStack(alignment: .top) {
                 
