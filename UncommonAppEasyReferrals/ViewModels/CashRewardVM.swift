@@ -1,8 +1,8 @@
 //
-//  ReferralsVM.swift
-//  UncommonApp
+//  CashRewardVM.swift
+//  UncommonAppEasyReferrals
 //
-//  Created by Colin Power on 12/12/22.
+//  Created by Colin Power on 1/4/23.
 //
 
 import Foundation
@@ -14,18 +14,18 @@ import Combine
     // Get all orders for user
 
 
-class ReferralsVM: ObservableObject, Identifiable {
+class CashRewardVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
     
-    @Published var var_getReferrals = [Referrals]()
+    @Published var my_cash_rewards = [CashReward]()
     
-    func getReferrals() {
+    func getMyCashRewards() {
         
-        db.collection("referrals")
+        db.collection("cash_rewards")
             .getDocuments { (snapshot, error) in
     
                 guard let snapshot = snapshot, error == nil else {
@@ -35,10 +35,10 @@ class ReferralsVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.var_getReferrals = snapshot.documents.compactMap({ queryDocumentSnapshot -> Referrals? in
-                    print("AT THE TRY STATEMENT for getReferrals")
-                    print(try? queryDocumentSnapshot.data(as: Referrals.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: Referrals.self)
+                self.my_cash_rewards = snapshot.documents.compactMap({ queryDocumentSnapshot -> CashReward? in
+                    print("AT THE TRY STATEMENT for getMyCashRewards")
+                    print(try? queryDocumentSnapshot.data(as: CashReward.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: CashReward.self)
                 })
             }
     

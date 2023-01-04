@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Detail: View {
     
-    var membership: Memberships
+    var membership: Membership
     
     @ObservedObject var ordersVM = OrdersVM()
     
@@ -32,7 +32,7 @@ struct Detail: View {
                             .foregroundColor(.blue)
                             .padding(.bottom)
                         
-                        Text(membership.company_name)
+                        Text(membership.shop.name)
                             .font(.system(size: 22, weight: .bold, design: .rounded))
                             .foregroundColor(Color("text.black"))
                             

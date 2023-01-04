@@ -14,22 +14,22 @@ import Combine
     // Get all memberships for user
 
 
-class MembershipsVM: ObservableObject, Identifiable {
+class MembershipVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
     
-    @Published var var_getMyMemberships = [Memberships]()
+    @Published var my_memberships = [Membership]()
     
     func getMyMemberships(userId: String) {
     
         //var ordersSnapshot = [Orders]()
         
         db.collection("memberships")
-//            .whereField("status", isEqualTo: "ACTIVE")
-            .whereField("ids.user", isEqualTo: userId)
+            .whereField("status", isEqualTo: "ACTIVE")
+//            .whereField("ids.user", isEqualTo: userId)
             .getDocuments { (snapshot, error) in
     
                 print("trying to get memberships for \(userId)")
@@ -40,10 +40,10 @@ class MembershipsVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.var_getMyMemberships = snapshot.documents.compactMap({ queryDocumentSnapshot -> Memberships? in
+                self.my_memberships = snapshot.documents.compactMap({ queryDocumentSnapshot -> Membership? in
                     print("AT THE TRY STATEMENT for getMyMemberships")
-                    print(try? queryDocumentSnapshot.data(as: Memberships.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: Memberships.self)
+                    print(try? queryDocumentSnapshot.data(as: Membership.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: Membership.self)
                 })
             }
     

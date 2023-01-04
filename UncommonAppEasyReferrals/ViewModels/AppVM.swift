@@ -72,17 +72,9 @@ class AppViewModel: ObservableObject {
                     email: user1.email
                 )
                 
-                
-
-                print("printing the UserObject which is self.session")
-                print(self.session)
-                
-                
             } else {
-                print("we don't have a session.. setting it to nil")
-                // if we don't have a user, set our session to nil
+                print("No active session found. Setting AppVM.session object to nil")
                 self.session = nil
-                
                 
             }
         }

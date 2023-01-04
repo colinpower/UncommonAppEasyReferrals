@@ -1,5 +1,5 @@
 //
-//  CampaignsVM.swift
+//  ReferralsVM.swift
 //  UncommonApp
 //
 //  Created by Colin Power on 12/12/22.
@@ -11,23 +11,20 @@ import FirebaseFirestoreSwift
 import Combine
 
 //Required Queries
-    // Get one campaign
+    // Get all orders for user
 
 
-class CampaignsVM: ObservableObject, Identifiable {
+class ReferralVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
+    @Published var my_referrals = [Referral]()
     
-    @Published var var_getOneCampaign = [Campaigns]()
-    
-    func getOneCampaign() {
-    
-        //var ordersSnapshot = [Orders]()
-    
-        db.collection("campaigns")
+    func getMyReferrals() {
+        
+        db.collection("referrals")
             .getDocuments { (snapshot, error) in
     
                 guard let snapshot = snapshot, error == nil else {
@@ -37,10 +34,10 @@ class CampaignsVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.var_getOneCampaign = snapshot.documents.compactMap({ queryDocumentSnapshot -> Campaigns? in
-                    print("AT THE TRY STATEMENT for getOneCampaign")
-                    print(try? queryDocumentSnapshot.data(as: Campaigns.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: Campaigns.self)
+                self.my_referrals = snapshot.documents.compactMap({ queryDocumentSnapshot -> Referral? in
+                    print("AT THE TRY STATEMENT for getMyReferrals")
+                    print(try? queryDocumentSnapshot.data(as: Referral.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: Referral.self)
                 })
             }
     

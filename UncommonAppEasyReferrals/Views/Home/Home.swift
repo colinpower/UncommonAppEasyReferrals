@@ -27,16 +27,19 @@ struct Home: View {
         
     @EnvironmentObject var viewModel: AppViewModel
     
-    @ObservedObject var campaignsVM = CampaignsVM()
-    @ObservedObject var codesVM = CodesVM()
-    @ObservedObject var companiesVM = CompaniesVM()
+    @StateObject var campaign_vm = CampaignVM()
+    @StateObject var code_vm = CodeVM()
+    @StateObject var membership_vm = MembershipVM()
+    @StateObject var referral_vm = ReferralVM()
+    @StateObject var shop_vm = ShopVM()
+    @StateObject var cash_reward_vm = CashRewardVM()
+    @StateObject var discount_reward_vm = DiscountRewardVM()
     
-    @StateObject var membershipsVM = MembershipsVM()
     
     
     @ObservedObject var ordersVM = OrdersVM()
-    @ObservedObject var referralsVM = ReferralsVM()
-    @ObservedObject var rewardsVM = RewardsVM()
+    
+    //@ObservedObject var rewardsVM = RewardsVM()
     @ObservedObject var usersVM = UsersVM()
     
     
@@ -59,104 +62,26 @@ struct Home: View {
                 Color("Background").ignoresSafeArea()
                 
                 ScrollView {
-                    //VStack(alignment: .leading, spacing: 0) {
-                    
-//                    VStack(alignment: .leading, spacing: 0) {
-//
-//                        HStack(alignment: .bottom, spacing: 0) {
-//
-//                            Text("My Rewards")
-//                                .font(.system(size: 22, weight: .bold, design: .rounded))
-//                                .foregroundColor(Color("text.black"))
-//                                .padding(.bottom, 2)
-//
-//                            Spacer()
-//
-//                            Button {
-//                                presentedSheet = .myrewards
-//                            } label: {
-//                                Text("Use")
-//                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-//                                    .foregroundColor(Color("text.black"))
-//                                    .padding(.vertical, 4)
-//                                    .padding(.horizontal)
-//                                    .background(Capsule().foregroundColor(Color("ShareGray")))
-//                            }
-//
-//
-//                        }.padding(.vertical, 10)
-//                            .padding(.bottom)
-//
-//                        if (membershipsVM.var_getMyMemberships.isEmpty) {
-//                            Text("IS EMPTY")
-//                        }
-//
-//                        HStack {
-//                            ForEach(membershipsVM.var_getMyMemberships) { membership in
-//
-//                                Text(membership.company_name)
-//
-//                            }
-//                        }
-//
-//                        HStack(alignment: .top, spacing: 20) {
-//
-//                            VStack(alignment: .leading, spacing: 0) {
-//
-//                                Text("$19.00")
-//                                    .font(.system(size: 34, weight: .bold, design: .rounded))
-//                                    .foregroundColor(Color("text.black"))
-//                                    .padding(.bottom, 4)
-//
-//                                Text("Cash Balance")
-//                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-//                                    .foregroundColor(Color("text.gray"))
-//
-//                            }
-//
-//                            Spacer()
-//
-//                            VStack(alignment: .leading, spacing: 0) {
-//
-//                                Text("3")
-//                                    .font(.system(size: 34, weight: .bold, design: .rounded))
-//                                    .foregroundColor(Color("text.black"))
-//                                    .padding(.bottom, 4)
-//
-//                                Text("Discounts")
-//                                    .font(.system(size: 15, weight: .regular, design: .rounded))
-//                                    .foregroundColor(Color("text.gray"))
-//
-//                            }
-//
-//                            Spacer()
-//
-//                        }
-//
-//                    }.padding()
-//                        .padding(.bottom, 10)
-//                        .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-//                        .padding(.all)
-//                        .padding(.top)
                     
                     //MARK: Cash and Discounts Widgets
                     HStack(alignment: .center, spacing: 16) {
-                        
+
                         //Cash Widget
                         Button {
                             presentedSheet = .cash_out
                         } label: {
                             cashBalanceWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                         }
-                        
+
                         //Discounts Widget
                         Button {
                             presentedSheet = .myrewards
                         } label: {
                             discountsAvailableWidget(sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                         }
-                        
+
                     }.padding(.vertical)
+                    
                     
                     //MARK: My Brands Box
                     VStack(alignment: .leading, spacing: 0) {
@@ -186,11 +111,11 @@ struct Home: View {
                             .padding(.bottom)
                         
                         //Rows of Current Memberships
-                        ForEach(membershipsVM.var_getMyMemberships) { membership in
+                        ForEach(membership_vm.my_memberships) { membership in
  
                             NavigationLink(value: membership) {
                                 
-                                programRow(membership: membership, title: membership.company_name, isLast: membership == membershipsVM.var_getMyMemberships.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
+                                programRow(membership: membership, title: membership.shop.name, isLast: membership == membership_vm.my_memberships.last, sheetContext: $sheetContext, presentedSheet: $presentedSheet)
                             }
                         }
                         
@@ -204,7 +129,7 @@ struct Home: View {
                     
                 }.padding(.horizontal)
                 .navigationTitle("")
-                .navigationDestination(for: Memberships.self) { membership in
+                .navigationDestination(for: Membership.self) { membership in
                     Detail(membership: membership)
                 }
                 .toolbar {
@@ -279,13 +204,25 @@ struct Home: View {
         }
         .onAppear {
             
-            self.membershipsVM.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
+            self.membership_vm.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
+            
+            //self.campaign_vm.getCampaign()
+            self.code_vm.getOneCode(codeId: "")
+            
+            self.referral_vm.getMyReferrals()
+            //self.cash_reward_vm.getMyCashRewards()
+            self.discount_reward_vm.getMyDiscountRewards()
+            
+            self.shop_vm.getAllShops()
 
             self.usersVM.listenForOneUser(userID: uid)
             
             self.email = ""
+            
+            print("trying to print the current session")
+            print(self.viewModel.session?.email)
+            print(self.viewModel.session?.uid)
         }
-        
     }
 }
 
@@ -384,7 +321,7 @@ struct discountsAvailableWidget: View {
 
 struct programRow: View {
     
-    var membership: Memberships = Memberships(company_name: "", doc_id: "", ids: Memberships_Ids(campaigns: [""], company: "", domain: "", shopify_customer: "", user: ""), primary_campaign: Memberships_PrimaryCampaign(commission: Memberships_PrimaryCampaign_Commission(category: "", type: "", value: ""), linked_code: "", offer: Memberships_PrimaryCampaign_Offer(category: "", type: "", value: ""), primary_campaign_id: "", type: ""), stats: Memberships_Stats(total_cash: 0, total_discounts: 0, total_orders: 0, total_referrals: 0, total_sales: 0), status: "", timestamps: Memberships_Timestamps(joined: 0))
+    var membership: Membership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
     var imageSource: String = "NONE"
     var title: String
     var subtitle: String = "Give 15%, get $10"
@@ -466,7 +403,7 @@ struct programRow: View {
         }
         .onAppear {
             
-            let backgroundPath = "companies/" + membership.ids.company + "/logo.png"
+            let backgroundPath = membership.shop.icon
             
             let storage = Storage.storage().reference()
             

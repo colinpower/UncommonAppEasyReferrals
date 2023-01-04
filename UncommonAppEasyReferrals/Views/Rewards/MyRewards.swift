@@ -13,7 +13,7 @@ struct MyRewards: View {
     
     @Binding var presentedSheet: PresentedSheet?
     
-    @StateObject var membershipsVM = MembershipsVM()
+    @StateObject var membership_vm = MembershipVM()
     
     let columns: [GridItem] = [
         GridItem(.fixed(UIScreen.main.bounds.width / 2 - 32), spacing: 16, alignment: nil),
@@ -44,7 +44,7 @@ struct MyRewards: View {
                     //MARK: Boxes: LazyVGrid for Discounts
                     LazyVGrid(columns: columns, spacing: 16) {
                                                     
-                        ForEach(membershipsVM.var_getMyMemberships) { membership in
+                        ForEach(membership_vm.my_memberships) { membership in
                             
                             Button {
                                 isMyDiscountDetailPresented = true
@@ -69,7 +69,7 @@ struct MyRewards: View {
         }
         .onAppear {
             
-            self.membershipsVM.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
+            self.membership_vm.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
         }
         .sheet(isPresented: $isMyDiscountDetailPresented) {
             MyDiscountDetail(isMyDiscountDetailPresented: $isMyDiscountDetailPresented)

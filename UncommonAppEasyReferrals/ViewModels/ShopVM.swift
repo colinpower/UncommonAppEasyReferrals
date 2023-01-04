@@ -1,5 +1,5 @@
 //
-//  CompaniesVM.swift
+//  ShopVM.swift
 //  UncommonApp
 //
 //  Created by Colin Power on 12/12/22.
@@ -11,23 +11,20 @@ import FirebaseFirestoreSwift
 import Combine
 
 //Required Queries
-    // Get one company
+    // Get one shop
 
 
-class CompaniesVM: ObservableObject, Identifiable {
+class ShopVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
+    @Published var all_shops = [Shop]()
     
-    @Published var var_getAllCompanies = [Companies]()
-    
-    func getAllCompanies() {
-    
-        //var ordersSnapshot = [Orders]()
-    
-        db.collection("companies")
+    func getAllShops() {
+        
+        db.collection("shops")
             .getDocuments { (snapshot, error) in
     
                 guard let snapshot = snapshot, error == nil else {
@@ -37,10 +34,10 @@ class CompaniesVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.var_getAllCompanies = snapshot.documents.compactMap({ queryDocumentSnapshot -> Companies? in
-                    print("AT THE TRY STATEMENT for getAllCompanies")
-                    print(try? queryDocumentSnapshot.data(as: Companies.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: Companies.self)
+                self.all_shops = snapshot.documents.compactMap({ queryDocumentSnapshot -> Shop? in
+                    print("AT THE TRY STATEMENT for getAllShops()")
+                    print(try? queryDocumentSnapshot.data(as: Shop.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: Shop.self)
                 })
             }
     

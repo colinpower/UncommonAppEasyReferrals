@@ -16,7 +16,7 @@ import Combine
 
 class EmailAuthVM: ObservableObject, Identifiable {
     
-    @Published var var_getReferrals = [Referrals]()
+    //@Published var var_getReferrals = [Referrals]()
     
     
     private var db = Firestore.firestore()

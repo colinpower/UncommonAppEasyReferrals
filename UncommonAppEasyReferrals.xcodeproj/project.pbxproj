@@ -17,21 +17,18 @@
 		300B38EE294C3D64000B288D /* EnterPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38ED294C3D64000B288D /* EnterPhone.swift */; };
 		300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38EF294C3D6D000B288D /* CheckPhone.swift */; };
 		30114A19294051B100F63BD1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A18294051B100F63BD1 /* Profile.swift */; };
-		30114A29294719A900F63BD1 /* Campaigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A28294719A900F63BD1 /* Campaigns.swift */; };
-		30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2A29471C3900F63BD1 /* CampaignsVM.swift */; };
 		30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2C29471CDC00F63BD1 /* DataManager.swift */; };
-		30114A2F29471F6600F63BD1 /* Codes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2E29471F6600F63BD1 /* Codes.swift */; };
-		30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3029471FFF00F63BD1 /* CodesVM.swift */; };
-		30114A332947232200F63BD1 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A322947232200F63BD1 /* Companies.swift */; };
-		30114A352947242C00F63BD1 /* CompaniesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A342947242C00F63BD1 /* CompaniesVM.swift */; };
-		30114A37294724CB00F63BD1 /* Memberships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A36294724CB00F63BD1 /* Memberships.swift */; };
-		30114A3929472B3D00F63BD1 /* MembershipsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3829472B3D00F63BD1 /* MembershipsVM.swift */; };
+		30114A2F29471F6600F63BD1 /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A2E29471F6600F63BD1 /* Code.swift */; };
+		30114A3129471FFF00F63BD1 /* CodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3029471FFF00F63BD1 /* CodeVM.swift */; };
+		30114A352947242C00F63BD1 /* ShopVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A342947242C00F63BD1 /* ShopVM.swift */; };
+		30114A37294724CB00F63BD1 /* Membership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A36294724CB00F63BD1 /* Membership.swift */; };
+		30114A3929472B3D00F63BD1 /* MembershipVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3829472B3D00F63BD1 /* MembershipVM.swift */; };
 		30114A3B29472FED00F63BD1 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3A29472FED00F63BD1 /* Orders.swift */; };
 		30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3C2947309800F63BD1 /* OrdersVM.swift */; };
-		30114A3F2947312B00F63BD1 /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3E2947312B00F63BD1 /* Referrals.swift */; };
-		30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A402947323500F63BD1 /* ReferralsVM.swift */; };
-		30114A432947329900F63BD1 /* Rewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A422947329900F63BD1 /* Rewards.swift */; };
-		30114A452947330300F63BD1 /* RewardsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A442947330300F63BD1 /* RewardsVM.swift */; };
+		30114A3F2947312B00F63BD1 /* Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A3E2947312B00F63BD1 /* Referral.swift */; };
+		30114A412947323500F63BD1 /* ReferralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A402947323500F63BD1 /* ReferralVM.swift */; };
+		30114A432947329900F63BD1 /* DiscountReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A422947329900F63BD1 /* DiscountReward.swift */; };
+		30114A452947330300F63BD1 /* DiscountRewardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A442947330300F63BD1 /* DiscountRewardVM.swift */; };
 		30114A472947353E00F63BD1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A462947353E00F63BD1 /* Users.swift */; };
 		30114A492947363A00F63BD1 /* UsersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A482947363A00F63BD1 /* UsersVM.swift */; };
 		30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30114A4A29473E0C00F63BD1 /* Detail.swift */; };
@@ -72,6 +69,11 @@
 		305E676629607F740003D341 /* CardForShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305E676529607F740003D341 /* CardForShareSheet.swift */; };
 		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
 		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
+		30D0891229658F88007D5A1E /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891129658F88007D5A1E /* Shop.swift */; };
+		30D08914296590CD007D5A1E /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D08913296590CD007D5A1E /* Campaign.swift */; };
+		30D0891629659281007D5A1E /* CampaignVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891529659281007D5A1E /* CampaignVM.swift */; };
+		30D089182965A8C5007D5A1E /* CashReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D089172965A8C5007D5A1E /* CashReward.swift */; };
+		30D0891A2965AA56007D5A1E /* CashRewardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D089192965AA56007D5A1E /* CashRewardVM.swift */; };
 		30E302472963B08E00C5D7B3 /* CardForSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */; };
 		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
 /* End PBXBuildFile section */
@@ -108,21 +110,18 @@
 		300B38EF294C3D6D000B288D /* CheckPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPhone.swift; sourceTree = "<group>"; };
 		30114A14293FE5C100F63BD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30114A18294051B100F63BD1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		30114A28294719A900F63BD1 /* Campaigns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaigns.swift; sourceTree = "<group>"; };
-		30114A2A29471C3900F63BD1 /* CampaignsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsVM.swift; sourceTree = "<group>"; };
 		30114A2C29471CDC00F63BD1 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		30114A2E29471F6600F63BD1 /* Codes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codes.swift; sourceTree = "<group>"; };
-		30114A3029471FFF00F63BD1 /* CodesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesVM.swift; sourceTree = "<group>"; };
-		30114A322947232200F63BD1 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
-		30114A342947242C00F63BD1 /* CompaniesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesVM.swift; sourceTree = "<group>"; };
-		30114A36294724CB00F63BD1 /* Memberships.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memberships.swift; sourceTree = "<group>"; };
-		30114A3829472B3D00F63BD1 /* MembershipsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipsVM.swift; sourceTree = "<group>"; };
+		30114A2E29471F6600F63BD1 /* Code.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
+		30114A3029471FFF00F63BD1 /* CodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVM.swift; sourceTree = "<group>"; };
+		30114A342947242C00F63BD1 /* ShopVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopVM.swift; sourceTree = "<group>"; };
+		30114A36294724CB00F63BD1 /* Membership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Membership.swift; sourceTree = "<group>"; };
+		30114A3829472B3D00F63BD1 /* MembershipVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipVM.swift; sourceTree = "<group>"; };
 		30114A3A29472FED00F63BD1 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		30114A3C2947309800F63BD1 /* OrdersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVM.swift; sourceTree = "<group>"; };
-		30114A3E2947312B00F63BD1 /* Referrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
-		30114A402947323500F63BD1 /* ReferralsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsVM.swift; sourceTree = "<group>"; };
-		30114A422947329900F63BD1 /* Rewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rewards.swift; sourceTree = "<group>"; };
-		30114A442947330300F63BD1 /* RewardsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsVM.swift; sourceTree = "<group>"; };
+		30114A3E2947312B00F63BD1 /* Referral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referral.swift; sourceTree = "<group>"; };
+		30114A402947323500F63BD1 /* ReferralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralVM.swift; sourceTree = "<group>"; };
+		30114A422947329900F63BD1 /* DiscountReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountReward.swift; sourceTree = "<group>"; };
+		30114A442947330300F63BD1 /* DiscountRewardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountRewardVM.swift; sourceTree = "<group>"; };
 		30114A462947353E00F63BD1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		30114A482947363A00F63BD1 /* UsersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVM.swift; sourceTree = "<group>"; };
 		30114A4A29473E0C00F63BD1 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
@@ -143,6 +142,11 @@
 		305E676529607F740003D341 /* CardForShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForShareSheet.swift; sourceTree = "<group>"; };
 		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
 		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
+		30D0891129658F88007D5A1E /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		30D08913296590CD007D5A1E /* Campaign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
+		30D0891529659281007D5A1E /* CampaignVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignVM.swift; sourceTree = "<group>"; };
+		30D089172965A8C5007D5A1E /* CashReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashReward.swift; sourceTree = "<group>"; };
+		30D089192965AA56007D5A1E /* CashRewardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashRewardVM.swift; sourceTree = "<group>"; };
 		30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForSnapshot.swift; sourceTree = "<group>"; };
 		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,13 +242,14 @@
 			isa = PBXGroup;
 			children = (
 				300B38E3294C2D57000B288D /* EmailAuthVM.swift */,
-				30114A2A29471C3900F63BD1 /* CampaignsVM.swift */,
-				30114A3029471FFF00F63BD1 /* CodesVM.swift */,
-				30114A342947242C00F63BD1 /* CompaniesVM.swift */,
-				30114A3829472B3D00F63BD1 /* MembershipsVM.swift */,
+				30D0891529659281007D5A1E /* CampaignVM.swift */,
+				30114A3029471FFF00F63BD1 /* CodeVM.swift */,
+				30114A342947242C00F63BD1 /* ShopVM.swift */,
+				30114A3829472B3D00F63BD1 /* MembershipVM.swift */,
 				30114A3C2947309800F63BD1 /* OrdersVM.swift */,
-				30114A402947323500F63BD1 /* ReferralsVM.swift */,
-				30114A442947330300F63BD1 /* RewardsVM.swift */,
+				30114A402947323500F63BD1 /* ReferralVM.swift */,
+				30114A442947330300F63BD1 /* DiscountRewardVM.swift */,
+				30D089192965AA56007D5A1E /* CashRewardVM.swift */,
 				30114A482947363A00F63BD1 /* UsersVM.swift */,
 				300B38E5294C333E000B288D /* AppVM.swift */,
 				30114A2C29471CDC00F63BD1 /* DataManager.swift */,
@@ -256,13 +261,14 @@
 			isa = PBXGroup;
 			children = (
 				300B38E1294C2D0F000B288D /* EmailAuth.swift */,
-				30114A28294719A900F63BD1 /* Campaigns.swift */,
-				30114A2E29471F6600F63BD1 /* Codes.swift */,
-				30114A322947232200F63BD1 /* Companies.swift */,
-				30114A36294724CB00F63BD1 /* Memberships.swift */,
+				30D08913296590CD007D5A1E /* Campaign.swift */,
+				30114A2E29471F6600F63BD1 /* Code.swift */,
+				30D0891129658F88007D5A1E /* Shop.swift */,
+				30114A36294724CB00F63BD1 /* Membership.swift */,
 				30114A3A29472FED00F63BD1 /* Orders.swift */,
-				30114A3E2947312B00F63BD1 /* Referrals.swift */,
-				30114A422947329900F63BD1 /* Rewards.swift */,
+				30114A3E2947312B00F63BD1 /* Referral.swift */,
+				30D089172965A8C5007D5A1E /* CashReward.swift */,
+				30114A422947329900F63BD1 /* DiscountReward.swift */,
 				30114A462947353E00F63BD1 /* Users.swift */,
 			);
 			path = Models;
@@ -578,34 +584,36 @@
 				3056BEDD293EC7DB006C85F8 /* Share.swift in Sources */,
 				300B38E0294C2C73000B288D /* Start.swift in Sources */,
 				3056BEDB293EAFB5006C85F8 /* MyRewards.swift in Sources */,
-				30114A2F29471F6600F63BD1 /* Codes.swift in Sources */,
+				30114A2F29471F6600F63BD1 /* Code.swift in Sources */,
 				300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
 				300B38EC294C3D5E000B288D /* EnterName.swift in Sources */,
 				30114A3B29472FED00F63BD1 /* Orders.swift in Sources */,
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,
-				30114A432947329900F63BD1 /* Rewards.swift in Sources */,
-				30114A3929472B3D00F63BD1 /* MembershipsVM.swift in Sources */,
+				30114A432947329900F63BD1 /* DiscountReward.swift in Sources */,
+				30114A3929472B3D00F63BD1 /* MembershipVM.swift in Sources */,
 				300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */,
+				30D0891629659281007D5A1E /* CampaignVM.swift in Sources */,
 				305E676629607F740003D341 /* CardForShareSheet.swift in Sources */,
 				302E0A732962F9B0002962BB /* MyDiscountDetail.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
-				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
+				30114A412947323500F63BD1 /* ReferralVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
+				30D0891229658F88007D5A1E /* Shop.swift in Sources */,
 				300B38E2294C2D0F000B288D /* EmailAuth.swift in Sources */,
 				30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */,
-				30114A29294719A900F63BD1 /* Campaigns.swift in Sources */,
-				30114A332947232200F63BD1 /* Companies.swift in Sources */,
 				300B38EA294C3D53000B288D /* CheckEmail.swift in Sources */,
-				30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */,
-				30114A3F2947312B00F63BD1 /* Referrals.swift in Sources */,
-				30114A2B29471C3900F63BD1 /* CampaignsVM.swift in Sources */,
+				30114A3129471FFF00F63BD1 /* CodeVM.swift in Sources */,
+				30D089182965A8C5007D5A1E /* CashReward.swift in Sources */,
+				30114A3F2947312B00F63BD1 /* Referral.swift in Sources */,
+				30D0891A2965AA56007D5A1E /* CashRewardVM.swift in Sources */,
 				300B38E8294C3685000B288D /* EnterEmail.swift in Sources */,
-				30114A37294724CB00F63BD1 /* Memberships.swift in Sources */,
-				30114A452947330300F63BD1 /* RewardsVM.swift in Sources */,
-				30114A352947242C00F63BD1 /* CompaniesVM.swift in Sources */,
+				30114A37294724CB00F63BD1 /* Membership.swift in Sources */,
+				30D08914296590CD007D5A1E /* Campaign.swift in Sources */,
+				30114A452947330300F63BD1 /* DiscountRewardVM.swift in Sources */,
+				30114A352947242C00F63BD1 /* ShopVM.swift in Sources */,
 				3056BEDF293ED713006C85F8 /* SharePersonalized.swift in Sources */,
 				30A9A6AE295280790079F47B /* AddMembership.swift in Sources */,
 			);

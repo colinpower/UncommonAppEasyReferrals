@@ -14,18 +14,18 @@ import Combine
     // Get all orders for user
 
 
-class RewardsVM: ObservableObject, Identifiable {
+class DiscountRewardVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
     
-    @Published var var_getRewards = [Rewards]()
+    @Published var my_discount_rewards = [DiscountReward]()
     
-    func getRewards() {
+    func getMyDiscountRewards() {
         
-        db.collection("rewards")
+        db.collection("discount_rewards")
             .getDocuments { (snapshot, error) in
     
                 guard let snapshot = snapshot, error == nil else {
@@ -35,10 +35,10 @@ class RewardsVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.var_getRewards = snapshot.documents.compactMap({ queryDocumentSnapshot -> Rewards? in
+                self.my_discount_rewards = snapshot.documents.compactMap({ queryDocumentSnapshot -> DiscountReward? in
                     print("AT THE TRY STATEMENT for getRewards")
-                    print(try? queryDocumentSnapshot.data(as: Rewards.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: Rewards.self)
+                    print(try? queryDocumentSnapshot.data(as: DiscountReward.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: DiscountReward.self)
                 })
             }
     

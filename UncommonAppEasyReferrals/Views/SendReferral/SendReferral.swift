@@ -13,7 +13,7 @@ struct SendReferral: View {
     @Environment(\.displayScale) var displayScale
     
     //State and Observed Objects
-    @StateObject var membershipsVM = MembershipsVM()
+    @StateObject var membership_vm = MembershipVM()
     
     //Variables passed in
     @Binding var sheetContext: [String]

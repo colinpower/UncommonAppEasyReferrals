@@ -11,9 +11,6 @@ import FirebaseAuth
 
 struct ContentView: View {
     
-    //Testing whether this will trigger a rebuild
-    //Testing whether this will trigger a rebuild
-    
     @EnvironmentObject var viewModel: AppViewModel
     
     @ObservedObject var usersViewModel = UsersVM()
@@ -29,20 +26,21 @@ struct ContentView: View {
         
         Group {
             
-            Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
+//            Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
             
-//            let currentSessionUID = viewModel.session?.uid ?? ""
-//            let currentSessionEmail = viewModel.session?.email ?? ""
-//
-//            if (currentSessionUID != "" && currentSessionEmail != "") {
-//
-//                Home(email: $email, uid: currentSessionUID)
-//
-//            } else {
-//
-//                Start(email: $email)
-//
-//            }
+            let currentSessionUID = viewModel.session?.uid ?? ""
+            let currentSessionEmail = viewModel.session?.email ?? ""
+
+            if (currentSessionUID != "" && currentSessionEmail != "") {
+
+                //we don't necessarily need to pass the email or UID.. the appVM.session will have the correct values
+                Home(email: $email, uid: currentSessionUID)
+
+            } else {
+
+                Start(email: $email)
+
+            }
       
         }
         .onAppear {
@@ -59,25 +57,10 @@ struct ContentView: View {
                     switch result {
                     
                     case let .success(user):
-                        print("inside the switch statement ")
-                        print("successful !! but now starting the listener")
                         viewModel.listen()
                         
-//                        Auth.auth().addStateDidChangeListener { auth, user1 in
-//                           if let user1 = user1 {
-//                               print("\(user1.uid) login")
-//                               viewModel.signedIn = user1.isEmailVerified
-//                               isShowingCheckEmailView = false
-//
-//                           } else {
-//                               print("not login")
-//                           }
-//                        }
-                        
                     case let .failure(error):
-                        print("inside the switch statement ")
-                        print("error")
-                        
+                        print("error with result of passwordlessSignIn function")
                         //alertItem = AlertItem(title: "An auth error occurred.", message: error.localizedDescription)
                     }
                 }
