@@ -10,48 +10,39 @@ import FirebaseStorage
 import SDWebImageSwiftUI
 
 
-//MARK: Decide which sheet to present
+//MARK: Preload
+//decide which view to present
 enum PresentedSheet: String, Identifiable {
-    case profile, cash_out, setup_bank, mydiscounts, add, send
+    case profile, cash_out, setup_bank, mydiscounts, add, suggest
     var id: String {
         return self.rawValue
     }
 }
 
-struct MembershipObject: Identifiable {
-    
+//pass the Shop to the popup
+struct ShopObject: Identifiable {
     var id = UUID().uuidString
-    var membershipObject: Membership
+    var shop: Shop
 }
 
-//how to do NavigationPath
-//https://www.youtube.com/watch?v=oxp8Qqwr4AY
 
-
+//MARK: Start
 struct Home: View {
-        
+    //@EnvironmentObject var membership_env: MembershipVM
+
     @EnvironmentObject var viewModel: AppViewModel
     
-    @StateObject var campaign_vm = CampaignVM()
-    @StateObject var code_vm = CodeVM()
-    @StateObject var membership_vm = MembershipVM()
-    @StateObject var referral_vm = ReferralVM()
-    @StateObject var shop_vm = ShopVM()
+    @ObservedObject var membership_vm = MembershipVM()
+    @ObservedObject var code_vm = CodeVM()
+    
     @StateObject var cash_reward_vm = CashRewardVM()
     @StateObject var discount_reward_vm = DiscountRewardVM()
-    
-    
-    
-    @ObservedObject var ordersVM = OrdersVM()
-    
-    @ObservedObject var usersVM = UsersVM()
-    
-    @State var selectedMembershipObject:MembershipObject = MembershipObject(membershipObject: Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "EMPTY", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
-    )
-    
-    var emptyMembership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "EMPTY", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
+    @StateObject var referral_vm = ReferralVM()
+    @StateObject var shop_vm = ShopVM()
     
     @State private var presentedSheet: PresentedSheet? = nil
+    
+    @State var selectedShopObject:ShopObject = ShopObject(shop: Shop(account: Shop_Account(email: "", name: Shop_Name(first: "", last: "")), campaigns: [], info: Shop_Info(category: "", description: "", domain: "", icon: "", name: "", website: ""), timestamp: Shop_Timestamp(created: -1), uuid: Shop_UUID(shop: "")))
     
     //Variables received from ContentView
     @Binding var email: String
@@ -95,48 +86,52 @@ struct Home: View {
                         //Header
                         HStack(alignment: .bottom, spacing: 0) {
                             
-                            Text("My Brands")
+                            Text("Brands on Uncommon App")
                                 .font(.system(size: 22, weight: .bold, design: .rounded))
                                 .foregroundColor(Color("text.black"))
                                 .padding(.bottom, 2)
                             
                             Spacer()
                             
-                            Button {
-                                presentedSheet = .add
-                            } label: {
-                                
-                                Text("Add")
-                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                    .foregroundColor(Color("text.black"))
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal)
-                                    .background(Capsule().foregroundColor(Color("ShareGray").opacity(0.3)))
-                            }
                         }.padding(.vertical, 10)
                             .padding(.bottom)
                         
-                        //Rows of Current Memberships
+                        //First, get the list of memberships
+                        let listOfMemberships = membership_vm.my_memberships.map {$0.uuid.shop}
+                        let numOfNonMemberships = shop_vm.all_shops.filter { !listOfMemberships.contains($0.uuid.shop) }.count
+                        
+                        let filteredShops = shop_vm.all_shops.filter { !listOfMemberships.contains($0.uuid.shop) }
+                        
                         ForEach(membership_vm.my_memberships) { membership in
- 
+                            
                             NavigationLink(value: membership) {
-                                
-                                programRow(selectedMembershipObject: $selectedMembershipObject, membership: membership, isLast: membership == membership_vm.my_memberships.last, presentedSheet: $presentedSheet)
+                                membershipRow(code_vm: code_vm, membership: membership, isLast: ((membership == membership_vm.my_memberships.last) && (numOfNonMemberships == 0)), presentedSheet: $presentedSheet)
                             }
+                            
                         }
                         
+                        ForEach(filteredShops) { shop in
+                            
+                            if !listOfMemberships.contains(shop.uuid.shop) {
+                                
+                                Button {
+                                    selectedShopObject.shop = shop
+                                    presentedSheet = .add
+                                } label: {
+                                    shopRow(shop: shop, isLast: (shop == filteredShops.last))
+                                }
+                            }
+                        }
                     }.padding()
                         .padding(.bottom, 10)
                         .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
-                    
-                    //MARK: NEED TO ADD A "ADD MEMBERSHIPS BUTTON"
                     
                     Spacer()
                     
                 }.padding(.horizontal)
                 .navigationTitle("")
                 .navigationDestination(for: Membership.self) { membership in
-                    Detail(membership: membership)
+                    Detail(membership: membership, code_vm: code_vm)
                 }
                 .toolbar {
                     
@@ -147,14 +142,14 @@ struct Home: View {
                             Image("icon.black")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 22, height: 22, alignment: .leading)
+                                .frame(width: 20, height: 20, alignment: .leading)
                                 .padding(.trailing, 8)
-                                .padding(.top, 2)
+                                .padding(.top, 3)
                             
                             Text("Uncommon")
-                                .font(.system(size: 21, weight: .bold, design: .rounded))
+                                .font(.system(size: 19, weight: .bold, design: .rounded))
                                 .foregroundColor(Color("text.black"))
-                                .padding(.top, 2)
+                                .padding(.top, 3)
                             
                         }
                     }
@@ -163,19 +158,18 @@ struct Home: View {
                         Button {
                             presentedSheet = .profile
                         } label: {
-                            Image(systemName: "person.circle")
-                                .font(.system(size: 22, weight: .semibold, design: .rounded))
+                            Image(systemName: "person.crop.circle")
+                                .font(.system(size: 20, weight: .regular, design: .rounded))
                                 .foregroundColor(Color("text.black"))
-                                .padding(.top, 5)
+                                .padding(.top, 2)
                         }
                     }
                     
                 }
-                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [selectedMembershipObject] sheet in
-                    
-                    switch sheet {        //profile, cash_out, setup_bank, mydiscounts, add, send
-                    
-                        //only need to pass in $presentedSheet if you're going to be using a nav stack inside the sheet, and you want to dismiss from deep inside the nav stack
+                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [selectedShopObject] sheet in
+
+                    switch sheet {        //profile, cash_out, setup_bank, mydiscounts, add, suggest
+
                     case .profile:
                         Profile()
                             .presentationDetents([.large])
@@ -193,15 +187,15 @@ struct Home: View {
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .add:
-                        AddMembership()
+                        AddMembership(shop: selectedShopObject.shop)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
-                    case .send:
-                        SendReferral(membership: selectedMembershipObject.membershipObject)
-                            .presentationDetents([.large])
-                            .presentationDragIndicator(.visible)
+//                    case .send:
+//                        SendReferral(membership: selectedMembershipObject.membershipObject)
+//                            .presentationDetents([.large])
+//                            .presentationDragIndicator(.visible)
                     default:
-                        SendReferral(membership: selectedMembershipObject.membershipObject)
+                        MyDiscounts(myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     }
@@ -210,25 +204,12 @@ struct Home: View {
             }
         }
         .onAppear {
-            
-            self.membership_vm.getMyMemberships(userId: "EdZzl43o5fTespxaelsTEnobTtJ2")
-            
-            //self.campaign_vm.getCampaign()
-            self.code_vm.getOneCode(codeId: "")
-            
-            self.referral_vm.getMyReferrals()
             //self.cash_reward_vm.getMyCashRewards()
             self.discount_reward_vm.getMyDiscountRewards()
-            
+            self.membership_vm.listenForMyMemberships(uid: viewModel.session?.uid ?? "")
+            self.referral_vm.getMyReferrals()
             self.shop_vm.getAllShops()
-
-            self.usersVM.listenForOneUser(userID: uid)
-            
-            self.email = ""
-            
-            print("trying to print the current session")
-            print(self.viewModel.session?.email)
-            print(self.viewModel.session?.uid)
+            self.email = ""            
         }
     }
 }
@@ -318,17 +299,29 @@ struct discountsAvailableWidget: View {
     }
 }
 
-struct programRow: View {
+struct membershipRow: View {
     
-    @Binding var selectedMembershipObject: MembershipObject
+    @Environment(\.displayScale) var displayScale
+    @ObservedObject var code_vm: CodeVM
+    
     
     var membership: Membership
-    //var membership: Membership = Membership(campaigns: [], default_campaign: Membership_DefaultCampaign(commission: "", default_code_uuid: "", offer: "", uuid: ""), shop: Membership_Shop(customer_id: "", domain: "", icon: "", name: "", website: ""), status: "", timestamp: Membership_Timestamp(created: -1, disabled: -1), uuid: Membership_UUID(membership: "", shop: "", user: ""))
+    
+    
     var isLast: Bool
     
     @Binding var presentedSheet:PresentedSheet?
     
     @State var backgroundURL:String = ""
+    
+    //Variables created
+    @State var referralCardStruct = ReferralCardStruct(
+        image: Image(systemName: "photo"),
+        //imagePreview: Image(systemName: "photo"),
+        text: "Use code " + "CODE" + "at Bonobos",
+        link: "Or visit " + "www.google.com")
+    
+    
 
     var body: some View {
         
@@ -339,51 +332,65 @@ struct programRow: View {
                     WebImage(url: URL(string: backgroundURL)!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 60, height: 60)
+                        .frame(width: 48, height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                         .padding(.trailing)
                 } else {
                     
-                    RoundedRectangle(cornerRadius: 6)
-                        .frame(width: 60, height: 60)
+                    RoundedRectangle(cornerRadius: 8)
+                        .frame(width: 48, height: 48)
                         .foregroundColor(.gray)
                         .padding(.trailing)
                 }
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(membership.shop.name)
-                        .font(.system(size: 18, weight: .regular, design: .rounded))
-                        .foregroundColor(.black)
-                        .padding(.bottom, 4)
-                    Text("Share a " + membership.default_campaign.offer + " discount")
-                        .font(.system(size: 15, weight: .regular, design: .rounded))
-                        .foregroundColor(Color("text.gray"))
-                }
-                
-                Spacer()
-                
-                Button {
-                    selectedMembershipObject.membershipObject = membership
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(membership.shop.name)
+                            .font(.system(size: 17, weight: .medium, design: .rounded))
+                            .foregroundColor(.black)
+                        Text("Share " + membership.default_campaign.offer + ", get " + membership.default_campaign.commission)
+                            .font(.system(size: 15, weight: .regular, design: .rounded))
+                            .foregroundColor(Color("text.gray"))
+                    }
                     
-                    presentedSheet = .send
-                } label: {
+                    Spacer()
                     
-                    Text("Get " + membership.default_campaign.commission)
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        .foregroundColor(Color.white)
-                        .padding(.vertical, 6)
-                        .padding(.horizontal)
-                        .background(Capsule().foregroundColor(Color.cyan))
-                }
+                    let codeURL = "https://" + membership.shop.domain + "/discount/" + code_vm.one_code_static.code.code + "?redirect=/collections/all"
+                    let previewText = membership.default_campaign.offer + " at " + membership.shop.name + " with " + code_vm.one_code_static.code.code
+                    let messageText = "Use " + code_vm.one_code_static.code.code + " for " + membership.default_campaign.offer + " off, or shop with this link: " + codeURL
+                    let updatedImage = renderInCode(code: code_vm.one_code_static.code.code)
+                    
+                    //let testVar:ReferralCardStruct = ReferralCardStruct(image: referralCardStruct.image, text: previewText, link: messageText)
+                    let referralCardObject:ReferralCardStruct = ReferralCardStruct(image: updatedImage, text: previewText, link: messageText)
+                    
+                    
+                    ShareLink(item: referralCardObject.image,
+                              message: Text(referralCardObject.link),
+                              preview: SharePreview(referralCardObject.text)) {
+
+                        Text("Send")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(Color.white)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal)
+                            .background(Capsule().foregroundColor(Color.cyan).grayscale(0.3))
+                            .padding(.top, 2)
+                    }
+                }.padding(.top, 5)
             }
-            .padding(.vertical, 10)
+            .padding(.top, 8)
+            .padding(.bottom)
                 
             if !isLast {
                 
-                Divider().padding(.leading, 60).padding(.leading)
+                Divider().padding(.leading, 60)
                 
             }
         }
         .onAppear {
+            
+            self.code_vm.getOneCode(code_id: membership.default_campaign.default_code_uuid)
+            
+            //render()
             
             let backgroundPath = membership.shop.icon
             
@@ -397,7 +404,115 @@ struct programRow: View {
                     self.backgroundURL = "\(url!)"
                 }
             }
+        }
+    }
+    
+//    @MainActor func render() {
+//
+//        let renderer = ImageRenderer(content: ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name, offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: false))
+//
+//        // make sure and use the correct display scale for this device
+//        renderer.scale = displayScale
+//
+//        if let uiImage = renderer.uiImage {
+//            //sharePreviewPhoto = Image(uiImage: uiImage)
+//            referralCardStruct.image = Image(uiImage: uiImage)
+//        }
+//    }
+    
+    func renderInCode(code: String) -> Image {
+        
+        let renderer = ImageRenderer(content: ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name,offer: membership.default_campaign.offer, code: code, hasShadow: false))
+        
+        // make sure and use the correct display scale for this device
+        renderer.scale = displayScale
+        
+        if let uiImage = renderer.uiImage {
+            //sharePreviewPhoto = Image(uiImage: uiImage)
+            //referralCardStruct.image = Image(uiImage: uiImage)
+            
+            return Image(uiImage: uiImage)
+        } else {
+            return Image(systemName: "person.circle")
+        }
+    }
+    
+    
+}
 
+struct shopRow: View {
+    
+    @Environment(\.displayScale) var displayScale
+    
+    var shop: Shop
+    var isLast: Bool
+    
+    @State var backgroundURL:String = ""
+    
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
+                
+                if backgroundURL != "" {
+                    WebImage(url: URL(string: backgroundURL)!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 48, height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .padding(.trailing)
+                } else {
+                    
+                    RoundedRectangle(cornerRadius: 8)
+                        .frame(width: 48, height: 48)
+                        .foregroundColor(.gray)
+                        .padding(.trailing)
+                }
+                
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(shop.info.name)
+                            .font(.system(size: 17, weight: .medium, design: .rounded))
+                            .foregroundColor(.black)
+                        Text(shop.info.description)
+                            .font(.system(size: 15, weight: .regular, design: .rounded))
+                            .foregroundColor(Color("text.gray"))
+                    }
+                    
+                    Spacer()
+                    
+                    
+                    Text("Join")
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(Color.cyan)
+                        .padding(.vertical, 6)
+                        .padding(.horizontal)
+                        .background(Capsule().foregroundColor(Color.gray).opacity(0.5))
+                        .padding(.top, 2)
+                }.padding(.top, 5)
+            }
+            .padding(.top, 8)
+            .padding(.bottom)
+                
+            if !isLast {
+                
+                Divider().padding(.leading, 60)
+            }
+        }
+        .onAppear {
+            
+            let backgroundPath = shop.info.icon
+            
+            let storage = Storage.storage().reference()
+            
+            storage.child(backgroundPath).downloadURL { url, err in
+                if err != nil {
+                    print(err?.localizedDescription ?? "Issue showing the right image")
+                    return
+                } else {
+                    self.backgroundURL = "\(url!)"
+                }
+            }
         }
     }
 }

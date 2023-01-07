@@ -11,6 +11,7 @@ struct AddMembership: View {
     
 //    @Binding var sheetContext: [String]
 //    @Binding var presentedSheet: PresentedSheet?
+    var shop: Shop
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct AddMembership: View {
                     }.padding(.bottom)
                     
                     //MARK: Title + Subtitle
-                    Text("Add Membership")
+                    Text(shop.uuid.shop)
                         .font(.system(size: 34, weight: .bold, design: .rounded))
                         .padding(.bottom)
                     Text("Join a new affiliate program and add its membership to your list")
@@ -49,6 +50,7 @@ struct AddMembership: View {
                                 .padding(.bottom, 2)
                             Spacer()
                         }.padding(.vertical, 10)
+                        
                         
                         HStack(alignment: .bottom, spacing: 0) {
                             

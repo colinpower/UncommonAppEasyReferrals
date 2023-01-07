@@ -160,15 +160,19 @@ struct LazyVGridWidget: View {
                 .padding(.bottom)
             
             //Button
-            HStack(alignment: .center) {
-                Spacer()
-                Text("Use")
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .foregroundColor(Color.white)
-                Spacer()
+            let tempURL = "https://www.google.com" //"https://" + discount.shop.domain + "/discount/" + discount.code.code + "?redirect=/collections/all"
+            
+            Link(destination: URL(string: tempURL)!) {
+                HStack(alignment: .center) {
+                    Spacer()
+                    Text("Spend")
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundColor(Color.white)
+                    Spacer()
+                }
+                .frame(height: 34)
+                .background(Capsule().foregroundColor(Color.cyan))
             }
-            .frame(height: 34)
-            .background(Capsule().foregroundColor(Color.cyan))
             
         }.padding()
             .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))

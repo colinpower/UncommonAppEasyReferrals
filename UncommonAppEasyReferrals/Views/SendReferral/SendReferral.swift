@@ -67,7 +67,7 @@ struct SendReferral: View {
                     .padding(.bottom)
 
 
-                CardForShareSheet(cardColor: Color("UncommonRed"), textColor: Color.white, companyName: "company name", discountAmount: "$20", discountCode: "COLIN123")
+//                CardForShareSheet(cardColor: Color("UncommonRed"), textColor: Color.white, companyName: "company name", discountAmount: "$20", discountCode: "COLIN123")
                 
                 
                 Spacer()
@@ -75,7 +75,7 @@ struct SendReferral: View {
                 //MARK: Buttons on bottom
                 //Share
                 ShareLink(item: referralCardStruct.image,
-                          message: Text(referralCardStruct.text + referralCardStruct.link),
+                          message: Text("asdlkfjasdfl" + referralCardStruct.link),
                           //preview: SharePreview(referralCardStruct.text, image: Image(systemName: "creditcard.fill"))) {
                           preview: SharePreview(referralCardStruct.text, image: referralCardStruct.image)) {
                     
@@ -105,7 +105,7 @@ struct SendReferral: View {
         }
         //.onChange(of: text) { _ in render() }     //https://www.hackingwithswift.com/quick-start/swiftui/how-to-convert-a-swiftui-view-to-an-image
         .onAppear {
-            render()
+            //render()
             print("appeared")
             //renderPreview()
         }
@@ -114,18 +114,18 @@ struct SendReferral: View {
         }
     }
     
-    @MainActor func render() {
-        
-        let renderer = ImageRenderer(content: CardForSnapshot(cardColor: Color("UncommonRed"), textColor: Color.white, companyName: text123, discountAmount: "$20", discountCode: "COLIN123").frame(width: 320, height: 200))
-
-        // make sure and use the correct display scale for this device
-        renderer.scale = displayScale
-
-        if let uiImage = renderer.uiImage {
-            //sharePreviewPhoto = Image(uiImage: uiImage)
-            referralCardStruct.image = Image(uiImage: uiImage)
-        }
-    }
+//    @MainActor func render() {
+//        
+//        let renderer = ImageRenderer(content: CardForSnapshot(cardColor: Color("UncommonRed"), textColor: Color.white, companyName: text123, discountAmount: "$20", discountCode: "COLIN123").frame(width: 320, height: 200))
+//
+//        // make sure and use the correct display scale for this device
+//        renderer.scale = displayScale
+//
+//        if let uiImage = renderer.uiImage {
+//            //sharePreviewPhoto = Image(uiImage: uiImage)
+//            referralCardStruct.image = Image(uiImage: uiImage)
+//        }
+//    }
     
 //    @MainActor func renderPreview() {
 //

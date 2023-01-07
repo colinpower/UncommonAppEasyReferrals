@@ -7,12 +7,36 @@
 
 import SwiftUI
 
+enum PresentedDetailSheet: String, Identifiable {
+    case customize, stats, activity
+    var id: String {
+        return self.rawValue
+    }
+}
+
+
 struct Detail: View {
+    
+    @Environment(\.displayScale) var displayScale
     
     var membership: Membership
     
     @ObservedObject var ordersVM = OrdersVM()
+    @ObservedObject var code_vm: CodeVM
     
+    //For tracking whether Copy was tapped
+    @State var isCopyTapped: Bool = false
+    @State var isCopyLinkTapped: Bool = false
+    
+    @State private var presentedDetailSheet: PresentedDetailSheet? = nil
+    
+    @State var selectedDetailObject:ShopObject = ShopObject(shop: Shop(account: Shop_Account(email: "", name: Shop_Name(first: "", last: "")), campaigns: [], info: Shop_Info(category: "", description: "", domain: "", icon: "", name: "", website: ""), timestamp: Shop_Timestamp(created: -1), uuid: Shop_UUID(shop: "")))
+    
+    //For sending the referral card
+    @State var referralCardStruct = ReferralCardStruct(
+        image: Image(systemName: "photo"),
+        text: "No code added",
+        link: "No link added")
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -22,25 +46,68 @@ struct Detail: View {
             ScrollView {
                 
                 //MARK: Title Section
-                HStack(alignment: .bottom, spacing: 0) {
-                 
+//                HStack(alignment: .bottom, spacing: 0) {
+//
+//                    VStack(alignment: .leading, spacing: 0) {
+//
+//                        RoundedRectangle(cornerRadius: 6)
+//                            .frame(width: 60, height: 60)
+//                            .foregroundColor(.blue)
+//                            .padding(.bottom)
+//
+//                        Text(membership.shop.name)
+//                            .font(.system(size: 22, weight: .bold, design: .rounded))
+//                            .foregroundColor(Color("text.black"))
+//
+//                    }
+//
+//                    Spacer()
+//
+//                }.padding().padding(.vertical)
+                
+                ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name, offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: true)
+                    .padding(.bottom, 10)
+
+                
+                //MARK: "Share" box
+                HStack(alignment: .center, spacing: 0) {
+                    
                     VStack(alignment: .leading, spacing: 0) {
-                        
-                        RoundedRectangle(cornerRadius: 6)
-                            .frame(width: 60, height: 60)
-                            .foregroundColor(.blue)
-                            .padding(.bottom)
-                        
-                        Text(membership.shop.name)
-                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                        Text("You'll earn")
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
                             .foregroundColor(Color("text.black"))
-                            
+                        Text("$10")
+                            .font(.system(size: 30, weight: .bold, design: .rounded))
+                            .foregroundColor(Color("text.black"))
                     }
-                        
+                    
                     Spacer()
                     
-                }.padding().padding(.vertical)
-                
+                    let codeURL = "https://" + code_vm.one_code.shop.domain + "/discount/" + code_vm.one_code.code.code + "?redirect=/collections/all"
+                    let previewText = membership.default_campaign.offer + " at " + code_vm.one_code.shop.name + " with " + code_vm.one_code.code.code
+                    let messageText = "Use " + code_vm.one_code.code.code + " for " + membership.default_campaign.offer + " off, or shop with this link: " + codeURL
+                    let updatedImage = renderInCode(code: code_vm.one_code.code.code)
+                    
+                    //let testVar:ReferralCardStruct = ReferralCardStruct(image: referralCardStruct.image, text: previewText, link: messageText)
+                    let testVar:ReferralCardStruct = ReferralCardStruct(image: updatedImage, text: previewText, link: messageText)
+                    
+                    ShareLink(item: testVar.image,
+                              message: Text(testVar.link),
+                              //preview: SharePreview(referralCardStruct.text, image: Image(systemName: "creditcard.fill"))) {
+                              preview: SharePreview(testVar.text)) {
+                        
+                        Text("Send \(membership.default_campaign.offer) to a friend")
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            .foregroundColor(Color.white)
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 17)
+                            .background(Capsule().foregroundColor(Color("text.black")))
+                    }
+                    
+                }.padding()
+                    .background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white))
+                    .padding(.horizontal)
+                    .padding(.bottom)
                 
                 
                 //MARK: My Discount Code Box
@@ -49,6 +116,8 @@ struct Detail: View {
                     //Title: My Referrals
                     HStack(alignment: .bottom, spacing: 0) {
                      
+                        Spacer()
+                        
                         Text("My Referral Code")
                             .font(.system(size: 22, weight: .bold, design: .rounded))
                             .foregroundColor(Color("text.black"))
@@ -56,73 +125,91 @@ struct Detail: View {
                             
                         Spacer()
                         
-                        Button {
-                            //insert button action here..
-                        } label: {
-    
-                            Text("Details")
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                .foregroundColor(Color("text.black"))
-                                .padding(.vertical, 4)
-                                .padding(.horizontal)
-                                .background(Capsule().foregroundColor(Color("Background")))
-                        }
-                        
-                    }.padding(.vertical, 10)
-                    
-                    //Subtitle: What the offer is
-                    HStack(alignment: .bottom, spacing: 0) {
-                        
-                        Text("Give $10 to a friend, get $10 in cash")
-                            .font(.system(size: 17, weight: .regular, design: .rounded))
-                            .foregroundColor(Color("text.gray"))
-                        Spacer()
-                    }.padding(.bottom, 10).padding(.bottom)
+                    }.padding(.vertical, 10).padding(.bottom)
                     
                     //My Code
                     HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("COLIN123")
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .kerning(1.2)
-                            .foregroundColor(Color("text.black"))
+                        
+                        if isCopyLinkTapped {
+                            Text("Link copied")
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .kerning(1.2)
+                                .foregroundColor(Color("UncommonRed"))
+                        } else if isCopyTapped {
+                            Text("Code copied")
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .kerning(1.2)
+                                .foregroundColor(Color("UncommonRed"))
+                        } else {
+                            Text(code_vm.one_code.code.code)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .kerning(1.2)
+                                .foregroundColor(Color("text.black"))
+                        }
                             
                         Spacer()
                         
                         Button {
-                            //trigger the customize screen here...
+                            
+                            isCopyTapped = true
+                            
+                            UIPasteboard.general.string = code_vm.one_code.code.code
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                isCopyTapped = false
+                            }
+                            
                         } label: {
                             
-                            Image(systemName: "square.on.square")
-                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                            Image(systemName: isCopyTapped ? "checkmark" : "square.on.square")
+                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                                 .foregroundColor(Color("UncommonRed"))
-                        }
+                                .frame(width: 24, height: 24)
+                            
+                        }.padding(.trailing)
                         
                         Button {
-                            //trigger the customize screen here...
+                            
+                            isCopyLinkTapped = true
+                            
+                            let codeURL = "https://" + code_vm.one_code.shop.domain + "/discount/" + code_vm.one_code.code.code + "?redirect=/collections/all"
+                            
+                            UIPasteboard.general.string = codeURL
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                isCopyLinkTapped = false
+                            }
                         } label: {
-                            Image(systemName: "link")
-                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                            
+                            Image(systemName: isCopyLinkTapped ? "checkmark" : "link")
+                                .font(.system(size: 20, weight: .semibold, design: .rounded))
                                 .foregroundColor(Color("UncommonRed"))
+                                .frame(width: 24, height: 24)
                         }
                         
                         
-                    }.padding(.horizontal).padding(.vertical, 15)
+                    }.padding(.horizontal).padding(.vertical, 18)
                         .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color("TextFieldGray")))
                         .padding(.vertical).padding(.bottom)
                     
                     //Share button
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Text("Share")
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .foregroundColor(Color.white)
-                        Spacer()
+                    Button {
+                        presentedDetailSheet = .customize
+                    } label: {
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Text("Customize your code")
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                //.foregroundColor(Color.white)
+                                .foregroundColor(Color("UncommonRed"))
+                            Spacer()
+                        }
+                        .frame(height: 50)
+                        //.background(Capsule().foregroundColor(Color("UncommonRed")))
                     }
-                    .frame(height: 50)
-                    .background(Capsule().foregroundColor(Color("UncommonRed")))
                     
-                }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.bottom)
+                }.padding().background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.bottom)
+                    .padding(.horizontal)
                     
                 //MARK: My Stats Box
                 VStack(alignment: .leading, spacing: 0) {
@@ -139,63 +226,25 @@ struct Detail: View {
                         
                     }.padding(.vertical, 10).padding(.bottom)
                     
-                    //Line 1: My lifetime referrals
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("My lifetime referrals")
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundColor(Color("text.gray"))
-                            
-                        Spacer()
-                        
-                        Text("15")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundColor(Color("text.black"))
-                        
-                    }.padding(.bottom)
-                    
-                    //Line 2: My lifetime earnings
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("My lifetime earnings")
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundColor(Color("text.gray"))
-                            
-                        Spacer()
-                        
-                        Text("$150")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundColor(Color("text.black"))
-                        
-                    }.padding(.bottom)
-                    
-                    //Line 3: Something else
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("Something else")
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundColor(Color("text.gray"))
-                            
-                        Spacer()
-                        
-                        Text("Blah")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundColor(Color("text.black"))
-                        
-                    }.padding(.bottom).padding(.bottom, 10)
+                    StatsRow(title: "My Lifetime Referrals", value: "25")
+                    StatsRow(title: "My Lifetime Earnings", value: "$150")
+                    StatsRow(title: "Something Else", value: "25")
+                        .padding(.bottom, 10)
                     
                     //"See more" button
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Text("See more")
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .foregroundColor(Color("UncommonRed"))
-                        Spacer()
+                    Button {
+                        presentedDetailSheet = .stats
+                    } label: {
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Text("See more")
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color("UncommonRed"))
+                            Spacer()
+                        }
+                        .frame(height: 50)
                     }
-                    .frame(height: 50)
-                    //.background(Capsule().foregroundColor(Color("UncommonRed")))
-                    
-                }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.bottom)
+                }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.horizontal).padding(.bottom)
                 
                 
                 //MARK: Activity Box
@@ -214,43 +263,32 @@ struct Detail: View {
                     }.padding(.vertical, 10).padding(.bottom)
                     
                     ActivityRow()
-                    
-//                    //ForEach item in historical activity
-//                    ForEach(ordersVM.var_getAllOrders) { order in
-//
-//                        ActivityRow()
-//                        ActivityRow()
-//                        ActivityRow()
-////                        NavigationLink(value: order) {
-////
-////                            Text(order.doc_id)
-////
-////                            ActivityRow()
-////                            ActivityRow()
-////                            ActivityRow()
-////
-////                        }
-//                    }
+                    ActivityRow()
+                    ActivityRow()
                     
                     //"See more" button
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Text("See more")
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .foregroundColor(Color("UncommonRed"))
-                        Spacer()
+                    Button {
+                        presentedDetailSheet = .activity
+                    } label: {
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Text("See more")
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color("UncommonRed"))
+                            Spacer()
+                        }
+                        .frame(height: 50)
+                        .padding(.top, 10)
                     }
-                    .frame(height: 50)
-                    .padding(.top, 10)
                     //.background(Capsule().foregroundColor(Color("UncommonRed")))
                     
-                }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.bottom)
+                }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.horizontal).padding(.bottom)
                 
                 Spacer()
                 
-            }.padding(.horizontal)
+            }
                 .scrollIndicators(.hidden)
-            .navigationTitle("")
+                .navigationTitle(membership.shop.name)
             .navigationDestination(for: Orders.self) { order in
                 VStack {
                     Text("order")
@@ -273,12 +311,98 @@ struct Detail: View {
                 }
                 
             }
-            
-        .onAppear {
-            
-                self.ordersVM.getAllOrders()
+        
+        .sheet(item: $presentedDetailSheet, onDismiss: { presentedDetailSheet = nil }) { [selectedDetailObject] sheet in
 
+            switch sheet {        //customize, stats, activity
+
+            case .customize:
+                ChangeCode(code_vm: code_vm)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+            case .stats:
+                Profile()
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+            case .activity:
+                Profile()
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+            default:
+                Profile()
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+            }
         }
+        
+        .onAppear {
+            //render()
+            
+            self.ordersVM.getAllOrders()
+            
+            self.code_vm.listenForOneCode(code_id: membership.default_campaign.default_code_uuid)
+        }
+    }
+    
+//    @MainActor func render() {
+//
+//        let renderer = ImageRenderer(content: ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name, offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: false)) //.frame(width: 320, height: 200))
+//
+//                                        //CardForSnapshot(cardColor: Color.blue, textColor: Color.white, companyName: membership.shop.name, discountAmount: membership.default_campaign.offer, discountCode: code_vm.one_code.code.code)
+//
+//
+//
+//        // make sure and use the correct display scale for this device
+//        renderer.scale = displayScale
+//
+//        if let uiImage = renderer.uiImage {
+//            //sharePreviewPhoto = Image(uiImage: uiImage)
+//            referralCardStruct.image = Image(uiImage: uiImage)
+//        }
+//    }
+    
+    func renderInCode(code: String) -> Image {
+        
+        let renderer = ImageRenderer(content: ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name,offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: false))
+        
+        // make sure and use the correct display scale for this device
+        renderer.scale = displayScale
+        
+        if let uiImage = renderer.uiImage {
+            //sharePreviewPhoto = Image(uiImage: uiImage)
+            //referralCardStruct.image = Image(uiImage: uiImage)
+            
+            return Image(uiImage: uiImage)
+        } else {
+            return Image(systemName: "person.circle")
+        }
+    }
+}
+
+
+
+
+struct StatsRow: View {
+    
+    var title: String
+    var value: String
+
+    var body: some View {
+        
+        HStack(alignment: .center, spacing: 0) {
+            
+            Text(title)
+                .font(.system(size: 18, weight: .regular, design: .rounded))
+                .foregroundColor(Color("text.black"))
+            
+            Spacer()
+            
+            Text(value)
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .foregroundColor(Color("text.black"))
+            
+        }
+        .padding(.vertical)
     }
 }
 

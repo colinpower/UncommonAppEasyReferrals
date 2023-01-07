@@ -20,16 +20,25 @@ class CodeVM: ObservableObject, Identifiable {
         
     private var db = Firestore.firestore()
     
-    @Published var one_code = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: ""), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: ""))
-//    @Published var one_code = Code(code: "", doc_id: "", ids: Codes_Ids(campaign: "", company: "", domain: "", gql: "", user: ""), purpose: "", status: "", type: "", usage_count: 0, usage_limit: 0)
+//    @Published var one_code = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: ""), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: ""))
+
+    @Published var one_code = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: "EMPTY"), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: "")) {
+        didSet {
+            print("updated the one_code variable.. here it is...")
+            print(one_code)
+        }
+    }
     
-    func getOneCode(codeId: String) {
+    @Published var one_code_static = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: "EMPTY"), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: ""))
     
-        //var ordersSnapshot = [Orders]()
-    
-        //let docRef = db.collection("codes").document(codeId)
-        let docRef = db.collection("codes").document("Fr2FcjT5gkCcq01fSGlc")
+    var one_code_listener: ListenerRegistration!
         
+    
+    
+    func getOneCode(code_id: String) {
+
+        let docRef = db.collection("codes").document(code_id)
+
         docRef.getDocument { document, error in
             if let error = error as NSError? {
                 print("Error getting document: \(error)")
@@ -37,8 +46,8 @@ class CodeVM: ObservableObject, Identifiable {
             else {
                 if let document = document {
                     do {
-                        self.one_code = try document.data(as: Code.self)
-                        print(self.one_code)
+                        self.one_code_static = try document.data(as: Code.self)
+                        print(self.one_code_static)
                     }
                     catch {
                         print(error)
@@ -47,5 +56,20 @@ class CodeVM: ObservableObject, Identifiable {
             }
         }
     }
+    
+    func listenForOneCode(code_id: String) {
+        
+        self.dm.getOneCodeListener(code_id: code_id, onSuccess: { (code) in
+            
+            self.one_code = code
+            
+            print("FOUND ONE CODE")
+            print(self.one_code)
+            
+        }, listener: { (listener) in
+            self.one_code_listener = listener
+        })
+    }
+    
     
 }

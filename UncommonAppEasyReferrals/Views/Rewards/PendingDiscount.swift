@@ -53,7 +53,7 @@ struct PendingDiscount: View {
                     .padding(.bottom)
                 
 
-                CardForShareSheet(cardColor: Color.white, textColor: Color.gray, companyName: "company name", discountAmount: "$25", discountCode: "")
+//                CardForShareSheet(cardColor: Color.white, textColor: Color.gray, companyName: "company name", discountAmount: "$25", discountCode: "")
                 
                 Spacer()
                 

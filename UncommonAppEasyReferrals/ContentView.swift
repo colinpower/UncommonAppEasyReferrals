@@ -22,11 +22,9 @@ struct ContentView: View {
     
     var body: some View {
         
-        
-        
         Group {
             
-            if true {
+            if false {
                 Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
             } else {
                 let currentSessionUID = viewModel.session?.uid ?? ""

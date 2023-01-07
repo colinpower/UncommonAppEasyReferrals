@@ -64,7 +64,7 @@
 		3056BF37293FE01F006C85F8 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF36293FE01F006C85F8 /* FirebaseRemoteConfigSwift */; };
 		3056BF39293FE01F006C85F8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF38293FE01F006C85F8 /* FirebaseStorage */; };
 		3056BF3B293FE01F006C85F8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3056BF3A293FE01F006C85F8 /* FirebaseStorageCombine-Community */; };
-		305E676629607F740003D341 /* CardForShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305E676529607F740003D341 /* CardForShareSheet.swift */; };
+		305E676629607F740003D341 /* ReferralCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305E676529607F740003D341 /* ReferralCard.swift */; };
 		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
 		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
 		30D0891229658F88007D5A1E /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891129658F88007D5A1E /* Shop.swift */; };
@@ -73,8 +73,9 @@
 		30D089182965A8C5007D5A1E /* CashReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D089172965A8C5007D5A1E /* CashReward.swift */; };
 		30D0891A2965AA56007D5A1E /* CashRewardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D089192965AA56007D5A1E /* CashRewardVM.swift */; };
 		30D0891C2965D25B007D5A1E /* PendingDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891B2965D25B007D5A1E /* PendingDiscount.swift */; };
-		30E302472963B08E00C5D7B3 /* CardForSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */; };
+		30E302472963B08E00C5D7B3 /* DiscountCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E302462963B08E00C5D7B3 /* DiscountCard.swift */; };
 		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
+		30FAABDD29696B83006F1975 /* ChangeCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FAABDC29696B83006F1975 /* ChangeCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +137,7 @@
 		3056BECB2939080B006C85F8 /* UncommonAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UncommonAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3056BED8293EAF85006C85F8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3056BEDA293EAFB5006C85F8 /* MyDiscounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscounts.swift; sourceTree = "<group>"; };
-		305E676529607F740003D341 /* CardForShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForShareSheet.swift; sourceTree = "<group>"; };
+		305E676529607F740003D341 /* ReferralCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCard.swift; sourceTree = "<group>"; };
 		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
 		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
 		30D0891129658F88007D5A1E /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -145,8 +146,9 @@
 		30D089172965A8C5007D5A1E /* CashReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashReward.swift; sourceTree = "<group>"; };
 		30D089192965AA56007D5A1E /* CashRewardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashRewardVM.swift; sourceTree = "<group>"; };
 		30D0891B2965D25B007D5A1E /* PendingDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDiscount.swift; sourceTree = "<group>"; };
-		30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardForSnapshot.swift; sourceTree = "<group>"; };
+		30E302462963B08E00C5D7B3 /* DiscountCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCard.swift; sourceTree = "<group>"; };
 		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
+		30FAABDC29696B83006F1975 /* ChangeCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 			children = (
 				3056BED8293EAF85006C85F8 /* Home.swift */,
 				30114A4A29473E0C00F63BD1 /* Detail.swift */,
+				30FAABDC29696B83006F1975 /* ChangeCode.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -377,8 +380,8 @@
 		305E676429607F550003D341 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				305E676529607F740003D341 /* CardForShareSheet.swift */,
-				30E302462963B08E00C5D7B3 /* CardForSnapshot.swift */,
+				305E676529607F740003D341 /* ReferralCard.swift */,
+				30E302462963B08E00C5D7B3 /* DiscountCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -572,7 +575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30114A492947363A00F63BD1 /* UsersVM.swift in Sources */,
-				30E302472963B08E00C5D7B3 /* CardForSnapshot.swift in Sources */,
+				30E302472963B08E00C5D7B3 /* DiscountCard.swift in Sources */,
 				30114A4B29473E0C00F63BD1 /* Detail.swift in Sources */,
 				306461162955AB1000E28C7D /* CashOut.swift in Sources */,
 				300B38E6294C333E000B288D /* AppVM.swift in Sources */,
@@ -587,12 +590,13 @@
 				30114A3B29472FED00F63BD1 /* Orders.swift in Sources */,
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,
 				30114A432947329900F63BD1 /* DiscountReward.swift in Sources */,
+				30FAABDD29696B83006F1975 /* ChangeCode.swift in Sources */,
 				30114A3929472B3D00F63BD1 /* MembershipVM.swift in Sources */,
 				300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */,
 				30D0891629659281007D5A1E /* CampaignVM.swift in Sources */,
-				305E676629607F740003D341 /* CardForShareSheet.swift in Sources */,
+				305E676629607F740003D341 /* ReferralCard.swift in Sources */,
 				302E0A732962F9B0002962BB /* AvailableDiscount.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralVM.swift in Sources */,
