@@ -138,7 +138,12 @@ class DataManager: ObservableObject {
                 
                 do {
                     print("GOT HERE IN THE getOneCodeListener")
-                    emptyCode = try! document.data(as: Code.self)
+                    //try document.data(as: Code.self)
+                    if document.exists {
+                        emptyCode = try! document.data(as: Code.self)
+                    } else {
+                        emptyCode.status.status = "NO CODE FOUND"
+                    }
                 }
                 catch {
                     print(error)

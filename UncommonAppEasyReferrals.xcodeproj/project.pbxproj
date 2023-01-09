@@ -76,6 +76,8 @@
 		30E302472963B08E00C5D7B3 /* DiscountCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E302462963B08E00C5D7B3 /* DiscountCard.swift */; };
 		30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8950295629FC00C4A709 /* SendReferral.swift */; };
 		30FAABDD29696B83006F1975 /* ChangeCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FAABDC29696B83006F1975 /* ChangeCode.swift */; };
+		30FAABDF296BE664006F1975 /* AddedMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FAABDE296BE664006F1975 /* AddedMembership.swift */; };
+		30FAABE1296BF3AB006F1975 /* ChangeCodeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FAABE0296BF3AB006F1975 /* ChangeCodeWidget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +151,8 @@
 		30E302462963B08E00C5D7B3 /* DiscountCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountCard.swift; sourceTree = "<group>"; };
 		30EF8950295629FC00C4A709 /* SendReferral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReferral.swift; sourceTree = "<group>"; };
 		30FAABDC29696B83006F1975 /* ChangeCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCode.swift; sourceTree = "<group>"; };
+		30FAABDE296BE664006F1975 /* AddedMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedMembership.swift; sourceTree = "<group>"; };
+		30FAABE0296BF3AB006F1975 /* ChangeCodeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCodeWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +297,7 @@
 				3056BED8293EAF85006C85F8 /* Home.swift */,
 				30114A4A29473E0C00F63BD1 /* Detail.swift */,
 				30FAABDC29696B83006F1975 /* ChangeCode.swift */,
+				30FAABE0296BF3AB006F1975 /* ChangeCodeWidget.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				30A9A6AD295280790079F47B /* AddMembership.swift */,
+				30FAABDE296BE664006F1975 /* AddedMembership.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -580,12 +586,14 @@
 				306461162955AB1000E28C7D /* CashOut.swift in Sources */,
 				300B38E6294C333E000B288D /* AppVM.swift in Sources */,
 				300B38EE294C3D64000B288D /* EnterPhone.swift in Sources */,
+				30FAABE1296BF3AB006F1975 /* ChangeCodeWidget.swift in Sources */,
 				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
 				300B38E0294C2C73000B288D /* Start.swift in Sources */,
 				3056BEDB293EAFB5006C85F8 /* MyDiscounts.swift in Sources */,
 				30114A2F29471F6600F63BD1 /* Code.swift in Sources */,
 				300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
+				30FAABDF296BE664006F1975 /* AddedMembership.swift in Sources */,
 				300B38EC294C3D5E000B288D /* EnterName.swift in Sources */,
 				30114A3B29472FED00F63BD1 /* Orders.swift in Sources */,
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,

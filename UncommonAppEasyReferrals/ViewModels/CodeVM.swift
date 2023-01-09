@@ -71,5 +71,50 @@ class CodeVM: ObservableObject, Identifiable {
         })
     }
     
+    func addCode(shop: Shop, campaign: Campaign, user_id: String, code_id: String) {
+         
+        db.collection("codes").document(code_id).setData([
+            "code": [
+                "code": "",
+                "color": [255, 255, 255],
+                "graphql_id": "",
+                "is_default": true
+            ],
+            "shop": [
+                "domain": shop.info.domain,
+                "name": shop.info.name,
+                "website": shop.info.website
+            ],
+            "stats": [
+                "usage_count": 0,
+                "usage_limit": campaign.offer.usage_limit
+            ],
+            "status": [
+                "did_creation_succeed": false,
+                "status": "PENDING"
+            ],
+            "timestamp": [
+                "created": Int(round(Date().timeIntervalSince1970)),
+                "deleted": -1,
+                "used": -1
+            ],
+            "uuid": [
+                "campaign": campaign.uuid.campaign,
+                "code": code_id,
+                "membership": user_id + "-" + shop.uuid.shop,
+                "shop": shop.uuid.shop,
+                "user": user_id
+            ]
+        ]) { err in
+            if let err = err {
+                print("Error creating CODE: \(err)")
+            } else {
+                print("Other kind of error.. idk??")
+            }
+        }
+    }
+    
+    
+    
     
 }

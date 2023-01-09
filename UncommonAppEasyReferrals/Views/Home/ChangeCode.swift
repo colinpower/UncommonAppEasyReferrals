@@ -7,43 +7,17 @@
 
 import SwiftUI
 
-enum ChangedCodeState: String, Identifiable {
-    case empty, checking, success, failure
-    var id: String {
-        return self.rawValue
-    }
-}
-
-struct TextFieldLimitModifer: ViewModifier {
-    @Binding var value: String
-    var length: Int
-
-    func body(content: Content) -> some View {
-        content
-            .onReceive(value.publisher.collect()) {
-                value = String($0.prefix(length)).replacingOccurrences(of: " ", with: "-")
-            }
-    }
-}
-
-extension View {
-    func limitInputLength(value: Binding<String>, length: Int) -> some View {
-        self.modifier(TextFieldLimitModifer(value: value, length: length))
-    }
-}
-
-
-
-
 struct ChangeCode: View {
     
     @ObservedObject var code_vm: CodeVM
     
-    @FocusState private var keyboardFocused: Bool
+    //@FocusState private var keyboardFocused: Bool
+    //@State private var changedCodeState: ChangedCodeState = .empty
     
-    @State var currentCode: String = ""
     
-    @State private var changedCodeState: ChangedCodeState = .empty
+    //@State var currentCode: String = ""
+    
+    @State var didTapSubmit:Bool = false
     
     var body: some View {
         
@@ -74,89 +48,91 @@ struct ChangeCode: View {
                 
 
                 //Textfield
-                HStack(alignment: .center, spacing: 16) {
-                    TextField("Enter a new code", text: $currentCode)
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                        .kerning(1.2)
-                        .foregroundColor(getTextColor(for: changedCodeState))
-                        .limitInputLength(value: $currentCode, length: 22)
-                        .onSubmit {
-                            
-                            if currentCode == code_vm.one_code.code.code {
-                                
-                                changedCodeState = .empty
-                                
-                            } else if !currentCode.isEmpty {
-                                
-                                changedCodeState = .checking
-                                
-                                print("submitted")
-                                //isCheckingCode = true
-                                
+//                HStack(alignment: .center, spacing: 16) {
+//                    TextField("Enter a new code", text: $currentCode)
+//                        .font(.system(size: 22, weight: .bold, design: .rounded))
+//                        .kerning(1.2)
+//                        .foregroundColor(getTextColor(for: changedCodeState))
+//                        .limitInputLength(value: $currentCode, length: 22)
+//                        .onSubmit {
+//
+//                            if currentCode == code_vm.one_code.code.code {
+//
+//                                changedCodeState = .empty
+//
+//                            } else if !currentCode.isEmpty {
+//
+//                                changedCodeState = .checking
+//
+//                                print("submitted")
+//                                //isCheckingCode = true
+//
+////                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+////                                    changedCodeState = .failure
+////                                }
+//
 //                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                    changedCodeState = .failure
+//                                    changedCodeState = .success
 //                                }
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    changedCodeState = .success
-                                }
-                            }
-                        }
-                        .onTapGesture(perform: {
-                            
-                            if changedCodeState == .empty {
-                                
-                            } else if changedCodeState == .checking {
-                                
-                            } else if changedCodeState == .success {
-                                changedCodeState = .empty
-                            } else if changedCodeState == .failure {
-                                currentCode = ""
-                                changedCodeState = .empty
-                            }
-                                
-                            print("tapped in the box!")
-                        })
-                        .focused($keyboardFocused)
-                        .submitLabel(.done)
-                        .keyboardType(.alphabet)
-                        .disableAutocorrection(true)
-                        .disabled(changedCodeState == .checking)
-                        .frame(height: 60)
-                    
-                    if changedCodeState == .empty {
-                        
-                        if !currentCode.isEmpty {
-                            Button {
-                                currentCode = ""
-                            } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.system(size: 20, weight: .medium))
-                                    .foregroundColor(Color.gray)
-                            }
-                        } else {
-                            
-                        }
-                    } else if changedCodeState == .checking {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
-                            .font(.system(size: 20))
-                    } else if changedCodeState == .failure {
-                        Button {
-                            currentCode = ""
-                            changedCodeState = .empty
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 20, weight: .medium))
-                                .foregroundColor(Color.red)
-                        }
-                    } else {
-                        Image(systemName: "checkmark")
-                            .font(.system(size: 20, weight: .medium))
-                            .foregroundColor(Color.green)
-                    }
-                        
-                }.frame(height: 60)
+//                            }
+//                        }
+//                        .onTapGesture(perform: {
+//
+//                            if changedCodeState == .empty {
+//
+//                            } else if changedCodeState == .checking {
+//
+//                            } else if changedCodeState == .success {
+//                                changedCodeState = .empty
+//                            } else if changedCodeState == .failure {
+//                                currentCode = ""
+//                                changedCodeState = .empty
+//                            }
+//
+//                            print("tapped in the box!")
+//                        })
+//                        .focused($keyboardFocused)
+//                        .submitLabel(.done)
+//                        .keyboardType(.alphabet)
+//                        .disableAutocorrection(true)
+//                        .disabled(changedCodeState == .checking)
+//                        .frame(height: 60)
+//
+//                    if changedCodeState == .empty {
+//
+//                        if !currentCode.isEmpty {
+//                            Button {
+//                                currentCode = ""
+//                            } label: {
+//                                Image(systemName: "xmark.circle.fill")
+//                                    .font(.system(size: 20, weight: .medium))
+//                                    .foregroundColor(Color.gray)
+//                            }
+//                        } else {
+//
+//                        }
+//                    } else if changedCodeState == .checking {
+//                        ProgressView()
+//                            .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
+//                            .font(.system(size: 20))
+//                    } else if changedCodeState == .failure {
+//                        Button {
+//                            currentCode = ""
+//                            changedCodeState = .empty
+//                        } label: {
+//                            Image(systemName: "xmark.circle.fill")
+//                                .font(.system(size: 20, weight: .medium))
+//                                .foregroundColor(Color.red)
+//                        }
+//                    } else {
+//                        Image(systemName: "checkmark")
+//                            .font(.system(size: 20, weight: .medium))
+//                            .foregroundColor(Color.green)
+//                    }
+//
+//                }.frame(height: 60)
+
+                ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: code_vm.one_code.code.code, shouldKeyboardBeFocused: true)
                     .padding(.horizontal)
                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color("TextFieldGray")))
                 
@@ -178,20 +154,26 @@ struct ChangeCode: View {
             }
             .padding(.horizontal)
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                keyboardFocused = true
-            }
-        }
+//        .onChange(of: didTapSubmit) { value in
+//            guard value else { return }
+//            didTapSubmit = false
+//            print(currentCode)
+//            //make request to change the code
+//        }
+//        .onAppear {
+//            DispatchQueue.main.asyncAfter(deadline: .now()) {
+//                keyboardFocused = true
+//            }
+//        }
     }
 }
 
-
-private func getTextColor(for changedCodeState: ChangedCodeState) -> Color {
-    switch (changedCodeState) {
-    case .empty: return Color("text.black")
-    case .checking: return Color("text.gray")
-    case .success: return .green
-    case .failure: return .red
-    }
-}
+//
+//private func getTextColor(for changedCodeState: ChangedCodeState) -> Color {
+//    switch (changedCodeState) {
+//    case .empty: return Color("text.black")
+//    case .checking: return Color("text.gray")
+//    case .success: return .green
+//    case .failure: return .red
+//    }
+//}

@@ -22,6 +22,35 @@ class CampaignVM: ObservableObject, Identifiable {
     
     @Published var oneCampaign = [Campaign]()
     
+    
+    @Published var shop_campaigns = [Campaign]()
+    
+    func get_shop_campaigns(shop_id: String) {
+    
+        db.collection("campaigns")
+            .whereField("uuid.shop", isEqualTo: shop_id)
+            .getDocuments { (snapshot, error) in
+    
+                print("CAMPAIGNS SECTION!@!@#!#!@")
+                guard let snapshot = snapshot, error == nil else {
+                    //handle error
+                    print("found error")
+                    return
+                }
+                print("Number of documents: \(snapshot.documents.count)")
+    
+                self.shop_campaigns = snapshot.documents.compactMap({ queryDocumentSnapshot -> Campaign? in
+                    print("AT THE TRY FOR CAMPAIGNS")
+                    print(try? queryDocumentSnapshot.data(as: Campaign.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: Campaign.self)
+                })
+            }
+    
+    }
+    
+    
+    
+    
     func getCampaign() {
     
         //var ordersSnapshot = [Orders]()

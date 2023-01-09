@@ -13,9 +13,15 @@ struct AvailableDiscount: View {
     
     @Binding var activeSheetForMyDiscounts:ActiveSheetForMyDiscounts?
     
+    @ObservedObject var code_vm: CodeVM
+    
     var discount: DiscountReward
     
     @State var isCopyTapped:Bool = false
+    @State var didTapSubmit:Bool = false
+    
+    @State var isEditingCode:Bool = false
+    @State var currentCode:String = ""
     
     //@State var currentDiscountCode: String
     //@State private var didChangeCodeState: ChangedCodeState = .empty
@@ -30,6 +36,19 @@ struct AvailableDiscount: View {
                     DiscountCard(cardColor: Color.blue, textColor: Color.red, commission: "$20", code: "COLIN123")
                         .padding(.vertical)
                         .padding(.bottom)
+                    
+                    Button {
+                        
+                        isEditingCode = true
+                        currentCode = code_vm.one_code.code.code
+                        
+                    } label: {
+                        Text("EDIT CODE")
+                    }
+                    
+                    if isEditingCode {
+                        ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: currentCode, shouldKeyboardBeFocused: false)
+                    }
                     
                     //MARK: Title + Subtitle
                     Label {
@@ -48,91 +67,9 @@ struct AvailableDiscount: View {
                         .padding(.bottom)
                         .padding(.bottom)
                     
-//                    HStack(alignment: .center, spacing: 16) {
-//                        TextField("Enter a new code", text: $currentDiscountCode)
-//                            .font(.system(size: 22, weight: .bold, design: .rounded))
-//                            .kerning(1.2)
-//                            .foregroundColor(getTextColor(for: didChangeCodeState))
-//                            .limitInputLength(value: $currentDiscountCode, length: 22)
-//                            .onSubmit {
-//
-//                                if currentDiscountCode == code_vm.one_code.code.code {
-//
-//                                    changedCodeState = .empty
-//
-//                                } else if !currentCode.isEmpty {
-//
-//                                    changedCodeState = .checking
-//
-//                                    print("submitted")
-//                                    //isCheckingCode = true
-//
-//    //                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//    //                                    changedCodeState = .failure
-//    //                                }
-//
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                        changedCodeState = .success
-//                                    }
-//                                }
-//                            }
-//                            .onTapGesture(perform: {
-//
-//                                if changedCodeState == .empty {
-//
-//                                } else if changedCodeState == .checking {
-//
-//                                } else if changedCodeState == .success {
-//                                    changedCodeState = .empty
-//                                } else if changedCodeState == .failure {
-//                                    currentCode = ""
-//                                    changedCodeState = .empty
-//                                }
-//
-//                                print("tapped in the box!")
-//                            })
-//                            .focused($keyboardFocused)
-//                            .submitLabel(.done)
-//                            .keyboardType(.alphabet)
-//                            .disableAutocorrection(true)
-//                            .disabled(changedCodeState == .checking)
-//                            .frame(height: 60)
-//
-//                        if changedCodeState == .empty {
-//
-//                            if !currentCode.isEmpty {
-//                                Button {
-//                                    currentCode = ""
-//                                } label: {
-//                                    Image(systemName: "xmark.circle.fill")
-//                                        .font(.system(size: 20, weight: .medium))
-//                                        .foregroundColor(Color.gray)
-//                                }
-//                            } else {
-//
-//                            }
-//                        } else if changedCodeState == .checking {
-//                            ProgressView()
-//                                .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
-//                                .font(.system(size: 20))
-//                        } else if changedCodeState == .failure {
-//                            Button {
-//                                currentCode = ""
-//                                changedCodeState = .empty
-//                            } label: {
-//                                Image(systemName: "xmark.circle.fill")
-//                                    .font(.system(size: 20, weight: .medium))
-//                                    .foregroundColor(Color.red)
-//                            }
-//                        } else {
-//                            Image(systemName: "checkmark")
-//                                .font(.system(size: 20, weight: .medium))
-//                                .foregroundColor(Color.green)
-//                        }
-//
-//                    }.frame(height: 60)
-//                        .padding(.horizontal)
-//                        .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color("TextFieldGray")))
+                    
+                    
+                    
                     
                     Spacer()
                     
@@ -175,6 +112,9 @@ struct AvailableDiscount: View {
                 }
                 .navigationTitle(discount.shop.name + " Discount")
                 .navigationBarTitleDisplayMode(.inline)
+            }
+            .onAppear {
+                self.code_vm.listenForOneCode(code_id: discount.uuid.code)
             }
             .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

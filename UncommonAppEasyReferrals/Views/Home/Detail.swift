@@ -44,27 +44,7 @@ struct Detail: View {
             Color("Background").ignoresSafeArea()
             
             ScrollView {
-                
-                //MARK: Title Section
-//                HStack(alignment: .bottom, spacing: 0) {
-//
-//                    VStack(alignment: .leading, spacing: 0) {
-//
-//                        RoundedRectangle(cornerRadius: 6)
-//                            .frame(width: 60, height: 60)
-//                            .foregroundColor(.blue)
-//                            .padding(.bottom)
-//
-//                        Text(membership.shop.name)
-//                            .font(.system(size: 22, weight: .bold, design: .rounded))
-//                            .foregroundColor(Color("text.black"))
-//
-//                    }
-//
-//                    Spacer()
-//
-//                }.padding().padding(.vertical)
-                
+                                
                 ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name, offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: true)
                     .padding(.bottom, 10)
 
@@ -343,23 +323,6 @@ struct Detail: View {
             self.code_vm.listenForOneCode(code_id: membership.default_campaign.default_code_uuid)
         }
     }
-    
-//    @MainActor func render() {
-//
-//        let renderer = ImageRenderer(content: ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name, offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: false)) //.frame(width: 320, height: 200))
-//
-//                                        //CardForSnapshot(cardColor: Color.blue, textColor: Color.white, companyName: membership.shop.name, discountAmount: membership.default_campaign.offer, discountCode: code_vm.one_code.code.code)
-//
-//
-//
-//        // make sure and use the correct display scale for this device
-//        renderer.scale = displayScale
-//
-//        if let uiImage = renderer.uiImage {
-//            //sharePreviewPhoto = Image(uiImage: uiImage)
-//            referralCardStruct.image = Image(uiImage: uiImage)
-//        }
-//    }
     
     func renderInCode(code: String) -> Image {
         

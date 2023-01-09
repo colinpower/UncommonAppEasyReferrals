@@ -105,7 +105,7 @@ struct Home: View {
                         ForEach(membership_vm.my_memberships) { membership in
                             
                             NavigationLink(value: membership) {
-                                membershipRow(code_vm: code_vm, membership: membership, isLast: ((membership == membership_vm.my_memberships.last) && (numOfNonMemberships == 0)), presentedSheet: $presentedSheet)
+                                membershipRow(membership: membership, isLast: ((membership == membership_vm.my_memberships.last) && (numOfNonMemberships == 0)), presentedSheet: $presentedSheet)
                             }
                             
                         }
@@ -183,19 +183,19 @@ struct Home: View {
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .mydiscounts:    //update this to MyDiscounts
-                        MyDiscounts(myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
+                        MyDiscounts(code_vm: code_vm, myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .add:
-                        AddMembership(shop: selectedShopObject.shop)
+                        AddMembership(membership_vm: membership_vm, code_vm: code_vm, shop: selectedShopObject.shop)
                             .presentationDetents([.large])
-                            .presentationDragIndicator(.visible)
+                            //.presentationDragIndicator(.visible)
 //                    case .send:
 //                        SendReferral(membership: selectedMembershipObject.membershipObject)
 //                            .presentationDetents([.large])
 //                            .presentationDragIndicator(.visible)
                     default:
-                        MyDiscounts(myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
+                        MyDiscounts(code_vm: code_vm, myActiveDiscounts: discount_reward_vm.my_discount_rewards, myPendingDiscounts: referral_vm.my_referrals)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     }
@@ -302,7 +302,7 @@ struct discountsAvailableWidget: View {
 struct membershipRow: View {
     
     @Environment(\.displayScale) var displayScale
-    @ObservedObject var code_vm: CodeVM
+    @StateObject var code_vm_membershipRow = CodeVM()
     
     
     var membership: Membership
@@ -354,10 +354,10 @@ struct membershipRow: View {
                     
                     Spacer()
                     
-                    let codeURL = "https://" + membership.shop.domain + "/discount/" + code_vm.one_code_static.code.code + "?redirect=/collections/all"
-                    let previewText = membership.default_campaign.offer + " at " + membership.shop.name + " with " + code_vm.one_code_static.code.code
-                    let messageText = "Use " + code_vm.one_code_static.code.code + " for " + membership.default_campaign.offer + " off, or shop with this link: " + codeURL
-                    let updatedImage = renderInCode(code: code_vm.one_code_static.code.code)
+                    let codeURL = "https://" + membership.shop.domain + "/discount/" + code_vm_membershipRow.one_code_static.code.code + "?redirect=/collections/all"
+                    let previewText = membership.default_campaign.offer + " at " + membership.shop.name + " with " + code_vm_membershipRow.one_code_static.code.code
+                    let messageText = "Use " + code_vm_membershipRow.one_code_static.code.code + " for " + membership.default_campaign.offer + " off, or shop with this link: " + codeURL
+                    let updatedImage = renderInCode(code: code_vm_membershipRow.one_code_static.code.code)
                     
                     //let testVar:ReferralCardStruct = ReferralCardStruct(image: referralCardStruct.image, text: previewText, link: messageText)
                     let referralCardObject:ReferralCardStruct = ReferralCardStruct(image: updatedImage, text: previewText, link: messageText)
@@ -388,7 +388,7 @@ struct membershipRow: View {
         }
         .onAppear {
             
-            self.code_vm.getOneCode(code_id: membership.default_campaign.default_code_uuid)
+            self.code_vm_membershipRow.getOneCode(code_id: membership.default_campaign.default_code_uuid)
             
             //render()
             

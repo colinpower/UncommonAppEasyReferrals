@@ -35,12 +35,14 @@ struct Membership_DefaultCampaign: Codable, Hashable {
     var commission: String
     var default_code_uuid: String
     var offer: String
+    var isCash: Bool
     var uuid: String
 
     enum CodingKeys: String, CodingKey {
         case commission
         case default_code_uuid
         case offer
+        case isCash
         case uuid
     }
 }

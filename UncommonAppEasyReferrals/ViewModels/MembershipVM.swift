@@ -37,6 +37,42 @@ class MembershipVM: ObservableObject, Identifiable {
         })
     }
     
+    func addMembership(shop: Shop, campaign: Campaign, user_id: String, code_id: String) {
+         
+        db.collection("memberships").document(user_id + "-" + shop.uuid.shop).setData([
+            "campaigns": [campaign.uuid.campaign],
+            "default_campaign": [
+                "commission": campaign.commission.type == "FIXED" ? "$" + campaign.commission.value : campaign.commission.value + "%",
+                "default_code_uuid": code_id,
+                "offer": campaign.offer.type == "FIXED" ? "$" + campaign.offer.value : campaign.offer.value + "%",
+                "isCash": campaign.commission.offer == "CASH",
+                "uuid": campaign.uuid.campaign
+            ],
+            "shop": [
+                "customer_id": "",
+                "domain": shop.info.domain,
+                "icon": shop.info.icon,
+                "name": shop.info.name,
+                "website": shop.info.website
+            ],
+            "status": "ACTIVE",
+            "timestamp": [
+                "created": Int(round(Date().timeIntervalSince1970)),
+                "disabled": -1
+            ],
+            "uuid": [
+                "membership": user_id + "-" + shop.uuid.shop,
+                "shop": shop.uuid.shop,
+                "user": user_id
+            ]
+        ]) { err in
+            if let err = err {
+                print("Error updating MEMBERSHIPS: \(err)")
+            } else {
+                print("Other kind of error.. idk??")
+            }
+        }
+    }
     
     
     
