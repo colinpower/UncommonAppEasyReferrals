@@ -18,11 +18,15 @@ enum PresentedDetailSheet: String, Identifiable {
 struct Detail: View {
     
     @Environment(\.displayScale) var displayScale
+    @EnvironmentObject var viewModel: AppViewModel
     
     var membership: Membership
     
     @ObservedObject var ordersVM = OrdersVM()
     @ObservedObject var code_vm: CodeVM
+    
+    @StateObject var campaign_vm_temp = CampaignVM()
+    @StateObject var shop_vm_temp = ShopVM()
     
     //For tracking whether Copy was tapped
     @State var isCopyTapped: Bool = false
@@ -48,6 +52,17 @@ struct Detail: View {
                 ReferralCard(cardColor: .blue, textColor: .white, iconPath: membership.shop.icon, name: membership.shop.name, offer: membership.default_campaign.offer, code: code_vm.one_code.code.code, hasShadow: true)
                     .padding(.bottom, 10)
 
+                
+                Button {
+                    let tempID = UUID().uuidString
+                    
+                    self.code_vm.addCode(shop: shop_vm_temp.one_shop_static, campaign: campaign_vm_temp.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: tempID)
+                        
+                } label: {
+                    Text("Tap to generate code for this shop")
+                        .padding()
+                        .background(.red)
+                }
                 
                 //MARK: "Share" box
                 HStack(alignment: .center, spacing: 0) {
@@ -319,6 +334,10 @@ struct Detail: View {
             //render()
             
             self.ordersVM.getAllOrders()
+            
+            self.campaign_vm_temp.get_shop_campaigns(shop_id: membership.uuid.shop)
+            self.shop_vm_temp.getOneShop(shop_id: membership.uuid.shop)
+            
             
             self.code_vm.listenForOneCode(code_id: membership.default_campaign.default_code_uuid)
         }

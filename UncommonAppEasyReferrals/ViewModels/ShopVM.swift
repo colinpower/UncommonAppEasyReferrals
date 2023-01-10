@@ -21,6 +21,7 @@ class ShopVM: ObservableObject, Identifiable {
     private var db = Firestore.firestore()
     
     @Published var all_shops = [Shop]()
+    @Published var one_shop_static = Shop(account: Shop_Account(email: "", name: Shop_Name(first: "", last: "")), campaigns: [], info: Shop_Info(category: "", description: "", domain: "", icon: "", name: "", website: ""), timestamp: Shop_Timestamp(created: 0), uuid: Shop_UUID(shop: ""))
     
     func getAllShops() {
         
@@ -40,6 +41,28 @@ class ShopVM: ObservableObject, Identifiable {
                     return try? queryDocumentSnapshot.data(as: Shop.self)
                 })
             }
+    }
+    
+    func getOneShop(shop_id: String) {
+        
+        let docRef = db.collection("shops").document(shop_id)
+
+        docRef.getDocument { document, error in
+            if let error = error as NSError? {
+                print("Error getting document: \(error)")
+            }
+            else {
+                if let document = document {
+                    do {
+                        self.one_shop_static = try document.data(as: Shop.self)
+                        print(self.one_shop_static)
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
+            }
+        }
     }
     
     

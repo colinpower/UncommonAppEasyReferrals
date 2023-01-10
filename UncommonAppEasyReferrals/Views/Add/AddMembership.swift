@@ -80,10 +80,10 @@ struct AddMembership: View {
                         //MARK: Referral Program Details Box
                         VStack(alignment: .leading, spacing: 0) {
                             
-                            //Title: My Stats
+                            //Title: Offer
                             HStack(alignment: .bottom, spacing: 0) {
                                 
-                                Text("Program Info")
+                                Text("Offer")
                                     .font(.system(size: 22, weight: .bold, design: .rounded))
                                     .foregroundColor(Color("text.black"))
                                     .padding(.bottom, 2)
@@ -126,6 +126,22 @@ struct AddMembership: View {
                                 Spacer()
                                 
                             }
+                        }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.horizontal).padding(.bottom)
+                        
+                        //MARK: Referral Program Details Box
+                        VStack(alignment: .leading, spacing: 0) {
+                            
+                            //Title: Offer
+                            HStack(alignment: .bottom, spacing: 0) {
+                                
+                                Text("Details")
+                                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                                    .foregroundColor(Color("text.black"))
+                                    .padding(.bottom, 2)
+                                
+                                Spacer()
+                                
+                            }.padding(.vertical, 10).padding(.bottom)
                             
                             StatsRow(title: "Something", value: "25")
                             StatsRow(title: "Something again", value: "$150")

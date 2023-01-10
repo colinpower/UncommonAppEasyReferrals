@@ -71,11 +71,11 @@ class CodeVM: ObservableObject, Identifiable {
         })
     }
     
-    func addCode(shop: Shop, campaign: Campaign, user_id: String, code_id: String) {
+    func addCode(shop: Shop, campaign: Campaign, user_id: String, code_id: String, code: String = "") {
          
         db.collection("codes").document(code_id).setData([
             "code": [
-                "code": "",
+                "code": code,
                 "color": [255, 255, 255],
                 "graphql_id": "",
                 "is_default": true
