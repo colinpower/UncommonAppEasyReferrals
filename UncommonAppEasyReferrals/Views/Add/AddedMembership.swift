@@ -80,7 +80,7 @@ struct AddedMembership: View {
                     .padding(.bottom)
                     
                     
-                    ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: code_vm.one_code.code.code, shouldKeyboardBeFocused: false)
+//                    ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: code_vm.one_code.code.code, shouldKeyboardBeFocused: false)
                 }
                 
                 

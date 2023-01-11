@@ -33,13 +33,15 @@ extension View {
 }
 
 
-
 struct ChangeCodeWidget: View {
     
     @ObservedObject var code_vm: CodeVM
+    @ObservedObject var code_update_vm: CodeUpdateVM
     @Binding var didTapSubmit: Bool
     
     @State var currentCode: String
+    
+    @State var newUUID: String = ""
     var shouldKeyboardBeFocused:Bool
     
     @FocusState private var keyboardFocused: Bool
@@ -47,6 +49,7 @@ struct ChangeCodeWidget: View {
     
     var body: some View {
         
+        Text(code_update_vm.one_code_update.status).background(.red)
         HStack(alignment: .center, spacing: 16) {
             TextField("Enter a new code", text: $currentCode)
                 .font(.system(size: 22, weight: .bold, design: .rounded))
@@ -55,26 +58,18 @@ struct ChangeCodeWidget: View {
                 .limitInputLength(value: $currentCode, length: 22)
                 .onSubmit {
                     
-                    if currentCode == code_vm.one_code.code.code {
+                    if currentCode == code_vm.one_code.code.code {      //if you basically didn't submit anything, ignore
                         
                         changedCodeState = .empty
                         
-                    } else if !currentCode.isEmpty {
+                    } else if !currentCode.isEmpty {                    //if it's not empty & it's different, submit an update
                         
-                        didTapSubmit = true
+                        let newUUID = UUID().uuidString
                         
-                        changedCodeState = .checking
+                        code_update_vm.addCodeUpdate(code: code_vm.one_code, code_update_id: newUUID, new_code: currentCode)
                         
-                        print("submitted")
-                        //isCheckingCode = true
-                        
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                    changedCodeState = .failure
-//                                }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            changedCodeState = .failure
-                        }
+                        self.code_update_vm.listenForOneCode(code_id: code_vm.one_code.uuid.code, code_update_id: newUUID)
+
                     }
                 }
                 .onTapGesture(perform: {
@@ -140,6 +135,7 @@ struct ChangeCodeWidget: View {
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 keyboardFocused = shouldKeyboardBeFocused
             }
+            self.code_update_vm.listenForOneCode(code_id: code_vm.one_code.uuid.code, code_update_id: "EMPTY")
         }
         
     }

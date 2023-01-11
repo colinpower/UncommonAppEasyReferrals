@@ -34,6 +34,8 @@ struct Home: View {
     
     @ObservedObject var membership_vm = MembershipVM()
     @ObservedObject var code_vm = CodeVM()
+    @ObservedObject var users_vm = UsersVM()
+    @ObservedObject var stripe_vm = StripeVM()
     
     @StateObject var cash_reward_vm = CashRewardVM()
     @StateObject var discount_reward_vm = DiscountRewardVM()
@@ -175,11 +177,11 @@ struct Home: View {
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .cash_out:
-                        CashOut()
+                        CashOut(users_vm: users_vm, stripe_vm: stripe_vm)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .setup_bank:
-                        CashOut()
+                        CashOut(users_vm: users_vm, stripe_vm: stripe_vm)
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .mydiscounts:    //update this to MyDiscounts

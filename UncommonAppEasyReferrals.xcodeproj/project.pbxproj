@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3002A7B7296D1E0700B5CEDC /* CodeUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3002A7B6296D1E0700B5CEDC /* CodeUpdate.swift */; };
+		3002A7B9296D1EEB00B5CEDC /* CodeUpdateVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3002A7B8296D1EEB00B5CEDC /* CodeUpdateVM.swift */; };
+		3002A7BB296EB65800B5CEDC /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3002A7BA296EB65800B5CEDC /* Stripe.swift */; };
+		3002A7BD296EB7BC00B5CEDC /* StripeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3002A7BC296EB7BC00B5CEDC /* StripeVM.swift */; };
 		300B38E0294C2C73000B288D /* Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38DF294C2C73000B288D /* Start.swift */; };
 		300B38E2294C2D0F000B288D /* EmailAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E1294C2D0F000B288D /* EmailAuth.swift */; };
 		300B38E4294C2D57000B288D /* EmailAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300B38E3294C2D57000B288D /* EmailAuthVM.swift */; };
@@ -98,6 +102,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3002A7B6296D1E0700B5CEDC /* CodeUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeUpdate.swift; sourceTree = "<group>"; };
+		3002A7B8296D1EEB00B5CEDC /* CodeUpdateVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeUpdateVM.swift; sourceTree = "<group>"; };
+		3002A7BA296EB65800B5CEDC /* Stripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stripe.swift; sourceTree = "<group>"; };
+		3002A7BC296EB7BC00B5CEDC /* StripeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeVM.swift; sourceTree = "<group>"; };
 		300B38D82949CED3000B288D /* UncommonAppEasyReferrals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UncommonAppEasyReferrals.entitlements; sourceTree = "<group>"; };
 		300B38DA2949CF2D000B288D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		300B38DB2949D168000B288D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -246,8 +254,10 @@
 			isa = PBXGroup;
 			children = (
 				300B38E3294C2D57000B288D /* EmailAuthVM.swift */,
+				3002A7BC296EB7BC00B5CEDC /* StripeVM.swift */,
 				30D0891529659281007D5A1E /* CampaignVM.swift */,
 				30114A3029471FFF00F63BD1 /* CodeVM.swift */,
+				3002A7B8296D1EEB00B5CEDC /* CodeUpdateVM.swift */,
 				30114A342947242C00F63BD1 /* ShopVM.swift */,
 				30114A3829472B3D00F63BD1 /* MembershipVM.swift */,
 				30114A3C2947309800F63BD1 /* OrdersVM.swift */,
@@ -267,9 +277,11 @@
 				300B38E1294C2D0F000B288D /* EmailAuth.swift */,
 				30D08913296590CD007D5A1E /* Campaign.swift */,
 				30114A2E29471F6600F63BD1 /* Code.swift */,
+				3002A7B6296D1E0700B5CEDC /* CodeUpdate.swift */,
 				30D0891129658F88007D5A1E /* Shop.swift */,
 				30114A36294724CB00F63BD1 /* Membership.swift */,
 				30114A3A29472FED00F63BD1 /* Orders.swift */,
+				3002A7BA296EB65800B5CEDC /* Stripe.swift */,
 				30114A3E2947312B00F63BD1 /* Referral.swift */,
 				30D089172965A8C5007D5A1E /* CashReward.swift */,
 				30114A422947329900F63BD1 /* DiscountReward.swift */,
@@ -606,6 +618,7 @@
 				30D0891629659281007D5A1E /* CampaignVM.swift in Sources */,
 				305E676629607F740003D341 /* ReferralCard.swift in Sources */,
 				302E0A732962F9B0002962BB /* AvailableDiscount.swift in Sources */,
+				3002A7BB296EB65800B5CEDC /* Stripe.swift in Sources */,
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralVM.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
@@ -614,15 +627,18 @@
 				30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */,
 				300B38EA294C3D53000B288D /* CheckEmail.swift in Sources */,
 				30114A3129471FFF00F63BD1 /* CodeVM.swift in Sources */,
+				3002A7BD296EB7BC00B5CEDC /* StripeVM.swift in Sources */,
 				30D089182965A8C5007D5A1E /* CashReward.swift in Sources */,
 				30114A3F2947312B00F63BD1 /* Referral.swift in Sources */,
 				30D0891A2965AA56007D5A1E /* CashRewardVM.swift in Sources */,
 				300B38E8294C3685000B288D /* EnterEmail.swift in Sources */,
 				30114A37294724CB00F63BD1 /* Membership.swift in Sources */,
+				3002A7B7296D1E0700B5CEDC /* CodeUpdate.swift in Sources */,
 				30D08914296590CD007D5A1E /* Campaign.swift in Sources */,
 				30114A452947330300F63BD1 /* DiscountRewardVM.swift in Sources */,
 				30114A352947242C00F63BD1 /* ShopVM.swift in Sources */,
 				30A9A6AE295280790079F47B /* AddMembership.swift in Sources */,
+				3002A7B9296D1EEB00B5CEDC /* CodeUpdateVM.swift in Sources */,
 				30D0891C2965D25B007D5A1E /* PendingDiscount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

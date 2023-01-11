@@ -10,6 +10,7 @@ import SwiftUI
 struct ChangeCode: View {
     
     @ObservedObject var code_vm: CodeVM
+    @ObservedObject var code_update_vm = CodeUpdateVM()
     
     //@FocusState private var keyboardFocused: Bool
     //@State private var changedCodeState: ChangedCodeState = .empty
@@ -132,7 +133,7 @@ struct ChangeCode: View {
 //
 //                }.frame(height: 60)
 
-                ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: code_vm.one_code.code.code, shouldKeyboardBeFocused: true)
+                ChangeCodeWidget(code_vm: code_vm, code_update_vm: code_update_vm, didTapSubmit: $didTapSubmit, currentCode: code_vm.one_code.code.code, shouldKeyboardBeFocused: true)
                     .padding(.horizontal)
                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color("TextFieldGray")))
                 
@@ -160,11 +161,13 @@ struct ChangeCode: View {
 //            print(currentCode)
 //            //make request to change the code
 //        }
-//        .onAppear {
+        .onAppear {
+            
+            
 //            DispatchQueue.main.asyncAfter(deadline: .now()) {
 //                keyboardFocused = true
 //            }
-//        }
+        }
     }
 }
 

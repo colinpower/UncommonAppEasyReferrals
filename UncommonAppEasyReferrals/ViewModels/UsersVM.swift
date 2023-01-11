@@ -20,6 +20,13 @@ class UsersVM: ObservableObject, Identifiable {
         
     private var db = Firestore.firestore()
     
+    @Published var one_user = Users(account: Users_Account(available_cash: Double(0), available_discounts: -1), doc_id: "", profile: Users_Profile(email: "", first_name: "", last_name: "", phone: "", phone_verified: false), settings: Users_Settings(notifications: false), timestamps: Users_Timestamps(joined: -1))
+    
+    var one_user_listener: ListenerRegistration!
+
+    
+    
+    
     @Published var allUsers = [Users]()
     @Published var oneUser = [Users]()
     
@@ -31,6 +38,23 @@ class UsersVM: ObservableObject, Identifiable {
     var listener_oneAuthResult: ListenerRegistration!
     var listener_CurrentUserByUID: ListenerRegistration!
 
+    
+    func listenForOneUserNEW(user_id: String) {
+
+        self.dm.getOneUserListenerNEW(user_id: user_id, onSuccess: { (user) in
+
+            self.one_user = user
+
+            print("FOUND ONE USER!!!")
+            print(self.one_user)
+
+        }, listener: { (listener) in
+            self.one_user_listener = listener
+        })
+    }
+    
+    
+    
     
     func getAllUsers() {
         

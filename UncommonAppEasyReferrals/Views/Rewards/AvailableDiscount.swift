@@ -46,9 +46,9 @@ struct AvailableDiscount: View {
                         Text("EDIT CODE")
                     }
                     
-                    if isEditingCode {
-                        ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: currentCode, shouldKeyboardBeFocused: false)
-                    }
+//                    if isEditingCode {
+//                        ChangeCodeWidget(code_vm: code_vm, didTapSubmit: $didTapSubmit, currentCode: currentCode, shouldKeyboardBeFocused: false)
+//                    }
                     
                     //MARK: Title + Subtitle
                     Label {

@@ -105,7 +105,6 @@ struct AddMembership: View {
                                     Text("My friend's discount")
                                         .font(.system(size: 15, weight: .regular, design: .rounded))
                                         .foregroundColor(Color("text.gray"))
-                                    
                                 }
                                 
                                 Spacer()

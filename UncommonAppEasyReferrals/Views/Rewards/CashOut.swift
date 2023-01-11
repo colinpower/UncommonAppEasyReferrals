@@ -11,6 +11,10 @@ struct CashOut: View {
         
 //    @Binding var sheetContext: [String]
 //    @Binding var presentedSheet: PresentedSheet?
+    @EnvironmentObject var viewModel: AppViewModel
+    @ObservedObject var users_vm: UsersVM
+    @ObservedObject var stripe_vm: StripeVM
+    
     
     var body: some View {
         ZStack {
@@ -45,6 +49,45 @@ struct CashOut: View {
                 
                 Spacer()
                 
+                
+                Button {
+                    StripeVM().createStripeAccount(user: users_vm.one_user)
+                } label: {
+                    Text("TAP TO CREATE A NEW USER")
+                }
+                
+                //Button
+                let tempURL = stripe_vm.one_stripe.account.link
+                
+                if stripe_vm.one_stripe.account.link == "" {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text("Pending")
+                            .font(.system(size: 18, weight: .semibold, design: .rounded))
+                            .foregroundColor(Color.white)
+                        Spacer()
+                    }
+                    .frame(height: 34)
+                    .background(Capsule().foregroundColor(Color.gray))
+                } else {
+                    Link(destination: URL(string: tempURL)!) {
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Text("Go to stripe")
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color.white)
+                            Spacer()
+                        }
+                        .frame(height: 34)
+                        .background(Capsule().foregroundColor(Color.cyan))
+                    }
+                }
+                
+                
+                
+                Spacer()
+                
+                
                 //MARK: Buttons on bottom
                 
                 HStack(alignment: .center) {
@@ -77,6 +120,10 @@ struct CashOut: View {
                 
             }
             .padding()
+        }
+        .onAppear {
+            self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "")
+            self.stripe_vm.listenForOneStripe(user_id: viewModel.userID ?? "")
         }
         
     }

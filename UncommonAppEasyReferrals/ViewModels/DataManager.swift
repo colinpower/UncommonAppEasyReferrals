@@ -155,6 +155,96 @@ class DataManager: ObservableObject {
     }
     
     
+    func getOneCodeUpdateListener(code_id: String, code_update_id: String, onSuccess: @escaping(CodeUpdate) -> Void, listener: @escaping(_ listenerHandle: ListenerRegistration) -> Void) {
+        
+        let listenerRegistration = db.collection("codes").document(code_id).collection("updates").document(code_update_id)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching CodeUpdate document: \(error!)")
+                    return
+                }
+                
+                var emptyCodeUpdate = CodeUpdate(code: CodeUpdate_Code(color: [], current: "", graphql_id: "", is_default: false, new: ""), domain: "", status: "", timestamp: CodeUpdate_Timestamp(created: -1, updated: -1), uuid: "")
+                
+                do {
+                    print("GOT HERE IN THE getOneCodeUpdateListener")
+                    //try document.data(as: Code.self)
+                    if document.exists {
+                        emptyCodeUpdate = try! document.data(as: CodeUpdate.self)
+                    } else {
+                        emptyCodeUpdate.status = "NO CODE UPDATE FOUND"
+                    }
+                }
+                catch {
+                    print(error)
+                    return
+                }
+                onSuccess(emptyCodeUpdate)
+            }
+        listener(listenerRegistration) //escaping listener
+    }
+    
+    func getOneUserListenerNEW(user_id: String, onSuccess: @escaping(Users) -> Void, listener: @escaping(_ listenerHandle: ListenerRegistration) -> Void) {
+        
+        let listenerRegistration = db.collection("users").document(user_id)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                
+                var emptyUser = Users(account: Users_Account(available_cash: Double(0), available_discounts: -1), doc_id: "", profile: Users_Profile(email: "", first_name: "", last_name: "", phone: "", phone_verified: false), settings: Users_Settings(notifications: false), timestamps: Users_Timestamps(joined: -1))
+                
+                do {
+                    print("GOT HERE IN THE getOneUserListener")
+                    //try document.data(as: Code.self)
+                    if document.exists {
+                        emptyUser = try! document.data(as: Users.self)
+                    } else {
+                        emptyUser.doc_id = "NO USER FOUND"
+                    }
+                }
+                catch {
+                    print(error)
+                    return
+                }
+                onSuccess(emptyUser)
+            }
+        listener(listenerRegistration) //escaping listener
+    }
+    
+    
+    func getOneStripeListener(user_id: String, onSuccess: @escaping(Stripe) -> Void, listener: @escaping(_ listenerHandle: ListenerRegistration) -> Void) {
+        
+        let listenerRegistration = db.collection("stripe").document(user_id)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                
+                var emptyStripe = Stripe(account: Stripe_Account(id: "", link: "", charges_enabled: false, details_submitted: false, currently_due: [], eventually_due: []), balance: Stripe_Balance(pending: -1, available: -1, stripe: -1), info: Stripe_Info(first_name: "", last_name: "", email: "", phone: ""), timestamp: Stripe_Timestamp(created: -1, last_updated: -1), uuid: Stripe_UUID(user: "", stripe: "", last_update: ""))
+                
+                do {
+                    print("GOT HERE IN THE getOneStripeListener")
+                    
+                    if document.exists {
+                        emptyStripe = try! document.data(as: Stripe.self)
+                    } else {
+                        emptyStripe.account.id = "NO STRIPE FOUND"
+                    }
+                }
+                catch {
+                    print(error)
+                    return
+                }
+                onSuccess(emptyStripe)
+            }
+        listener(listenerRegistration) //escaping listener
+    }
+
+    
+    
 }
 
 
