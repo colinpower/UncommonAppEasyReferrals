@@ -49,6 +49,7 @@ extension View {
 struct EnterPhone: View {
     
     @EnvironmentObject var viewModel: AppViewModel
+    @ObservedObject var users_vm: UsersVM
     
     @Binding var setuppath: NavigationPath
     
@@ -145,7 +146,7 @@ struct EnterPhone: View {
         }
         .navigationTitle("")
         .navigationDestination(for: CheckPhonePage.self) { page in
-            CheckPhone(setuppath: $setuppath, phoneNumber: $phoneNumber, newUUID: $newUUID)
+            CheckPhone(users_vm: users_vm, setuppath: $setuppath, phoneNumber: $phoneNumber, newUUID: $newUUID)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now()) {

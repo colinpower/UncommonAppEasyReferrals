@@ -121,13 +121,18 @@ struct EnterName: View {
             }
             .navigationTitle("")
             .navigationDestination(for: SetupPage.self) { page in
-                EnterPhone(setuppath: $setuppath)
+                EnterPhone(users_vm: users_vm, setuppath: $setuppath)
             }
             .onAppear {
+                
+                self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "USER_NOT_SET")
+                
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     firstFocused = true
                     lastFocused = false
                 }
+                
+                
             }
         }
     }

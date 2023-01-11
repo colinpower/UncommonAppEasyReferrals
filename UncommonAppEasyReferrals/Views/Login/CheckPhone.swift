@@ -10,6 +10,7 @@ import SwiftUI
 struct CheckPhone: View {
     
     @EnvironmentObject var viewModel: AppViewModel
+    @ObservedObject var users_vm: UsersVM
     
     @Binding var setuppath: NavigationPath
     
@@ -65,7 +66,7 @@ struct CheckPhone: View {
                     print(viewModel.userID ?? "")
                     
                     //confirm verification code
-                    UsersVM().submitOTP(user_id: viewModel.userID ?? "", code: code, newUUID: newUUID)
+                    users_vm.submitOTP(user_id: viewModel.userID ?? "", code: code, newUUID: newUUID)
                     
                     //phoneNumber = "+1" + formattedPhoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "")
                     

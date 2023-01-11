@@ -12,7 +12,7 @@ import FirebaseAuth
 struct ContentView: View {
     
     @EnvironmentObject var viewModel: AppViewModel
-    @ObservedObject var users_vm = UsersVM()
+    @StateObject var users_vm = UsersVM()
     @ObservedObject var membership_vm = MembershipVM()
     
     @State private var email: String = ""
@@ -41,13 +41,14 @@ struct ContentView: View {
                 
                 if (currentSessionUID != "" && currentSessionEmail != "") {
                     
-                    if (!hasName || !hasPhone) {
+                    if (users_vm.one_user.profile.phone_verified) {
                         
-                        EnterName(users_vm: users_vm)
+                        Home(membership_vm: membership_vm, email: $email, uid: currentSessionUID)
                         
                     } else {
                         
-                        Home(membership_vm: membership_vm, email: $email, uid: currentSessionUID)
+                        EnterName(users_vm: users_vm)
+                        
                     }
                     
                 } else {
@@ -58,7 +59,7 @@ struct ContentView: View {
         }
         .onAppear {
             
-            viewModel.listen()
+            viewModel.listen(users_vm: users_vm)
             
             self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "USER_NOT_SET")
                         
@@ -72,7 +73,7 @@ struct ContentView: View {
                     switch result {
                     
                     case let .success(user):
-                        viewModel.listen()
+                        viewModel.listen(users_vm: users_vm)
                         
                     case let .failure(error):
                         print("error with result of passwordlessSignIn function")

@@ -50,7 +50,7 @@ class AppViewModel: ObservableObject {
         }
     }
     
-    func listen () {
+    func listen (users_vm: UsersVM) {
         
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth1, user1) in
@@ -62,6 +62,7 @@ class AppViewModel: ObservableObject {
                 
                 //UsersVM().listenForOneUser(userID: user1.uid)
                 
+                users_vm.listenForOneUserNEW(user_id: user1.uid)
                 UsersVM().checkForUser(email: user1.email ?? "")
                 
                 print(String(user1.uid))
