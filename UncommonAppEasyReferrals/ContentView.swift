@@ -12,39 +12,55 @@ import FirebaseAuth
 struct ContentView: View {
     
     @EnvironmentObject var viewModel: AppViewModel
-    
-    @ObservedObject var usersViewModel = UsersVM()
+    @ObservedObject var users_vm = UsersVM()
+    @ObservedObject var membership_vm = MembershipVM()
     
     @State private var email: String = ""
-    
-    @State private var uidlisten: String = ""
-    
+    @State private var shouldShowFRE: Bool = false
     
     var body: some View {
         
         Group {
             
             if false {
-                Home(email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
+                Home(membership_vm: membership_vm, email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
             } else {
                 let currentSessionUID = viewModel.session?.uid ?? ""
                 let currentSessionEmail = viewModel.session?.email ?? ""
                 
+                
+                let hasUID = (viewModel.session?.uid ?? "" == "")
+                let hasEmail = (viewModel.session?.email ?? "" == "")
+                let hasPhone = users_vm.one_user.profile.phone_verified
+                let hasName = (!users_vm.one_user.profile.first_name.isEmpty && !users_vm.one_user.profile.last_name.isEmpty)
+                
+                
+//                let currentUserPhoneVerified = users_vm.one_user.profile.phone_verified
+//                let currentUserNamesNotEntered = (users_vm.one_user.profile.first_name == "" || users_vm.one_user.profile.last_name == "")
+//
+                
                 if (currentSessionUID != "" && currentSessionEmail != "") {
                     
-                    //we don't necessarily need to pass the email or UID.. the appVM.session will have the correct values
-                    Home(email: $email, uid: currentSessionUID)
+                    if (!hasName || !hasPhone) {
+                        
+                        EnterName(users_vm: users_vm)
+                        
+                    } else {
+                        
+                        Home(membership_vm: membership_vm, email: $email, uid: currentSessionUID)
+                    }
                     
                 } else {
                     
-                    Start(email: $email)
-                    
+                    Start(users_vm: users_vm, email: $email, shouldShowFRE: $shouldShowFRE)
                 }
             }
         }
         .onAppear {
             
             viewModel.listen()
+            
+            self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "USER_NOT_SET")
                         
         }
         .onOpenURL { url in

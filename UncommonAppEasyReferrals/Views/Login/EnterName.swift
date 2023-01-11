@@ -11,8 +11,10 @@ import SwiftUI
 struct EnterName: View {
     
     var setupPages: [SetupPage] = [.init(screen: "EnterPhone", content: "")]
-    
     @State var setuppath = NavigationPath()
+    
+    @EnvironmentObject var viewModel: AppViewModel
+    @ObservedObject var users_vm: UsersVM
     
     @State var first_name: String = ""
     @State var last_name: String = ""
@@ -71,9 +73,12 @@ struct EnterName: View {
                         .padding(.horizontal)
                         .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color("TextFieldGray")))
                         .onSubmit {
-                            if !last_name.isEmpty {
+                            if (!last_name.isEmpty && first_name.isEmpty) {
                                 
                                 firstFocused = true
+                                lastFocused = false
+                            } else {
+                                firstFocused = false
                                 lastFocused = false
                             }
                         }
@@ -88,11 +93,10 @@ struct EnterName: View {
                     //Continue button
                     Button {
                         
-                        //EmailAuthVM().addEmailAuthRequest(email: email)
+                        users_vm.submitNames(uid: viewModel.session?.uid ?? "", first_name: first_name, last_name: last_name)
                         
                         setuppath.append(setupPages[0])
-                        //                sendSignInLink()
-                        //                isShowingCheckEmailView = true
+                        
                     } label: {
                         
                         HStack(alignment: .center) {
@@ -108,6 +112,8 @@ struct EnterName: View {
                         .padding(.top).padding(.top).padding(.top)
                         
                     }.disabled((first_name.isEmpty || last_name.isEmpty))
+                        
+                    
                     
                     Spacer()
                 }
@@ -115,7 +121,7 @@ struct EnterName: View {
             }
             .navigationTitle("")
             .navigationDestination(for: SetupPage.self) { page in
-                EnterPhone(setuppath: $setuppath, first_name: $first_name, last_name: $last_name)
+                EnterPhone(setuppath: $setuppath)
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {

@@ -31,6 +31,9 @@ class MembershipVM: ObservableObject, Identifiable {
         self.my_memberships = [Membership]()
         
         self.dm.getMyMembershipsListener(uid: uid, onSuccess: { (memberships) in
+            
+            print("THIS IS THE MEMBERSHIPS")
+            print(memberships)
             self.my_memberships = memberships
         }, listener: { (listener) in
             self.my_memberships_listener = listener

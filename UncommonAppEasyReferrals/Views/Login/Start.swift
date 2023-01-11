@@ -10,11 +10,14 @@ import SwiftUI
 
 struct Start: View {
     
+    @ObservedObject var users_vm: UsersVM
+    
     var enterEmailPages: [EnterEmailPage] = [.init(screen: "EnterEmail", content: "")]
     
     @State var startpath = NavigationPath()
     
     @Binding var email: String
+    @Binding var shouldShowFRE: Bool
     
     var body: some View {
         
@@ -53,18 +56,18 @@ struct Start: View {
             }
             .navigationTitle("")
             .navigationDestination(for: EnterEmailPage.self) { page in
-                EnterEmail(startpath: $startpath, email: $email)
+                EnterEmail(users_vm: users_vm, startpath: $startpath, email: $email, shouldShowFRE: $shouldShowFRE)
             }
                 
         }
     }
 }
-
-struct Start_Previews: PreviewProvider {
-    static var previews: some View {
-        Start(email: .constant("colinjpower1@gmail.com"))
-    }
-}
+//
+//struct Start_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Start(email: .constant("colinjpower1@gmail.com", shouldShowFRE: false))
+//    }
+//}
 
 
 

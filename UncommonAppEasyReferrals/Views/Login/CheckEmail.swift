@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CheckEmail: View {
+    @ObservedObject var users_vm: UsersVM
     
     @Binding var startpath: NavigationPath
     
@@ -70,14 +71,11 @@ struct CheckEmail: View {
             .padding(.horizontal)
         }
         .navigationTitle("")
-        .navigationDestination(for: CheckEmailPage.self) { page in
-            CheckEmail(startpath: $startpath, email: $email)
-        }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
                 resendIsEnabled = true
             }
-            UsersVM().checkForUser(email: email)
+            self.users_vm.checkForUser(email: email)
         }
     }
 }

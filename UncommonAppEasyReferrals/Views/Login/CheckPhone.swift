@@ -12,8 +12,7 @@ struct CheckPhone: View {
     @EnvironmentObject var viewModel: AppViewModel
     
     @Binding var setuppath: NavigationPath
-    @Binding var first_name: String
-    @Binding var last_name: String
+    
     @Binding var phoneNumber: String
     @Binding var newUUID: String
     
@@ -62,9 +61,11 @@ struct CheckPhone: View {
                 //Continue button
                 Button {
                     
+                    print("THIS IS THE CURRENT USER ID FROM THE VIEWMODEL")
+                    print(viewModel.userID ?? "")
                     
                     //confirm verification code
-                    UsersVM().submitOTP(userID: viewModel.userID ?? "", code: code, newUUID: newUUID)
+                    UsersVM().submitOTP(user_id: viewModel.userID ?? "", code: code, newUUID: newUUID)
                     
                     //phoneNumber = "+1" + formattedPhoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "")
                     
@@ -77,15 +78,15 @@ struct CheckPhone: View {
                         Spacer()
                         Text("Confirm Code")
                             .font(.system(size: 20, weight: .semibold, design: .rounded))
-                            .foregroundColor((first_name.isEmpty || last_name.isEmpty) ? Color("text.gray") : Color.white)
+                            .foregroundColor(code == "" ? Color("text.gray") : Color.white)
                             .padding(.vertical)
                         Spacer()
                     }
-                    .background(Capsule().foregroundColor((first_name.isEmpty || last_name.isEmpty) ? Color("TextFieldGray") : Color("UncommonRed")))
+                    .background(Capsule().foregroundColor(code == "" ? Color("TextFieldGray") : Color("UncommonRed")))
                     .padding(.horizontal)
                     .padding(.top).padding(.top).padding(.top)
                     
-                }//.disabled((first_name.isEmpty || last_name.isEmpty))
+                }.disabled(code == "")
                 
                 Spacer()
             }

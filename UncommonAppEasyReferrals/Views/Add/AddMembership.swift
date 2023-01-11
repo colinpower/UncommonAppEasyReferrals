@@ -16,7 +16,7 @@ struct AddMembership: View {
     @EnvironmentObject var viewModel: AppViewModel
     @Environment(\.dismiss) var dismiss
     @ObservedObject var membership_vm: MembershipVM
-    @ObservedObject var code_vm: CodeVM
+    @StateObject var code_vm1 = CodeVM()
     
     @StateObject var campaign_vm_add = CampaignVM()
     
@@ -171,31 +171,39 @@ struct AddMembership: View {
                         
                         //MARK: Buttons on bottom
 //                        if membership_vm.my_memberships.count == 1 {
+                        
+                        if didTapJoin {
+                            Button {
+                                path.append(shop)
+                            } label: {
+                                HStack(alignment: .center) {
+                                    Spacer()
+                                    Text("Joined")
+                                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                        .foregroundColor(Color.white)
+                                    Spacer()
+                                }
+                                .frame(height: 50)
+                                .background(Capsule().foregroundColor(Color.green))
+                                .padding(.horizontal)
+                            }
+                        } else {
                             Button {
                                 
-                                //#0 create a new code ID for this user
-                                if didTapJoin {
-                                    path.append(shop)
-                                } else {
-                                    new_code_id = UUID().uuidString
-                                    
-                                    //#1 make request to firebase to add membership
-                                    if !campaign_vm_add.shop_campaigns.isEmpty {
-                                        self.membership_vm.addMembership(shop: shop, campaign: campaign_vm_add.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: new_code_id)
-                                        
-                                        self.code_vm.addCode(shop: shop, campaign: campaign_vm_add.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: new_code_id)
-                                    }
-                                    
-                                    //#2 reset the code_vm listener
-                                    self.code_vm.one_code = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: "EMPTY"), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: ""))
-                                    
-                                    //#3 navigate to the next page
-                                    path.append(shop)
-                                    
-                                    //#4 mark that the user attempted to join
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                        didTapJoin = true
-                                    }
+                                self.new_code_id = UUID().uuidString
+                                
+                                self.membership_vm.addMembership(shop: shop, campaign: campaign_vm_add.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: new_code_id)
+                                
+                                self.code_vm1.addCode(shop: shop, campaign: campaign_vm_add.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: new_code_id)
+                                
+                                //self.code_vm1.listenForOneCode(code_id: new_code_id)
+                                
+                                //#3 navigate to the next page
+                                path.append(shop)
+                                
+                                //#4 mark that the user attempted to join
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    didTapJoin = true
                                 }
                                 
                             } label: {
@@ -210,14 +218,14 @@ struct AddMembership: View {
                                 .background(Capsule().foregroundColor(didTapJoin ? Color.green : Color("UncommonRed")))
                                 .padding(.horizontal)
                             }
-//                        }
+                        }
                     }
                 }.ignoresSafeArea()
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Shop.self) { shop in
-                AddedMembership(code_vm: code_vm, shop: shop, sheetDismiss: dismiss, new_code_id: $new_code_id)
+                AddedMembership(code_vm1: code_vm1, shop: shop, sheetDismiss: dismiss, new_code_id: $new_code_id)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

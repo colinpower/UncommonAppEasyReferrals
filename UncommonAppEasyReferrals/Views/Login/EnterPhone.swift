@@ -54,8 +54,6 @@ struct EnterPhone: View {
     
     //var uid: String
     
-    @Binding var first_name: String
-    @Binding var last_name: String
     
     @State var phoneNumber:String = ""
     @State var formattedPhoneNumber:String = ""             //value = String($0.prefix(length)).replacingOccurrences(of: " ", with: "-")
@@ -115,26 +113,31 @@ struct EnterPhone: View {
                     
                     phoneNumber = "+1" + formattedPhoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "")
                     
+                    print("THIS IS THE USERID THAT WE HAVE RIGHT NOW")
+                    print(viewModel.userID ?? "")
+                    
                     UsersVM().requestOTP(userID: viewModel.userID ?? "", phone: phoneNumber, newUUID: newUUID)
                     
                     setuppath.append(checkPhonePages[0])
-                    //                sendSignInLink()
-                    //                isShowingCheckEmailView = true
+                    
                 } label: {
                     
                     HStack(alignment: .center) {
                         Spacer()
                         Text("Send Code")
                             .font(.system(size: 20, weight: .semibold, design: .rounded))
-                            .foregroundColor((first_name.isEmpty || last_name.isEmpty) ? Color("text.gray") : Color.white)
+                            .foregroundColor(formattedPhoneNumber.isEmpty ? Color("text.gray") : Color.white)
                             .padding(.vertical)
                         Spacer()
                     }
-                    .background(Capsule().foregroundColor((first_name.isEmpty || last_name.isEmpty) ? Color("TextFieldGray") : Color("UncommonRed")))
+                    .background(Capsule().foregroundColor(formattedPhoneNumber == "" ? Color("TextFieldGray") : Color("UncommonRed")))
                     .padding(.horizontal)
                     .padding(.top).padding(.top).padding(.top)
                     
-                }.disabled((first_name.isEmpty || last_name.isEmpty))
+                }.disabled(formattedPhoneNumber.isEmpty)
+                
+                
+                //    CheckPhone(phoneNumber: $phoneNumber, newUUID: $newUUID)
                 
                 Spacer()
             }
@@ -142,27 +145,15 @@ struct EnterPhone: View {
         }
         .navigationTitle("")
         .navigationDestination(for: CheckPhonePage.self) { page in
-            CheckPhone(setuppath: $setuppath, first_name: $first_name, last_name: $last_name, phoneNumber: $phoneNumber, newUUID: $newUUID)
+            CheckPhone(setuppath: $setuppath, phoneNumber: $phoneNumber, newUUID: $newUUID)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 isFocused = true
             }
         }
-        
-        
-      
-        
-        
-        
     }
 }
-
-//struct EnterPhone_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EnterPhone()
-//    }
-//}
 
 struct CheckPhonePage: Hashable {
     

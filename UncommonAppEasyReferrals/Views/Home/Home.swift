@@ -32,7 +32,7 @@ struct Home: View {
 
     @EnvironmentObject var viewModel: AppViewModel
     
-    @ObservedObject var membership_vm = MembershipVM()
+    @ObservedObject var membership_vm: MembershipVM
     @ObservedObject var code_vm = CodeVM()
     @ObservedObject var users_vm = UsersVM()
     @ObservedObject var stripe_vm = StripeVM()
@@ -189,7 +189,8 @@ struct Home: View {
                             .presentationDetents([.large])
                             .presentationDragIndicator(.visible)
                     case .add:
-                        AddMembership(membership_vm: membership_vm, code_vm: code_vm, shop: selectedShopObject.shop)
+                        //self.code_vm.listenForOneCode(code_id: "NIL")
+                        AddMembership(membership_vm: membership_vm, shop: selectedShopObject.shop)
                             .presentationDetents([.large])
                             //.presentationDragIndicator(.visible)
 //                    case .send:
@@ -211,7 +212,8 @@ struct Home: View {
             self.membership_vm.listenForMyMemberships(uid: viewModel.session?.uid ?? "")
             self.referral_vm.getMyReferrals()
             self.shop_vm.getAllShops()
-            self.email = ""            
+            self.email = ""
+            self.code_vm.listenForOneCode(code_id: "NIL")
         }
     }
 }

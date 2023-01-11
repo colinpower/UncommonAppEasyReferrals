@@ -59,16 +59,22 @@ class CodeVM: ObservableObject, Identifiable {
     
     func listenForOneCode(code_id: String) {
         
-        self.dm.getOneCodeListener(code_id: code_id, onSuccess: { (code) in
+        if (code_id.isEmpty) {
+            print("CODE WAS EMPTY")
+            return
+        } else {
             
-            self.one_code = code
-            
-            print("FOUND ONE CODE")
-            print(self.one_code)
-            
-        }, listener: { (listener) in
-            self.one_code_listener = listener
-        })
+            self.dm.getOneCodeListener(code_id: code_id, onSuccess: { (code) in
+                
+                self.one_code = code
+                
+                print("FOUND ONE CODE")
+                print(self.one_code)
+                
+            }, listener: { (listener) in
+                self.one_code_listener = listener
+            })
+        }
     }
     
     func addCode(shop: Shop, campaign: Campaign, user_id: String, code_id: String, code: String = "") {

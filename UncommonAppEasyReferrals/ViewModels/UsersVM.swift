@@ -20,7 +20,7 @@ class UsersVM: ObservableObject, Identifiable {
         
     private var db = Firestore.firestore()
     
-    @Published var one_user = Users(account: Users_Account(available_cash: Double(0), available_discounts: -1), doc_id: "", profile: Users_Profile(email: "", first_name: "", last_name: "", phone: "", phone_verified: false), settings: Users_Settings(notifications: false), timestamps: Users_Timestamps(joined: -1))
+    @Published var one_user = Users(account: Users_Account(available_cash: 0, available_discounts: -1), doc_id: "", profile: Users_Profile(email: "", first_name: "NOT_SET", last_name: "NOT_SET", phone: "", phone_verified: true), settings: Users_Settings(notifications: false), timestamps: Users_Timestamps(joined: -1))
     
     var one_user_listener: ListenerRegistration!
 
@@ -108,9 +108,7 @@ class UsersVM: ObservableObject, Identifiable {
     }
     
     
-    @Published var foundUser = "NOTSTARTED"
-    
-    //Users(id: "NONE", account: Users_Account(available_cash: -1, available_discounts: -1), doc_id: "NONE", profile: Users_Profile(email: "NONE", first_name: "NONE", last_name: "NONE", phone: "NONE", phone_verified: false), settings: Users_Settings(notifications: false), timestamps: Users_Timestamps(joined: -1))
+    @Published var didFindUser:Bool = true
     
     func checkForUser(email: String) {
         
@@ -119,34 +117,21 @@ class UsersVM: ObservableObject, Identifiable {
             .limit(to: 1)
             .getDocuments { (snap, err) in
                 
-                print("testing with email \(email)")
-                
                 guard let snapshot = snap, err == nil else {
-                    //handle error
                     print("found error trying to get user")
-                    self.foundUser = "ERROR"
+                    self.didFindUser = true
                     return
                 }
                 
                 if (snapshot.documents.count == 0) {
                     //handle scenario where user isn't found
                     print("did not find any documents for the email \(email)")
-                    self.foundUser = "NONE"
+                    self.didFindUser = false
                     return
                 } else {
-                    
-                    //print("Number of documents: \(snapshot.documents.count ?? -1)")
-                    var docID = snapshot.documents.first?.documentID ?? "NO DOC ID"
-                    
-                    if docID == "NO DOC ID" {
-                        print("couldn't get a doc id for \(email)")
-                        self.foundUser = "NO DOC ID"
-                        return
-                    } else {
-                        print("found a doc ID for \(email) which is \(docID)")
-                        self.foundUser = "FOUND"
-                        return
-                    }
+                    print("Found at least 1 document, so there's a user")
+                    self.didFindUser = true
+                    return
                 }
             }   
     }
@@ -161,6 +146,9 @@ class UsersVM: ObservableObject, Identifiable {
         
         let OTPTimestamp = Int(round(Date().timeIntervalSince1970))
         //let emailAuthUUID = UUID().uuidString
+        print("THIS IS THE USER ID AS OF NOW")
+        print(userID)
+        print("REQUESTING OTP!!!")
         
         db.collection("users").document(userID).collection("auth_request").document(newUUID)
             .setData([
@@ -181,39 +169,66 @@ class UsersVM: ObservableObject, Identifiable {
             }
     }
     
-    func submitOTP(
-        userID: String,
-        code: String,
-        newUUID: String
-    ) {
+    func submitOTP(user_id: String, code: String, newUUID: String) {
         let timestamp = Int(round(Date().timeIntervalSince1970))
         //let emailAuthUUID = UUID().uuidString
         
-        db.collection("users").document(userID).collection("auth_request").document(newUUID)
-            .updateData([
-                "timestamp_submitted": timestamp,
-                "auth_code_submitted": code
-            ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("sending a verification code back to firebase")
-            }
+        if user_id.isEmpty {
+            return
+        } else {
+            
+            db.collection("users").document(user_id).collection("auth_request").document(newUUID)
+                .updateData([
+                    "timestamp_submitted": timestamp,
+                    "auth_code_submitted": code
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("sending a verification code back to firebase")
+                    }
+                }
         }
     }
     
-    func listenForPhoneVerification(userID: String, newUUID: String) {
+    func listenForPhoneVerification(user_id: String, newUUID: String) {
         
-        self.oneAuthResult = [AuthResult]()
-        
-        self.dm.getOneAuthResult(userID: userID, newUUID: newUUID, onSuccess: { (result) in
+        if user_id.isEmpty {
+            return
+        } else {
             
-            self.oneAuthResult = result
-            print("this is the one result")
-            print(self.oneAuthResult)
-        }, listener: { (listener) in
-            self.listener_oneAuthResult = listener
-        })
+            self.oneAuthResult = [AuthResult]()
+            
+            self.dm.getOneAuthResult(userID: user_id, newUUID: newUUID, onSuccess: { (result) in
+                
+                self.oneAuthResult = result
+                print("this is the one result")
+                print(self.oneAuthResult)
+            }, listener: { (listener) in
+                self.listener_oneAuthResult = listener
+            })
+        }
     }
+    
+    func submitNames(uid: String, first_name: String, last_name: String) {
+        
+        if uid.isEmpty {
+            return
+        } else {
+            
+            db.collection("users").document(uid)
+                .updateData([
+                    "profile.first_name": first_name,
+                    "profile.last_name": last_name
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document submitting names for User object: \(err)")
+                    } else {
+                        print("Updated the first and last names")
+                    }
+                }
+        }
+    }
+    
     
 }

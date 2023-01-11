@@ -124,6 +124,7 @@ struct CashOut: View {
         .onAppear {
             self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "")
             self.stripe_vm.listenForOneStripe(user_id: viewModel.userID ?? "")
+            //self.stripe_vm.listenForOneStripe(user_id: "")
         }
         
     }

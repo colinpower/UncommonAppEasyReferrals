@@ -10,11 +10,13 @@ import SwiftUI
 
 struct EnterEmail: View {
 
+    @ObservedObject var users_vm: UsersVM
+    
     var checkEmailPages: [CheckEmailPage] = [.init(screen: "CheckEmail", content: "")]
     
     @Binding var startpath: NavigationPath
-    
     @Binding var email: String
+    @Binding var shouldShowFRE: Bool
     
     @FocusState private var keyboardFocused: Bool
 
@@ -67,6 +69,8 @@ struct EnterEmail: View {
                     EmailAuthVM().addEmailAuthRequest(email: email)
                     
                     startpath.append(checkEmailPages[0])
+                    
+                    
     //                sendSignInLink()
     //                isShowingCheckEmailView = true
                 } label: {
@@ -91,7 +95,7 @@ struct EnterEmail: View {
         }
         .navigationTitle("")
         .navigationDestination(for: CheckEmailPage.self) { page in
-            CheckEmail(startpath: $startpath, email: $email)
+            CheckEmail(users_vm: users_vm, startpath: $startpath, email: $email)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now()) {
