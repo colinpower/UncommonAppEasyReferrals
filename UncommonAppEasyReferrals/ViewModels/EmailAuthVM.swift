@@ -18,6 +18,13 @@ class EmailAuthVM: ObservableObject, Identifiable {
     
     //@Published var var_getReferrals = [Referrals]()
     
+    //SYSTEM:
+        //list functions that must be called
+            // listener = getOneUserListener or getUsersListener or getUserByEmailListener
+            // snapshot = getOneUserSnapshot or getUsersSnapshot...
+            // db
+    
+    
     
     private var db = Firestore.firestore()
     

@@ -30,7 +30,7 @@ class MembershipVM: ObservableObject, Identifiable {
         
         self.my_memberships = [Membership]()
         
-        self.dm.getMyMembershipsListener(uid: uid, onSuccess: { (memberships) in
+        self.dm.listenForMyMemberships(uid: uid, onSuccess: { (memberships) in
             
             print("THIS IS THE MEMBERSHIPS")
             print(memberships)

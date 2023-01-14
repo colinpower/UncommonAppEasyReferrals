@@ -102,7 +102,7 @@ class DataManager: ObservableObject {
         listener(listenerRegistration) //escaping listener
     }
     
-    func getMyMembershipsListener(uid: String, onSuccess: @escaping([Membership]) -> Void, listener: @escaping(_ listenerHandle: ListenerRegistration) -> Void) {
+    func listenForMyMemberships(uid: String, onSuccess: @escaping([Membership]) -> Void, listener: @escaping(_ listenerHandle: ListenerRegistration) -> Void) {
         
         let listenerRegistration = db.collection("memberships")
             .whereField("uuid.user", isEqualTo: uid)
