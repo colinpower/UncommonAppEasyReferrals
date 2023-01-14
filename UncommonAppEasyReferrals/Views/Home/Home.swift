@@ -28,11 +28,10 @@ struct ShopObject: Identifiable {
 
 //MARK: Start
 struct Home: View {
-    //@EnvironmentObject var membership_env: MembershipVM
 
     @EnvironmentObject var viewModel: AppViewModel
     
-    @ObservedObject var membership_vm: MembershipVM
+    @StateObject var membership_vm: MembershipVM        // Home -> Detail
     @ObservedObject var code_vm = CodeVM()
     @ObservedObject var users_vm = UsersVM()
     @ObservedObject var stripe_vm = StripeVM()
@@ -45,6 +44,9 @@ struct Home: View {
     @State private var presentedSheet: PresentedSheet? = nil
     
     @State var selectedShopObject:ShopObject = ShopObject(shop: Shop(account: Shop_Account(email: "", name: Shop_Name(first: "", last: "")), campaigns: [], info: Shop_Info(category: "", description: "", domain: "", icon: "", name: "", website: ""), timestamp: Shop_Timestamp(created: -1), uuid: Shop_UUID(shop: "")))
+    
+    @State var selected_shop:Shop = Shop(account: Shop_Account(email: "", name: Shop_Name(first: "", last: "")), campaigns: [], info: Shop_Info(category: "", description: "", domain: "", icon: "", name: "", website: ""), timestamp: Shop_Timestamp(created: -1), uuid: Shop_UUID(shop: ""))
+    
     
     //Variables received from ContentView
     @Binding var email: String
@@ -117,6 +119,7 @@ struct Home: View {
                             if !listOfMemberships.contains(shop.uuid.shop) {
                                 
                                 Button {
+                                    selected_shop = shop
                                     selectedShopObject.shop = shop
                                     presentedSheet = .add
                                 } label: {
@@ -168,7 +171,7 @@ struct Home: View {
                     }
                     
                 }
-                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [selectedShopObject] sheet in
+                .sheet(item: $presentedSheet, onDismiss: { presentedSheet = nil }) { [selected_shop] sheet in
 
                     switch sheet {        //profile, cash_out, setup_bank, mydiscounts, add, suggest
 
@@ -190,7 +193,7 @@ struct Home: View {
                             .presentationDragIndicator(.visible)
                     case .add:
                         //self.code_vm.listenForOneCode(code_id: "NIL")
-                        AddMembership(membership_vm: membership_vm, shop: selectedShopObject.shop)
+                        AddMembership(membership_vm: membership_vm, shop: selected_shop)
                             .presentationDetents([.large])
                             //.presentationDragIndicator(.visible)
 //                    case .send:

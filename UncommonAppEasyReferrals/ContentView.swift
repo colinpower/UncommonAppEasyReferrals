@@ -22,22 +22,14 @@ struct ContentView: View {
         
         Group {
             
-            if false {
+            if false {          //used for testing
+            
                 Home(membership_vm: membership_vm, email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
+                
             } else {
+                
                 let currentSessionUID = viewModel.session?.uid ?? ""
                 let currentSessionEmail = viewModel.session?.email ?? ""
-                
-                
-                let hasUID = (viewModel.session?.uid ?? "" == "")
-                let hasEmail = (viewModel.session?.email ?? "" == "")
-                let hasPhone = users_vm.one_user.profile.phone_verified
-                let hasName = (!users_vm.one_user.profile.first_name.isEmpty && !users_vm.one_user.profile.last_name.isEmpty)
-                
-                
-//                let currentUserPhoneVerified = users_vm.one_user.profile.phone_verified
-//                let currentUserNamesNotEntered = (users_vm.one_user.profile.first_name == "" || users_vm.one_user.profile.last_name == "")
-//
                 
                 if (currentSessionUID != "" && currentSessionEmail != "") {
                     
@@ -61,7 +53,6 @@ struct ContentView: View {
             
             viewModel.listen(users_vm: users_vm)
             
-            self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "USER_NOT_SET")
                         
         }
         .onOpenURL { url in
