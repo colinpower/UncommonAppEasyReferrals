@@ -33,7 +33,6 @@ class AppViewModel: ObservableObject {
     let auth = Auth.auth()
     let email = Auth.auth().currentUser?.email
     let userID = Auth.auth().currentUser?.uid
-    //let test = Auth.auth().currentUser?.displayName
     
     var isSignedIn: Bool {
         return auth.currentUser != nil
@@ -50,7 +49,7 @@ class AppViewModel: ObservableObject {
         }
     }
     
-    func listen (users_vm: UsersVM) {
+    func listen (users_vm: UsersVM, stripe_accounts_vm: Stripe_AccountsVM) {
         
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth1, user1) in
@@ -62,8 +61,8 @@ class AppViewModel: ObservableObject {
                 
                 //UsersVM().listenForOneUser(userID: user1.uid)
                 
-                users_vm.listenForOneUserNEW(user_id: user1.uid)
-                UsersVM().checkForUser(email: user1.email ?? "")
+                users_vm.listenForOneUser(user_id: user1.uid)
+                stripe_accounts_vm.listenForOneStripeAccount(user_id: user1.uid)
                 
                 print(String(user1.uid))
                 print(user1.email ?? "")
@@ -87,35 +86,32 @@ class AppViewModel: ObservableObject {
         Auth.auth().signIn(withEmail: email1, link: link1) { result1, error1 in
             
           if let error1 = error1 {
-            print("Authentication error: \(error1.localizedDescription).")
-            completion(.failure(error1))
+              
+              print("Authentication error: \(error1.localizedDescription).")
+              completion(.failure(error1))
+              
           } else {
               
-              //let isNew123 = result1?.additionalUserInfo?.isNewUser
-              //result1?
-              
-//              if (isNew123 != nil) {
-//                  print("is this a new user? \(isNew123)")
-//                  self.isNewUserAuth = (isNew123 ?? false)
-//              }
-//              if let result1 = result1 {
-//                  isNewUser2 = result1?.user.additional
-//              }
-//              if let isNewUser1 = result1?.user.additionalUserInfo.isNewUser {
-//                  isNewUser = isNewUser1
-//              }
-            print(result1?.user.uid)
-            print("Authentication was successful.")
+              print("Authentication was successful.")
               completion(.success(result1?.user))
           }
         }
       }
     
-    func signOut() -> Bool {
+    func signOut(users_vm: UsersVM, stripe_accounts_vm: Stripe_AccountsVM) -> Bool {
         do {
+            users_vm.one_user = EmptyVariables().empty_user
+            stripe_accounts_vm.one_stripe_account = EmptyVariables().empty_stripe_account
+            
             try Auth.auth().signOut()
+            
             self.signedIn = false
             self.session = nil
+            
+            
+
+//            users_vm.one_user_listener.remove()
+//            stripe_accounts_vm.one_stripe_account_listener.remove()
             
             return true
             

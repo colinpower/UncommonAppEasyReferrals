@@ -9,14 +9,12 @@ import Foundation
 import SwiftUI
 
 struct EnterEmail: View {
-
-    @ObservedObject var users_vm: UsersVM
     
     var checkEmailPages: [CheckEmailPage] = [.init(screen: "CheckEmail", content: "")]
     
-    @Binding var startpath: NavigationPath
     @Binding var email: String
-    @Binding var shouldShowFRE: Bool
+    @Binding var startpath: NavigationPath
+    
     
     @FocusState private var keyboardFocused: Bool
 
@@ -50,7 +48,7 @@ struct EnterEmail: View {
                     .onSubmit {
                         if !email.isEmpty {
                             
-                            EmailAuthVM().addEmailAuthRequest(email: email)
+                            Auth_EmailVM().requestEmailLink(email: email)
                             
                             startpath.append(checkEmailPages[0])
                         }
@@ -66,13 +64,10 @@ struct EnterEmail: View {
                 //Continue button
                 Button {
                     
-                    EmailAuthVM().addEmailAuthRequest(email: email)
+                    Auth_EmailVM().requestEmailLink(email: email)
                     
                     startpath.append(checkEmailPages[0])
                     
-                    
-    //                sendSignInLink()
-    //                isShowingCheckEmailView = true
                 } label: {
                     
                     HStack(alignment: .center) {
@@ -95,7 +90,7 @@ struct EnterEmail: View {
         }
         .navigationTitle("")
         .navigationDestination(for: CheckEmailPage.self) { page in
-            CheckEmail(users_vm: users_vm, startpath: $startpath, email: $email)
+            CheckEmail(startpath: $startpath, email: $email)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now()) {

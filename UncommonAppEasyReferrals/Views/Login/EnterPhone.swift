@@ -43,25 +43,14 @@ extension View {
     }
 }
 
-
-
-
 struct EnterPhone: View {
     
-    @EnvironmentObject var viewModel: AppViewModel
     @ObservedObject var users_vm: UsersVM
-    
     @Binding var setuppath: NavigationPath
     
-    //var uid: String
-    
-    
-    @State var phoneNumber:String = ""
-    @State var formattedPhoneNumber:String = ""             //value = String($0.prefix(length)).replacingOccurrences(of: " ", with: "-")
-    //@State var verificationCodeSubmission:String = ""
-    
-    @State var newUUID: String = ""
-    
+    @State var phone:String = ""
+    @State var formattedPhoneNumber:String = ""
+    @State var auth_phone_uuid: String = ""
     @FocusState private var isFocused: Bool
     
     var checkPhonePages: [CheckPhonePage] = [.init(screen: "CheckPhone", content: "")]
@@ -110,14 +99,11 @@ struct EnterPhone: View {
                 Button {
                     
                     //send verification code
-                    newUUID = UUID().uuidString
+                    auth_phone_uuid = UUID().uuidString
                     
-                    phoneNumber = "+1" + formattedPhoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "")
+                    phone = "+1" + formattedPhoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "")
                     
-                    print("THIS IS THE USERID THAT WE HAVE RIGHT NOW")
-                    print(viewModel.userID ?? "")
-                    
-                    UsersVM().requestOTP(userID: viewModel.userID ?? "", phone: phoneNumber, newUUID: newUUID)
+                    Auth_PhoneVM().requestOTP(user: users_vm.one_user, phone: phone, auth_phone_uuid: auth_phone_uuid)
                     
                     setuppath.append(checkPhonePages[0])
                     
@@ -146,7 +132,7 @@ struct EnterPhone: View {
         }
         .navigationTitle("")
         .navigationDestination(for: CheckPhonePage.self) { page in
-            CheckPhone(users_vm: users_vm, setuppath: $setuppath, phoneNumber: $phoneNumber, newUUID: $newUUID)
+            CheckPhone(users_vm: users_vm, setuppath: $setuppath, phone: $phone, auth_phone_uuid: $auth_phone_uuid)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now()) {

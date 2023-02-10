@@ -9,13 +9,10 @@ import SwiftUI
 
 struct CheckPhone: View {
     
-    @EnvironmentObject var viewModel: AppViewModel
     @ObservedObject var users_vm: UsersVM
-    
     @Binding var setuppath: NavigationPath
-    
-    @Binding var phoneNumber: String
-    @Binding var newUUID: String
+    @Binding var phone: String
+    @Binding var auth_phone_uuid: String
     
     static let codeDigits = 4
     @State
@@ -62,17 +59,8 @@ struct CheckPhone: View {
                 //Continue button
                 Button {
                     
-                    print("THIS IS THE CURRENT USER ID FROM THE VIEWMODEL")
-                    print(viewModel.userID ?? "")
+                    Auth_PhoneVM().submitOTP(code: code, auth_phone_uuid: auth_phone_uuid)
                     
-                    //confirm verification code
-                    users_vm.submitOTP(user_id: viewModel.userID ?? "", code: code, newUUID: newUUID)
-                    
-                    //phoneNumber = "+1" + formattedPhoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "")
-                    
-                    //setuppath.append(checkPhonePages[0])
-                    //                sendSignInLink()
-                    //                isShowingCheckEmailView = true
                 } label: {
                     
                     HStack(alignment: .center) {

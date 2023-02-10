@@ -10,8 +10,10 @@ import SwiftUI
 struct Profile: View {
     
     @EnvironmentObject var viewModel: AppViewModel
-//    @Binding var sheetContext: [String]
-//    @Binding var presentedSheet: PresentedSheet?
+    
+    @ObservedObject var users_vm: UsersVM
+    @ObservedObject var stripe_accounts_vm: Stripe_AccountsVM
+    @Binding var email: String
 
     var body: some View {
         ZStack {
@@ -48,7 +50,7 @@ struct Profile: View {
                     //List: Name, Email, Phone
                     HStack(alignment: .center, spacing: 0) {
                      
-                        Text("Colin Power")
+                        Text(users_vm.one_user.profile.email)
                             .font(.system(size: 18, weight: .regular, design: .rounded))
                             .foregroundColor(Color("text.black"))
                             
@@ -62,7 +64,7 @@ struct Profile: View {
                     
                     HStack(alignment: .center, spacing: 0) {
                      
-                        Text("colinjpower1@gmail.com")
+                        Text(stripe_accounts_vm.one_stripe_account.uuid.stripe_account)
                             .font(.system(size: 18, weight: .regular, design: .rounded))
                             .foregroundColor(Color("text.black"))
                             
@@ -99,7 +101,9 @@ struct Profile: View {
                 
                 //MARK: Sign Out button
                 Button {
-                    let signOutResult = viewModel.signOut()
+                    let signOutResult = viewModel.signOut(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm)
+                    
+                    email = ""
                     
                     if !signOutResult {
                         //error signing out here.. handle it somehow?

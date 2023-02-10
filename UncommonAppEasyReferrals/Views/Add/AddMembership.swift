@@ -11,21 +11,19 @@ import SDWebImageSwiftUI
 
 struct AddMembership: View {
     
-//    @Binding var sheetContext: [String]
-//    @Binding var presentedSheet: PresentedSheet?
-    @EnvironmentObject var viewModel: AppViewModel
+    //Received from Home
+    @ObservedObject var users_vm: UsersVM
+    @ObservedObject var memberships_vm: MembershipsVM
+    var shop: Shops
+
+    //Additional listeners for view
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var membership_vm: MembershipVM
-    @StateObject var code_vm1 = CodeVM()
+    @StateObject var add_campaign_vm = CampaignsVM()
     
-    @StateObject var campaign_vm_add = CampaignVM()
-    
-    var shop: Shop
+    //Initialize variables for view
     @State var didTapJoin: Bool = false  //use this var to determine whether the user already joined and pressed "Back" on the next screen
     @State private var backgroundURL: String = ""
-    
-    @State private var path:[Shop] = []
-    
+    @State private var path:[Shops] = []
     @State var new_code_id:String = ""
     
     var body: some View {
@@ -63,7 +61,7 @@ struct AddMembership: View {
                                             .foregroundColor(.gray)
                                     }
                                     
-                                    Text(shop.info.name)
+                                    Text(shop.shop.name)
                                         .font(.system(size: 22, weight: .bold, design: .rounded))
                                         .foregroundColor(Color.white)
                                         .padding(.top)
@@ -162,10 +160,8 @@ struct AddMembership: View {
                             }
                         }.padding().padding(.bottom, 10).background(RoundedRectangle(cornerRadius: 16).foregroundColor(.white)).padding(.horizontal).padding(.bottom)
                         
-                        
-                        ForEach(campaign_vm_add.shop_campaigns) { item in
-                            Text(item.domain)
-                        }
+                        Text("The campaign is")
+                        Text(add_campaign_vm.one_campaign.uuid.campaign)
                         
                         Spacer()
                         
@@ -192,24 +188,22 @@ struct AddMembership: View {
                                 
                                 self.new_code_id = UUID().uuidString
                                 
-                                self.membership_vm.addMembership(shop: shop, campaign: campaign_vm_add.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: new_code_id)
+                                self.memberships_vm.addMembership(shop: shop, campaign: add_campaign_vm.one_campaign, user_id: users_vm.one_user.uuid.user, code_id: new_code_id)
                                 
-                                self.code_vm1.addCode(shop: shop, campaign: campaign_vm_add.shop_campaigns.first!, user_id: viewModel.session?.uid ?? "", code_id: new_code_id)
+                                CodesVM().addDefaultCode(shop: shop, campaign: add_campaign_vm.one_campaign, user_id: users_vm.one_user.uuid.user, code_id: new_code_id)
                                 
-                                //self.code_vm1.listenForOneCode(code_id: new_code_id)
                                 
-                                //#3 navigate to the next page
-                                path.append(shop)
                                 
                                 //#4 mark that the user attempted to join
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    path.append(shop)
                                     didTapJoin = true
                                 }
                                 
                             } label: {
                                 HStack(alignment: .center) {
                                     Spacer()
-                                    Text(didTapJoin ? "Joined" : "Join \(shop.info.name)")
+                                    Text(didTapJoin ? "Joined" : "Join \(shop.shop.name)")
                                         .font(.system(size: 18, weight: .semibold, design: .rounded))
                                         .foregroundColor(Color.white)
                                     Spacer()
@@ -224,8 +218,8 @@ struct AddMembership: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(for: Shop.self) { shop in
-                AddedMembership(code_vm1: code_vm1, shop: shop, sheetDismiss: dismiss, new_code_id: $new_code_id)
+            .navigationDestination(for: Shops.self) { shop in
+                AddedMembership(shop: shop, sheetDismiss: dismiss, new_code_id: $new_code_id)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -244,9 +238,9 @@ struct AddMembership: View {
         }
         .onAppear {
             
-            self.campaign_vm_add.get_shop_campaigns(shop_id: shop.uuid.shop)
+            self.add_campaign_vm.getCampaign(campaign_id: shop.campaigns.first ?? "NONE")
             
-            let backgroundPath = shop.info.icon
+            let backgroundPath = "shops/" + shop.uuid.shop + "icon.png"
             
             let storage = Storage.storage().reference()
             
@@ -262,9 +256,3 @@ struct AddMembership: View {
         
     }
 }
-
-//struct AddMembership_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddMembership(sheetContext: <#Binding<[String]>#>, presentedSheet: <#Binding<PresentedSheet?>#>)
-//    }
-//}

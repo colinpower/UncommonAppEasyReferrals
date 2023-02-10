@@ -13,49 +13,49 @@ struct ContentView: View {
     
     @EnvironmentObject var viewModel: AppViewModel
     @StateObject var users_vm = UsersVM()
-    @ObservedObject var membership_vm = MembershipVM()
+    @StateObject var stripe_accounts_vm = Stripe_AccountsVM()
+    
+    
     
     @State private var email: String = ""
-    @State private var shouldShowFRE: Bool = false
+    
     
     var body: some View {
         
+        let currentSessionUID = viewModel.session?.uid ?? ""
+        let currentSessionEmail = viewModel.session?.email ?? ""
+        
+        
         Group {
             
-            if false {          //used for testing
-            
-                Home(membership_vm: membership_vm, email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2")
-                
-            } else {
-                
-                let currentSessionUID = viewModel.session?.uid ?? ""
-                let currentSessionEmail = viewModel.session?.email ?? ""
+            //if false { Home(membership_vm: membership_vm, email: .constant("colinjpower1@gmail.com"), uid: "EdZzl43o5fTespxaelsTEnobTtJ2") } else {
                 
                 if (currentSessionUID != "" && currentSessionEmail != "") {
                     
                     if (users_vm.one_user.profile.phone_verified) {
                         
-                        Home(membership_vm: membership_vm, email: $email, uid: currentSessionUID)
+                        Home(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm, email: $email)
                         
                     } else {
                         
                         EnterName(users_vm: users_vm)
-                        
+
                     }
                     
                 } else {
-                    
-                    Start(users_vm: users_vm, email: $email, shouldShowFRE: $shouldShowFRE)
+                        
+                    Start(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm, email: $email)
                 }
-            }
+//            }
         }
         .onAppear {
             
-            viewModel.listen(users_vm: users_vm)
+            viewModel.listen(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm)
             
                         
         }
         .onOpenURL { url in
+            
             let link = url.absoluteString
             
             if Auth.auth().isSignIn(withEmailLink: link) {
@@ -64,7 +64,7 @@ struct ContentView: View {
                     switch result {
                     
                     case let .success(user):
-                        viewModel.listen(users_vm: users_vm)
+                        viewModel.listen(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm)
                         
                     case let .failure(error):
                         print("error with result of passwordlessSignIn function")

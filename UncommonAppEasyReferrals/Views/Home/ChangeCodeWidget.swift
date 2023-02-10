@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-enum ChangedCodeState: String, Identifiable {
-    case empty, checking, success, failure
-    var id: String {
-        return self.rawValue
-    }
-}
-
 struct TextFieldLimitModifer: ViewModifier {
     @Binding var value: String
     var length: Int
@@ -35,8 +28,8 @@ extension View {
 
 struct ChangeCodeWidget: View {
     
-    @ObservedObject var code_vm: CodeVM
-    @ObservedObject var code_update_vm: CodeUpdateVM
+    @ObservedObject var codes_vm: CodesVM
+    @ObservedObject var code_updates_vm: CodeUpdatesVM
     @Binding var didTapSubmit: Bool
     
     @State var currentCode: String
@@ -49,7 +42,7 @@ struct ChangeCodeWidget: View {
     
     var body: some View {
         
-        Text(code_update_vm.one_code_update.status).background(.red)
+        Text(code_updates_vm.one_code_update.status).background(.red)
         HStack(alignment: .center, spacing: 16) {
             TextField("Enter a new code", text: $currentCode)
                 .font(.system(size: 22, weight: .bold, design: .rounded))
@@ -58,7 +51,7 @@ struct ChangeCodeWidget: View {
                 .limitInputLength(value: $currentCode, length: 22)
                 .onSubmit {
                     
-                    if currentCode == code_vm.one_code.code.code {      //if you basically didn't submit anything, ignore
+                    if currentCode == codes_vm.one_code.code.code {      //if you basically didn't submit anything, ignore
                         
                         changedCodeState = .empty
                         
@@ -66,9 +59,9 @@ struct ChangeCodeWidget: View {
                         
                         let newUUID = UUID().uuidString
                         
-                        code_update_vm.addCodeUpdate(code: code_vm.one_code, code_update_id: newUUID, new_code: currentCode)
+                        code_updates_vm.addCodeUpdate(code: codes_vm.one_code, code_update_id: newUUID, new_code: currentCode)
                         
-                        self.code_update_vm.listenForOneCode(code_id: code_vm.one_code.uuid.code, code_update_id: newUUID)
+                        self.code_updates_vm.listenForOneCode(code_id: codes_vm.one_code.uuid.code, code_update_id: newUUID)
 
                     }
                 }
@@ -135,7 +128,7 @@ struct ChangeCodeWidget: View {
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 keyboardFocused = shouldKeyboardBeFocused
             }
-            self.code_update_vm.listenForOneCode(code_id: code_vm.one_code.uuid.code, code_update_id: "EMPTY")
+            //iself.code_update_vm.listenForOneCode(code_id: codes_vm.one_code.uuid.code, code_update_id: "EMPTY")
         }
         
     }
@@ -147,5 +140,13 @@ private func getTextColor(for changedCodeState: ChangedCodeState) -> Color {
     case .checking: return Color("text.gray")
     case .success: return .green
     case .failure: return .red
+    }
+}
+
+
+enum ChangedCodeState: String, Identifiable {
+    case empty, checking, success, failure
+    var id: String {
+        return self.rawValue
     }
 }

@@ -14,18 +14,19 @@ import Combine
     // Get all orders for user
 
 
-class CashRewardVM: ObservableObject, Identifiable {
+class CashVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
     
-    @Published var my_cash_rewards = [CashReward]()
+    @Published var my_cash = [Cash]()
     
-    func getMyCashRewards() {
+    func getMyCashRewards(userid: String) {
         
-        db.collection("cash_rewards")
+        db.collection("cash")
+            .whereField("uuid.user", isEqualTo: userid)
             .getDocuments { (snapshot, error) in
     
                 guard let snapshot = snapshot, error == nil else {
@@ -35,13 +36,12 @@ class CashRewardVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.my_cash_rewards = snapshot.documents.compactMap({ queryDocumentSnapshot -> CashReward? in
+                self.my_cash = snapshot.documents.compactMap({ queryDocumentSnapshot -> Cash? in
                     print("AT THE TRY STATEMENT for getMyCashRewards")
-                    print(try? queryDocumentSnapshot.data(as: CashReward.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: CashReward.self)
+                    print(try? queryDocumentSnapshot.data(as: Cash.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: Cash.self)
                 })
             }
-    
     }
     
 }

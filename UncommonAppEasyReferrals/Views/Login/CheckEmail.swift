@@ -9,12 +9,9 @@ import Foundation
 import SwiftUI
 
 struct CheckEmail: View {
-    @ObservedObject var users_vm: UsersVM
     
     @Binding var startpath: NavigationPath
-    
     @Binding var email: String
-    
     @State var resendIsEnabled: Bool = false
     
     var body: some View {
@@ -48,7 +45,7 @@ struct CheckEmail: View {
                 //Continue button
                 Button {
                     
-                    EmailAuthVM().addEmailAuthRequest(email: email)
+                    Auth_EmailVM().requestEmailLink(email: email)
                     
                 } label: {
                     
@@ -75,13 +72,6 @@ struct CheckEmail: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
                 resendIsEnabled = true
             }
-            self.users_vm.checkForUser(email: email)
         }
     }
 }
-
-//struct CheckEmail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CheckEmail()
-//    }
-//}

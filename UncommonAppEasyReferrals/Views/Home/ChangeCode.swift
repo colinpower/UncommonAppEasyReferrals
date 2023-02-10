@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ChangeCode: View {
     
-    @ObservedObject var code_vm: CodeVM
-    @ObservedObject var code_update_vm = CodeUpdateVM()
+    @ObservedObject var codes_vm: CodesVM
+    
+    
+    @StateObject var code_updates_vm = CodeUpdatesVM()
     
     //@FocusState private var keyboardFocused: Bool
     //@State private var changedCodeState: ChangedCodeState = .empty
@@ -38,7 +40,7 @@ struct ChangeCode: View {
                         .font(.system(size: 18, weight: .regular, design: .rounded))
                         .foregroundColor(Color("text.black"))
                     
-                    + Text(code_vm.one_code.code.code)
+                    + Text(codes_vm.one_code.code.code)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .kerning(1.2)
                 }
@@ -57,7 +59,7 @@ struct ChangeCode: View {
 //                        .limitInputLength(value: $currentCode, length: 22)
 //                        .onSubmit {
 //
-//                            if currentCode == code_vm.one_code.code.code {
+//                            if currentCode == codes_vm.one_code.code.code {
 //
 //                                changedCodeState = .empty
 //
@@ -133,7 +135,7 @@ struct ChangeCode: View {
 //
 //                }.frame(height: 60)
 
-                ChangeCodeWidget(code_vm: code_vm, code_update_vm: code_update_vm, didTapSubmit: $didTapSubmit, currentCode: code_vm.one_code.code.code, shouldKeyboardBeFocused: true)
+                ChangeCodeWidget(codes_vm: codes_vm, code_updates_vm: code_updates_vm, didTapSubmit: $didTapSubmit, currentCode: codes_vm.one_code.code.code, shouldKeyboardBeFocused: true)
                     .padding(.horizontal)
                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color("TextFieldGray")))
                 

@@ -10,14 +10,14 @@ import SwiftUI
 
 struct Start: View {
     
-    @ObservedObject var users_vm: UsersVM
-    
     var enterEmailPages: [EnterEmailPage] = [.init(screen: "EnterEmail", content: "")]
     
-    @State var startpath = NavigationPath()
+    @ObservedObject var users_vm: UsersVM
+    @ObservedObject var stripe_accounts_vm: Stripe_AccountsVM
     
     @Binding var email: String
-    @Binding var shouldShowFRE: Bool
+    
+    @State var startpath = NavigationPath()
     
     var body: some View {
         
@@ -28,7 +28,10 @@ struct Start: View {
                 Color.red.ignoresSafeArea()
                 
                 TabView {
-                    Text("First")
+                    VStack {
+                        Text(users_vm.one_user.uuid.user)
+                        Text(stripe_accounts_vm.one_stripe_account.uuid.stripe_account)
+                    }
                     Text("Second")
                     Text("Third")
                     Text("Fourth")
@@ -56,18 +59,17 @@ struct Start: View {
             }
             .navigationTitle("")
             .navigationDestination(for: EnterEmailPage.self) { page in
-                EnterEmail(users_vm: users_vm, startpath: $startpath, email: $email, shouldShowFRE: $shouldShowFRE)
+                EnterEmail(email: $email, startpath: $startpath)
+            }
+            .onAppear {
+                print("THIS IS THE USER ACCOUND AND THE STRIPE ACCOUNT")
+                print(users_vm.one_user)
+                print(stripe_accounts_vm.one_stripe_account)
             }
                 
         }
     }
 }
-//
-//struct Start_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Start(email: .constant("colinjpower1@gmail.com", shouldShowFRE: false))
-//    }
-//}
 
 
 

@@ -14,27 +14,24 @@ import Combine
     // Get one code
 
 
-class CodeVM: ObservableObject, Identifiable {
+class CodesVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
-        
     private var db = Firestore.firestore()
     
-//    @Published var one_code = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: ""), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: ""))
 
-    @Published var one_code = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: "EMPTY"), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: "")) {
+    @Published var one_code = EmptyVariables().empty_code {
         didSet {
             print("updated the one_code variable.. here it is...")
             print(one_code)
         }
     }
-    
-    @Published var one_code_static = Code(code: Code_Code(code: "", color: [], graphql_id: "", is_default: false), shop: Code_Shop(domain: "", name: "", website: ""), stats: Code_Stats(usage_count: -1, usage_limit: -1), status: Code_Status(did_creation_succeed: false, status: "EMPTY"), timestamp: Code_Timestamp(created: -1, deleted: -1, used: -1), uuid: Code_UUID(campaign: "", code: "", membership: "", shop: "", user: ""))
+    @Published var one_code_static = EmptyVariables().empty_code
+    @Published var my_active_discount_codes = [Codes]()
     
     var one_code_listener: ListenerRegistration!
+    var my_active_discount_codes_listener: ListenerRegistration!
         
-    
-    
     func getOneCode(code_id: String) {
 
         let docRef = db.collection("codes").document(code_id)
@@ -46,7 +43,7 @@ class CodeVM: ObservableObject, Identifiable {
             else {
                 if let document = document {
                     do {
-                        self.one_code_static = try document.data(as: Code.self)
+                        self.one_code_static = try document.data(as: Codes.self)
                         print(self.one_code_static)
                     }
                     catch {
@@ -77,37 +74,58 @@ class CodeVM: ObservableObject, Identifiable {
         }
     }
     
-    func addCode(shop: Shop, campaign: Campaign, user_id: String, code_id: String, code: String = "") {
+    func listenForMyActiveDiscountCodes(user_id: String) {
+            
+        self.dm.getMyActiveDiscountCodesListener(user_id: user_id, onSuccess: { (codes) in
+            
+            self.my_active_discount_codes = codes
+            
+            print("FOUND MY DISCOUNT CODES CODE")
+            print(self.my_active_discount_codes)
+            
+        }, listener: { (listener) in
+            self.my_active_discount_codes_listener = listener
+        })
+    }
+    
+    func addDefaultCode(shop: Shops, campaign: Campaigns, user_id: String, code_id: String, code: String = "") {
          
         db.collection("codes").document(code_id).setData([
+            "_PURPOSE": "REFERRAL",
             "code": [
                 "code": code,
+                "UPPERCASED": code.uppercased(),
                 "color": [255, 255, 255],
                 "graphql_id": "",
                 "is_default": true
             ],
             "shop": [
-                "domain": shop.info.domain,
-                "name": shop.info.name,
-                "website": shop.info.website
+                "category": shop.shop.category,
+                "contact_support_email": shop.shop.contact_support_email,
+                "description": shop.shop.description,
+                "domain": shop.shop.domain,
+                "name": shop.shop.name,
+                "website": shop.shop.website
             ],
             "stats": [
                 "usage_count": 0,
-                "usage_limit": campaign.offer.usage_limit
+                "usage_limit": campaign.offer.total_usage_limit
             ],
-            "status": [
-                "did_creation_succeed": false,
-                "status": "PENDING"
-            ],
+            "status": "ACTIVE",
             "timestamp": [
-                "created": Int(round(Date().timeIntervalSince1970)),
+                "created": 0,
                 "deleted": -1,
-                "used": -1
+                "last_used": -1,
+                "pending": getTimestamp()
             ],
             "uuid": [
                 "campaign": campaign.uuid.campaign,
+                "cash": "",
                 "code": code_id,
                 "membership": user_id + "-" + shop.uuid.shop,
+                "order": "",
+                "referral": "",
+                "reward_code": "",
                 "shop": shop.uuid.shop,
                 "user": user_id
             ]

@@ -13,7 +13,6 @@ struct EnterName: View {
     var setupPages: [SetupPage] = [.init(screen: "EnterPhone", content: "")]
     @State var setuppath = NavigationPath()
     
-    @EnvironmentObject var viewModel: AppViewModel
     @ObservedObject var users_vm: UsersVM
     
     @State var first_name: String = ""
@@ -93,7 +92,7 @@ struct EnterName: View {
                     //Continue button
                     Button {
                         
-                        users_vm.submitNames(uid: viewModel.session?.uid ?? "", first_name: first_name, last_name: last_name)
+                        users_vm.submitNames(user_id: users_vm.one_user.uuid.user, first_name: first_name, last_name: last_name)
                         
                         setuppath.append(setupPages[0])
                         
@@ -124,8 +123,6 @@ struct EnterName: View {
                 EnterPhone(users_vm: users_vm, setuppath: $setuppath)
             }
             .onAppear {
-                
-                self.users_vm.listenForOneUserNEW(user_id: viewModel.userID ?? "USER_NOT_SET")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     firstFocused = true

@@ -1,5 +1,5 @@
 //
-//  RewardsVM.swift
+//  ReferralsVM.swift
 //  UncommonApp
 //
 //  Created by Colin Power on 12/12/22.
@@ -14,18 +14,18 @@ import Combine
     // Get all orders for user
 
 
-class DiscountRewardVM: ObservableObject, Identifiable {
+class ReferralsVM: ObservableObject, Identifiable {
 
     var dm = DataManager()
         
     private var db = Firestore.firestore()
     
+    @Published var my_pending_referrals = [Referrals]()
     
-    @Published var my_discount_rewards = [DiscountReward]()
-    
-    func getMyDiscountRewards() {
+    func getMyPendingReferrals() {
         
-        db.collection("discount_rewards")
+        db.collection("referrals")
+            .whereField("_STATUS", isEqualTo: "PENDING")
             .getDocuments { (snapshot, error) in
     
                 guard let snapshot = snapshot, error == nil else {
@@ -35,10 +35,10 @@ class DiscountRewardVM: ObservableObject, Identifiable {
                 }
                 print("Number of documents: \(snapshot.documents.count)")
     
-                self.my_discount_rewards = snapshot.documents.compactMap({ queryDocumentSnapshot -> DiscountReward? in
-                    print("AT THE TRY STATEMENT for getRewards")
-                    print(try? queryDocumentSnapshot.data(as: DiscountReward.self) as Any)
-                    return try? queryDocumentSnapshot.data(as: DiscountReward.self)
+                self.my_pending_referrals = snapshot.documents.compactMap({ queryDocumentSnapshot -> Referrals? in
+                    print("AT THE TRY STATEMENT for getMyReferrals")
+                    print(try? queryDocumentSnapshot.data(as: Referrals.self) as Any)
+                    return try? queryDocumentSnapshot.data(as: Referrals.self)
                 })
             }
     
