@@ -80,6 +80,9 @@ struct MyDiscounts: View {
                             Button {
 
                                 selectedDiscountObject = gridObject
+                                
+                                
+                                
 
                                 if gridObject.type == "AVAILABLE" {
                                     activeSheetForMyDiscounts = .available
