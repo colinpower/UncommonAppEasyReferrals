@@ -503,7 +503,7 @@ struct shopRow: View {
         }
         .onAppear {
             
-            let backgroundPath = "shops/" + shop.uuid.shop + "icon.png"
+            let backgroundPath = "shops/" + shop.uuid.shop + "/icon.png"
             
             let storage = Storage.storage().reference()
             

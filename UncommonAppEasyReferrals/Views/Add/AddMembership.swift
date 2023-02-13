@@ -240,7 +240,7 @@ struct AddMembership: View {
             
             self.add_campaign_vm.getCampaign(campaign_id: shop.campaigns.first ?? "NONE")
             
-            let backgroundPath = "shops/" + shop.uuid.shop + "icon.png"
+            let backgroundPath = "shops/" + shop.uuid.shop + "/icon.png"
             
             let storage = Storage.storage().reference()
             
