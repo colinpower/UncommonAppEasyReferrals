@@ -15,16 +15,15 @@ struct ContentView: View {
     @StateObject var users_vm = UsersVM()
     @StateObject var stripe_accounts_vm = Stripe_AccountsVM()
     
-    
-    
     @State private var email: String = ""
     
+    @AppStorage("shouldShowFirstRunExperience")
+    private var shouldShowFirstRunExperience: Bool = true
     
     var body: some View {
         
         let currentSessionUID = viewModel.session?.uid ?? ""
         let currentSessionEmail = viewModel.session?.email ?? ""
-        
         
         Group {
             
@@ -34,7 +33,12 @@ struct ContentView: View {
                     
                     if (users_vm.one_user.profile.phone_verified) {
                         
-                        Home(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm, email: $email)
+                        //Home(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm, email: $email)
+                        
+                        TabRouter()
+                            .fullScreenCover(isPresented: $shouldShowFirstRunExperience, content: {
+                                FirstRunExperience(shouldShowFirstRunExperience: $shouldShowFirstRunExperience)
+                            })
                         
                     } else {
                         
@@ -52,6 +56,8 @@ struct ContentView: View {
             
             viewModel.listen(users_vm: users_vm, stripe_accounts_vm: stripe_accounts_vm)
             
+//            @AppStorage("shouldShowFirstRunExperience") var shouldShowFirstRunExperience:Bool = true
+//            shouldShowFirstRunExperience = true
                         
         }
         .onOpenURL { url in

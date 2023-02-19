@@ -77,6 +77,25 @@
 		305E676629607F740003D341 /* ReferralCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305E676529607F740003D341 /* ReferralCard.swift */; };
 		306461162955AB1000E28C7D /* CashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306461152955AB1000E28C7D /* CashOut.swift */; };
 		30A9A6AE295280790079F47B /* AddMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9A6AD295280790079F47B /* AddMembership.swift */; };
+		30C0056029A13CFF000888DF /* Profile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0055F29A13CFF000888DF /* Profile2.swift */; };
+		30C0056229A13DE1000888DF /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056129A13DE1000888DF /* AddPost.swift */; };
+		30C0056429A14198000888DF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056329A14198000888DF /* ImagePicker.swift */; };
+		30C0056629A141D9000888DF /* SingleImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056529A141D8000888DF /* SingleImagePickerView.swift */; };
+		30C0056829A148B1000888DF /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056729A148B1000888DF /* Crop.swift */; };
+		30C0056A29A14957000888DF /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056929A14957000888DF /* CustomImagePicker.swift */; };
+		30C0056C29A14B31000888DF /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056B29A14B31000888DF /* PostDetails.swift */; };
+		30C0056E29A15AE5000888DF /* SelectVerifiedPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056D29A15AE5000888DF /* SelectVerifiedPurchase.swift */; };
+		30C0057029A17E3A000888DF /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0056F29A17E3A000888DF /* TabRouter.swift */; };
+		30C0057229A17E93000888DF /* AppDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057129A17E93000888DF /* AppDataModel.swift */; };
+		30C0057429A18065000888DF /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057329A18065000888DF /* Search.swift */; };
+		30C0057629A184FB000888DF /* Home2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057529A184FB000888DF /* Home2.swift */; };
+		30C0057829A18D8B000888DF /* AddThingsISwearBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057729A18D8B000888DF /* AddThingsISwearBy.swift */; };
+		30C0057A29A193AC000888DF /* StarterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057929A193AC000888DF /* StarterList.swift */; };
+		30C0057C29A19795000888DF /* FirstRunExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057B29A19795000888DF /* FirstRunExperience.swift */; };
+		30C0057F29A19D97000888DF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0057E29A19D97000888DF /* Post.swift */; };
+		30C0058129A19ECA000888DF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0058029A19ECA000888DF /* Brand.swift */; };
+		30C0058429A1A2FE000888DF /* BrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0058329A1A2FE000888DF /* BrandViewModel.swift */; };
+		30C0058629A1B704000888DF /* CustomerAccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0058529A1B704000888DF /* CustomerAccountsViewModel.swift */; };
 		30D0891229658F88007D5A1E /* Shops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891129658F88007D5A1E /* Shops.swift */; };
 		30D08914296590CD007D5A1E /* Campaigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D08913296590CD007D5A1E /* Campaigns.swift */; };
 		30D0891629659281007D5A1E /* CampaignsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891529659281007D5A1E /* CampaignsVM.swift */; };
@@ -161,6 +180,25 @@
 		305E676529607F740003D341 /* ReferralCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCard.swift; sourceTree = "<group>"; };
 		306461152955AB1000E28C7D /* CashOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOut.swift; sourceTree = "<group>"; };
 		30A9A6AD295280790079F47B /* AddMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembership.swift; sourceTree = "<group>"; };
+		30C0055F29A13CFF000888DF /* Profile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile2.swift; sourceTree = "<group>"; };
+		30C0056129A13DE1000888DF /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
+		30C0056329A14198000888DF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		30C0056529A141D8000888DF /* SingleImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImagePickerView.swift; sourceTree = "<group>"; };
+		30C0056729A148B1000888DF /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
+		30C0056929A14957000888DF /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
+		30C0056B29A14B31000888DF /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
+		30C0056D29A15AE5000888DF /* SelectVerifiedPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerifiedPurchase.swift; sourceTree = "<group>"; };
+		30C0056F29A17E3A000888DF /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
+		30C0057129A17E93000888DF /* AppDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataModel.swift; sourceTree = "<group>"; };
+		30C0057329A18065000888DF /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		30C0057529A184FB000888DF /* Home2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home2.swift; sourceTree = "<group>"; };
+		30C0057729A18D8B000888DF /* AddThingsISwearBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThingsISwearBy.swift; sourceTree = "<group>"; };
+		30C0057929A193AC000888DF /* StarterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterList.swift; sourceTree = "<group>"; };
+		30C0057B29A19795000888DF /* FirstRunExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRunExperience.swift; sourceTree = "<group>"; };
+		30C0057E29A19D97000888DF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		30C0058029A19ECA000888DF /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		30C0058329A1A2FE000888DF /* BrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewModel.swift; sourceTree = "<group>"; };
+		30C0058529A1B704000888DF /* CustomerAccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAccountsViewModel.swift; sourceTree = "<group>"; };
 		30D0891129658F88007D5A1E /* Shops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shops.swift; sourceTree = "<group>"; };
 		30D08913296590CD007D5A1E /* Campaigns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaigns.swift; sourceTree = "<group>"; };
 		30D0891529659281007D5A1E /* CampaignsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignsVM.swift; sourceTree = "<group>"; };
@@ -392,6 +430,9 @@
 				3056BEAE2939080A006C85F8 /* UncommonAppEasyReferrals.swift */,
 				3056BEB02939080A006C85F8 /* ContentView.swift */,
 				30051F64297A7AC200FB5BBB /* Helpers.swift */,
+				30C0055E29A125AF000888DF /* Views2 */,
+				30C0058229A1A2E9000888DF /* ViewModels2 */,
+				30C0057D29A19D8A000888DF /* Models2 */,
 				30114A1A29407B3500F63BD1 /* Views */,
 				30114A1B29407B3D00F63BD1 /* ViewModels */,
 				30114A1C29407B4E00F63BD1 /* Models */,
@@ -425,6 +466,46 @@
 				30E302462963B08E00C5D7B3 /* DiscountCard.swift */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		30C0055E29A125AF000888DF /* Views2 */ = {
+			isa = PBXGroup;
+			children = (
+				30C0055F29A13CFF000888DF /* Profile2.swift */,
+				30C0057B29A19795000888DF /* FirstRunExperience.swift */,
+				30C0057529A184FB000888DF /* Home2.swift */,
+				30C0057929A193AC000888DF /* StarterList.swift */,
+				30C0057729A18D8B000888DF /* AddThingsISwearBy.swift */,
+				30C0057329A18065000888DF /* Search.swift */,
+				30C0057129A17E93000888DF /* AppDataModel.swift */,
+				30C0056F29A17E3A000888DF /* TabRouter.swift */,
+				30C0056129A13DE1000888DF /* AddPost.swift */,
+				30C0056B29A14B31000888DF /* PostDetails.swift */,
+				30C0056D29A15AE5000888DF /* SelectVerifiedPurchase.swift */,
+				30C0056529A141D8000888DF /* SingleImagePickerView.swift */,
+				30C0056329A14198000888DF /* ImagePicker.swift */,
+				30C0056929A14957000888DF /* CustomImagePicker.swift */,
+			);
+			path = Views2;
+			sourceTree = "<group>";
+		};
+		30C0057D29A19D8A000888DF /* Models2 */ = {
+			isa = PBXGroup;
+			children = (
+				30C0056729A148B1000888DF /* Crop.swift */,
+				30C0057E29A19D97000888DF /* Post.swift */,
+				30C0058029A19ECA000888DF /* Brand.swift */,
+			);
+			path = Models2;
+			sourceTree = "<group>";
+		};
+		30C0058229A1A2E9000888DF /* ViewModels2 */ = {
+			isa = PBXGroup;
+			children = (
+				30C0058329A1A2FE000888DF /* BrandViewModel.swift */,
+				30C0058529A1B704000888DF /* CustomerAccountsViewModel.swift */,
+			);
+			path = ViewModels2;
 			sourceTree = "<group>";
 		};
 		30EF894F295629EB00C4A709 /* SendReferral */ = {
@@ -622,25 +703,32 @@
 				30051F69297A886E00FB5BBB /* Stripe_AccountsVM.swift in Sources */,
 				300B38E6294C333E000B288D /* AppVM.swift in Sources */,
 				300B38EE294C3D64000B288D /* EnterPhone.swift in Sources */,
+				30C0056629A141D9000888DF /* SingleImagePickerView.swift in Sources */,
 				302A986929960A5A00C9AB90 /* LoadImageFromURL.swift in Sources */,
+				30C0056E29A15AE5000888DF /* SelectVerifiedPurchase.swift in Sources */,
 				30FAABE1296BF3AB006F1975 /* ChangeCodeWidget.swift in Sources */,
 				30114A2D29471CDC00F63BD1 /* DataManager.swift in Sources */,
 				300B38E0294C2C73000B288D /* Start.swift in Sources */,
+				30C0056C29A14B31000888DF /* PostDetails.swift in Sources */,
 				302A986B29960B6E00C9AB90 /* CallableFunction.swift in Sources */,
 				3056BEDB293EAFB5006C85F8 /* MyDiscounts.swift in Sources */,
 				300B38F0294C3D6D000B288D /* CheckPhone.swift in Sources */,
 				3056BEB12939080A006C85F8 /* ContentView.swift in Sources */,
 				30FAABDF296BE664006F1975 /* AddedMembership.swift in Sources */,
+				30C0056A29A14957000888DF /* CustomImagePicker.swift in Sources */,
 				300B38EC294C3D5E000B288D /* EnterName.swift in Sources */,
+				30C0057A29A193AC000888DF /* StarterList.swift in Sources */,
 				30114A3B29472FED00F63BD1 /* Orders.swift in Sources */,
 				30114A19294051B100F63BD1 /* Profile.swift in Sources */,
 				30FAABDD29696B83006F1975 /* ChangeCode.swift in Sources */,
 				30356F22297EEBA000E1A07D /* CodeUpdatesVM.swift in Sources */,
+				30C0058429A1A2FE000888DF /* BrandViewModel.swift in Sources */,
 				30114A3929472B3D00F63BD1 /* MembershipsVM.swift in Sources */,
 				300B38E4294C2D57000B288D /* Auth_EmailVM.swift in Sources */,
 				3056BED9293EAF85006C85F8 /* Home.swift in Sources */,
 				30051F65297A7AC200FB5BBB /* Helpers.swift in Sources */,
 				3056BEAF2939080A006C85F8 /* UncommonAppEasyReferrals.swift in Sources */,
+				30C0058629A1B704000888DF /* CustomerAccountsViewModel.swift in Sources */,
 				30D0891629659281007D5A1E /* CampaignsVM.swift in Sources */,
 				305E676629607F740003D341 /* ReferralCard.swift in Sources */,
 				302E0A732962F9B0002962BB /* AvailableDiscount.swift in Sources */,
@@ -648,24 +736,36 @@
 				30114A472947353E00F63BD1 /* Users.swift in Sources */,
 				30114A412947323500F63BD1 /* ReferralsVM.swift in Sources */,
 				30051F67297A874800FB5BBB /* Stripe_Accounts.swift in Sources */,
+				30C0057629A184FB000888DF /* Home2.swift in Sources */,
 				30114A3D2947309800F63BD1 /* OrdersVM.swift in Sources */,
 				30D0891229658F88007D5A1E /* Shops.swift in Sources */,
 				30EF8951295629FC00C4A709 /* SendReferral.swift in Sources */,
 				30356F24297EEBC200E1A07D /* CodeUpdates.swift in Sources */,
 				302A9864298A825600C9AB90 /* ReferralCardStruct.swift in Sources */,
+				30C0057C29A19795000888DF /* FirstRunExperience.swift in Sources */,
 				300B38EA294C3D53000B288D /* CheckEmail.swift in Sources */,
 				30114A3129471FFF00F63BD1 /* CodesVM.swift in Sources */,
+				30C0056029A13CFF000888DF /* Profile2.swift in Sources */,
 				30051F61297A765D00FB5BBB /* Auth_PhoneVM.swift in Sources */,
 				30114A3F2947312B00F63BD1 /* Referrals.swift in Sources */,
 				302A9866299222B900C9AB90 /* CreateStripeAccount.swift in Sources */,
+				30C0056829A148B1000888DF /* Crop.swift in Sources */,
+				30C0057F29A19D97000888DF /* Post.swift in Sources */,
+				30C0058129A19ECA000888DF /* Brand.swift in Sources */,
 				30D0891A2965AA56007D5A1E /* CashVM.swift in Sources */,
+				30C0056429A14198000888DF /* ImagePicker.swift in Sources */,
+				30C0057229A17E93000888DF /* AppDataModel.swift in Sources */,
 				302A986D299644D400C9AB90 /* ConfirmCashOut.swift in Sources */,
 				300B38E8294C3685000B288D /* EnterEmail.swift in Sources */,
 				30114A37294724CB00F63BD1 /* Memberships.swift in Sources */,
 				30051F6B297B6D9F00FB5BBB /* Cash.swift in Sources */,
 				30D08914296590CD007D5A1E /* Campaigns.swift in Sources */,
+				30C0057829A18D8B000888DF /* AddThingsISwearBy.swift in Sources */,
+				30C0057029A17E3A000888DF /* TabRouter.swift in Sources */,
+				30C0056229A13DE1000888DF /* AddPost.swift in Sources */,
 				30114A352947242C00F63BD1 /* ShopsVM.swift in Sources */,
 				30A9A6AE295280790079F47B /* AddMembership.swift in Sources */,
+				30C0057429A18065000888DF /* Search.swift in Sources */,
 				30051F5F297A721300FB5BBB /* EmptyVariables.swift in Sources */,
 				30D0891C2965D25B007D5A1E /* PendingDiscount.swift in Sources */,
 			);
@@ -825,13 +925,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = UncommonAppEasyReferrals/UncommonAppEasyReferrals.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F6HF4R7G4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UncommonAppEasyReferrals/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
+				INFOPLIST_KEY_CFBundleDisplayName = SwearBy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -843,7 +943,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = UncommonInc.UncommonApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -859,13 +959,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = UncommonAppEasyReferrals/UncommonAppEasyReferrals.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F6HF4R7G4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UncommonAppEasyReferrals/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Uncommon App";
+				INFOPLIST_KEY_CFBundleDisplayName = SwearBy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -877,7 +977,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = UncommonInc.UncommonApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
